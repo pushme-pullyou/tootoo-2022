@@ -91,7 +91,7 @@
 			//MNUspnVersion.hidden = true;
 
 			// FRX = File Read XHR
-			//FRX.init();
+			FRX.init();
 
 			// GR
 			//GRA.init();
@@ -113,7 +113,7 @@
 
 			if ( location.protocol === "https:" ) {
 
-				if ( COR.version !== "2022-11-06" ) { window.history.pushState( "", "", "../" + location.hash ); }
+				if ( COR.version !== "2022-01-01" ) { window.history.pushState( "", "", "../" + location.hash ); }
 
 				COR.ignoreFolders = COR.defaultIgnoreFolders;
 

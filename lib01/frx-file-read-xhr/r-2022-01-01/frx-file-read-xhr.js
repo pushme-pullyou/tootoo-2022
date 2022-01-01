@@ -6,7 +6,7 @@
 
 const FRX = {};
 
-FRX.release = "r-2022-011-01";
+FRX.release = "r-2022-01-01";
 
 FRX.reader = new FileReader();
 
@@ -21,12 +21,16 @@ FRX.init = function () {
 
 	FRX.pathContent = COR.pathContent ? COR.pathContent : "../../../";
 	FRX.pathTooToo = COR.pathTooToo ? COR.pathTooToo : "../../../";
-	FRX.pathUtilities = FRX.pathTooToo + `lib11/frx-file-read-xhr/${ FRX.release }/`;
+	FRX.pathUtilities = FRX.pathTooToo + `lib01/frx-file-read-xhr/${ FRX.release }/`;
 	//FRX.pathUtilities = `./`;
 
 	FRX.defaultUrl = FRX.pathContent + FRX.defaultFile;
 
 	//${ MNU.addInfoBox( info ); }
+
+}
+
+FRX.getMenu = function() {
 
 	if ( !window.FRXdivDetails ) {
 
@@ -127,7 +131,10 @@ FRX.addListeners = function ( xhr ) {
 
 FRX.handleEvent = function ( e ) {
 
-	FRXdivLog2.innerText = `${ e.type }: ${ e.loaded.toLocaleString() } bytes transferred\n`;
+	if ( !window.FRXdivLog2 ) {
+		return;
+	}
+		FRXdivLog2.innerText = `${ e.type }: ${ e.loaded.toLocaleString() } bytes transferred\n`;
 
 };
 
@@ -369,6 +376,7 @@ FRX.loadHandler = function ( obj, handler ) {
 
 FRX.onProgress = function ( size = 0, note = "" ) {
 
+	if ( !window.FRXdivLog ) { return; }
 	FRX.timeToLoad = ( performance.now() - FRX.timeStart ).toLocaleString();
 	FRX.size = size;
 
@@ -385,6 +393,7 @@ FRX.onProgress = function ( size = 0, note = "" ) {
 			${ note }
 		</p>
 	`;
+
 
 	FRXdivLog.innerHTML = htm;
 
