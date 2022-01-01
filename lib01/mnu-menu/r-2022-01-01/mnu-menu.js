@@ -15,15 +15,15 @@ Menu system<br>
 <br>
 File: mnu-menu.js<br>
 Name space: MNU<br>
-Release: 2021-12-01<br>
+Release: 2022-01-01<br>
 <button onclick=MNU.getSample()>Testing: add sample menu</button>`;
 
 	MNU.infoBoxHtm = COR.description ? COR.description : MNU.info;
-	MNU.iconGitHub = COR.iconGitHub ? COR.iconGitHub : `<img src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg">`;
-	MNU.iconInfo = COR.iconInfo ? COR.iconInfo : `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/noun_Information_585560.svg" height=16px >`;
-	MNU.iconRepo = COR.iconRepo ? COR.iconRepo : "❦";
+	//MNU.iconGitHub = COR.iconGitHub ? COR.iconGitHub : `<img src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg">`;
+	//MNU.iconInfo = COR.iconInfo ? COR.iconInfo : `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/noun_Information_585560.svg" height=16px >`;
+	//MNU.iconRepo = COR.iconRepo ? COR.iconRepo : "❦";
 	MNU.title = COR.title ? COR.title : location.href.split( "/" ).pop().slice( 0, -5 ).replace( /-/g, " " );
-	MNU.urlSource = COR.urlSource ? COR.urlSource : "https://github.com/pushme-pullyou/tootoo-2021/";
+	MNU.urlSource = COR.urlSource ? COR.urlSource : "https://github.com/pushme-pullyou/tootoo-2022/";
 	MNU.version = COR.version ? COR.version : document.head.querySelector( "[ name=date ]" ).content;
 
 	MNUdivShowHide.innerHTML = `
@@ -73,7 +73,7 @@ Release: 2021-12-01<br>
 
 	<h1>
 		<a id=MNUaSource href=${ MNU.urlSource } target="_top" title="Click to go to the source code on GitHub">
-			${ MNU.iconGitHub }</a>
+			${ COR.iconGitHub }</a>
 
 		<a href="" title="Click this title to reload this page">
 			<span id=MNUspnTitle>${ MNU.title }</span>
@@ -96,7 +96,7 @@ Release: 2021-12-01<br>
 
 	<center>
 		<a id=MNUaIcon class=aDingbat href="javascript:MNUspnTitle.scrollIntoView();" title="Scroll to top" >
-		${ MNU.iconRepo }
+		${ COR.iconRepo }
 		</a>
 	</center>
 
@@ -110,7 +110,7 @@ MNU.addInfoBox = function ( text = MNU.infoBoxHtm, id = "" ) {
 	//console.log( { text } );
 	const htm = `
 <span class="info">
-	${ MNU.iconInfo }
+	${ COR.iconInfo }
 	<div class="infoTooltip gmd-5">
 		<div id=${ id } >${ text }</div>
 	</div>

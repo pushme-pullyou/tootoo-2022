@@ -1,4 +1,4 @@
-// copyright 2021 Theo Armour. MIT license.
+// copyright 2022 Theo Armour. MIT license.
 /* global COR, MNU, GRVdivDetails, GRVdivFolders, GRVdivGitHubRepoTreeView, divPopUp, navMenu */
 // jshint esversion: 6
 // jshint loopfunc: true
@@ -10,7 +10,7 @@ Right-click folder names to bring up the context menu to open and close multiple
 <br>
 File: grv-github-repo-tree-view.js<br>
 Name space: GRV<br>
-Release: 2021-09-18<br>
+Release: 2022-09-18<br>
 <button onclick=GRV.test()>Testing: view all files in this repository</button>
 <button onclick=GRV.getRepos() > get Repo new</button >`;
 
@@ -478,7 +478,7 @@ GRV.getRepos = function () {
 GRV.getRepoNew = function ( obj = {} ) {
 
 	COR.user = obj.user || "theo-armour";
-	COR.repo = obj.repo || "2021";
+	COR.repo = obj.repo || "2022";
 	COR.branch = obj.branch || "main";
 
 	COR.filesAll = obj.menu || true;
