@@ -28,6 +28,12 @@ FRX.init = function () {
 
 	//${ MNU.addInfoBox( info ); }
 
+	window.addEventListener( "hashchange", FRX.onHashChange );
+
+	window.addEventListener( "dragenter", FRX.dragenter, false );
+	window.addEventListener( "dragover", FRX.dragover, false );
+	window.addEventListener( "drop", FRX.drop, false );
+
 }
 
 FRX.getMenu = function() {
@@ -73,11 +79,7 @@ Release: ${ FRX.release }<br>`;
 
 	}
 
-	window.addEventListener( "hashchange", FRX.onHashChange );
 
-	window.addEventListener( "dragenter", FRX.dragenter, false );
-	window.addEventListener( "dragover", FRX.dragover, false );
-	window.addEventListener( "drop", FRX.drop, false );
 
 };
 
