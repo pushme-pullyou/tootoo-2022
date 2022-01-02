@@ -17,14 +17,14 @@ FRX.init = function () {
 	FRX.releaseThree = COR.releaseThree;
 	FRX.urlLoaders = `https://cdn.jsdelivr.net/gh/mrdoob/three.js@${ FRX.releaseThree }/examples/js/loaders/`;
 
-	FRX.defaultFile = COR.defaultFile ? COR.defaultFile : "README.md";
+	//FRX.defaultFile = COR.defaultFile ? COR.defaultFile : "README.md";
 
-	FRX.pathContent = COR.pathContent ? COR.pathContent : "../../../";
+	//FRX.pathContent = COR.pathContent ? COR.pathContent : "../../../";
 	FRX.pathTooToo = COR.pathTooToo ? COR.pathTooToo : "../../../";
 	FRX.pathUtilities = FRX.pathTooToo + `lib01/frx-file-read-xhr/${ FRX.release }/`;
 	//FRX.pathUtilities = `./`;
 
-	FRX.defaultUrl = FRX.pathContent + FRX.defaultFile;
+	FRX.defaultUrl = COR.pathContent + COR.defaultFile;
 
 	//${ MNU.addInfoBox( info ); }
 
@@ -148,7 +148,7 @@ FRX.onHashChange = function () {
 
 	FRX.timeStart = performance.now();
 
-	const url = location.hash ? location.hash.slice( 1 ) : FRX.defaultUrl;
+	const url = location.hash ? COR.pathContent + location.hash.slice( 1 ) : FRX.defaultUrl;
 	FRX.content = "";
 	FRX.file = "";
 	FRX.fileName = url.split( "/" ).pop();
