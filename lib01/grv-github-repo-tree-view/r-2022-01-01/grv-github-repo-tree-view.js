@@ -193,7 +193,7 @@ GRV.onLoadTree = function ( json ) {
 
 	//GRVdivFolders.addEventListener( "contextmenu", GRV.onContextMenu );
 
-	GRV.onHashChange();
+	//GRV.onHashChange();
 
 };
 
@@ -209,14 +209,16 @@ GRV.onHashChange = function () {
 
 	GRV.links.forEach( link => link.parentNode.classList.remove( "highlight" ) );
 
-	const str = location.hash ? location.hash.slice( 1 ) : COR.urlBaseContent  + COR.defaultFile;
+	const str = location.hash ? location.hash.slice( 1 ) : COR.defaultFile;
 	//const str = location.hash.slice( 1 );
+	//console.log( "str", str );
 	const item = GRV.links.find( a => a.getAttribute( "href" ).includes( str ) );
 	//console.log( "item", item );
 
-	if ( item && item.parentNode ) {
+	if ( item ) {
 
-		item.parentNode.classList.add( "highlight" );
+		//item.parentNode.classList.add( "highlight" );
+		item.classList.add( "highlight" );
 		//console.log( "item.parentNode", item.parentNode );
 
 		if ( item.parentNode.parentNode ) { item.parentNode.parentNode.open = true; }
