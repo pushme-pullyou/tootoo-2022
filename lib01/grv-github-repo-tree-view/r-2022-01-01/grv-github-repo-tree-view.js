@@ -52,7 +52,7 @@ GRV.init = function () {
 
 		<div id=GRVdivGitHubRepoTreeView></div>
 
-		<p><button id=GRVbutMenu onclick=GRV.toggleMenu() >${ GRV.menuCurated }</button></p>
+		<p><button id=GRVbutMenu onclick=GRV.toggleMenu() >${ GRV.menuAll }</button></p>
 
 	</div>
 
@@ -102,6 +102,8 @@ GRV.toggleMenu = function () {
 
 
 GRV.requestFile = function ( url = GRV.urlApi, callback = GRV.onLoadTree ) {
+
+	//"https://api.github.com/repos/heritage-happenings/heritage-happenings.github.io/git/trees/master?recursive=1";
 
 	const xhr = new XMLHttpRequest();
 	xhr.open( "GET", url, true );

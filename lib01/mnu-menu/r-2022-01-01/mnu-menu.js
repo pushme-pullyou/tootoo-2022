@@ -22,8 +22,8 @@ Release: 2022-01-01<br>
 	//MNU.iconGitHub = COR.iconGitHub ? COR.iconGitHub : `<img src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg">`;
 	//MNU.iconInfo = COR.iconInfo ? COR.iconInfo : `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/noun_Information_585560.svg" height=16px >`;
 	//MNU.iconRepo = COR.iconRepo ? COR.iconRepo : "❦";
-	MNU.title = COR.title ? COR.title : location.href.split( "/" ).pop().slice( 0, -5 ).replace( /-/g, " " );
-	MNU.urlSource = COR.urlSource ? COR.urlSource : "https://github.com/pushme-pullyou/tootoo-2022/";
+	//MNU.title = COR.title ? COR.title : location.href.split( "/" ).pop().slice( 0, -5 ).replace( /-/g, " " );
+	//MNU.urlSource = COR.urlSource ? COR.urlSource : "https://github.com/pushme-pullyou/tootoo-2022/";
 	MNU.version = COR.version ? COR.version : document.head.querySelector( "[ name=date ]" ).content;
 
 	MNUdivShowHide.innerHTML = `
@@ -72,12 +72,12 @@ Release: 2022-01-01<br>
 <header>
 
 	<h1>
-		<a id=MNUaSource href=${ MNU.urlSource } target="_top" title="Click to go to the source code on GitHub">
+		<a id=MNUaSource href=${ COR.urlSource } target="_top" title="Click to go to the source code on GitHub">
 			${ COR.iconGitHub }</a>
 
 		<a href="" title="Click this title to reload this page">
-			<span id=MNUspnTitle>${ MNU.title }</span>
-			<span id=MNUspnVersion>${ MNU.version }</span></a>
+			<span id=MNUspnTitle>${ COR.title }</span>
+			<span id=MNUspnVersion>${ COR.version }</span></a>
 
 		${ MNU.addInfoBox( MNU.infoBoxHtm, "MNUinfoBox" ) }
 

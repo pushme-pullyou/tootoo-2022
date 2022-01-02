@@ -8,7 +8,7 @@
 		content="TooToo 2022 uses the GitHub API to provide access to all the current files in a repository hosted with GitHub Pages.">
 	<meta name="keywords" content="JavaScript,Markdown,GitHub,FOSS">
 	<meta name="date" content="2022-01-01">
-	<title>TooToo</title>
+	<title>Heritage Happenings</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
 	<link id=CORstyle rel="stylesheet" href="./lib01/style/style-2022-01-01.css">
@@ -53,16 +53,17 @@
 			iconInfo: `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/noun_Information_585560.svg">`,
 			iconRepo: "❦",
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
-			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/",
+			urlSource: "https://github.com/heritage-happenings/heritage-happenings.github.io/",
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
 			// Used by GRV
-			user: "pushme-pullyou",
-			repo: "tootoo-2022",
-			branch: "main",
+			user: "heritage-happenings",
+			repo: "heritage-happenings.github.io",
+			branch: "master",
 
 			// Used by FRX
-			pathContent: "./",
+			pathContent: "https://heritage-happenings.github.io/",
+			//pathContent: "./",
 
 			// pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
 			pathTooToo: "./",
@@ -113,7 +114,7 @@
 
 			if ( location.protocol === "https:" ) {
 
-				if ( COR.version !== "2022-01-01" ) { window.history.pushState( "", "", "../" + location.hash ); }
+				if ( COR.version === "2022-01-01" ) { window.history.pushState( "", "", "./" + location.hash ); }
 
 				COR.ignoreFolders = COR.defaultIgnoreFolders;
 
