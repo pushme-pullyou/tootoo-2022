@@ -44,7 +44,7 @@
 			iconInfo: `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/noun_Information_585560.svg">`,
 			iconRepo: "❦",
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
-			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/", ////////// remember to update
+			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/tree/main/lib01/mnu-menu/", ////////// remember to update
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
 			// Used by GRV
@@ -67,13 +67,15 @@
 
 		};
 
+
+
 		init();
 
 		function init() {
 
 			MNU.init();
 
-			sumNavMenu.hidden = false;
+			//sumNavMenu.hidden = true;
 
 			MNU.getSample();
 

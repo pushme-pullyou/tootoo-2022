@@ -39,6 +39,10 @@ Switching themes
 
 ## Change Log
 
+### 2022-01-03
+
+* New simple version going well
+
 ### 2022-01-01
 
 Happy New Year!
