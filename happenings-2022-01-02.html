@@ -70,7 +70,7 @@
 			//pathTooToo: "./",
 			defaultFile: "HOME.md",
 
-			filesAll: true,
+			filesAll: false,
 			// defaultIgnoreFolders: [],
 			defaultIgnoreFolders: [ "archive", "lib", "lib3d", "lib-geo", "lib-templates" ],
 			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt", "xlsx", "" ],
@@ -83,7 +83,7 @@
 
 		function init() {
 
-			// MNU = Menu ~ mnu-menu.js
+			// MNU => "Menu ~ mnu-menu.js"
 
 			MNU.init();
 			//MNU.getSample();
@@ -94,22 +94,21 @@
 			//MNUaSource.hidden = true;
 			MNUspnVersion.hidden = true;
 
-			// FRX = File Read XHR
+			// FRX => "File Read XHR"
 			FRX.init();
 
 			// GR
 			//GRA.init();
 
-			//GRV = GitHub Repo View
-			//GRV.getFiles = GRV.getFilesCurated;
-			GRV.getFiles = GRV.getFilesAll;
+			//GRV => "GitHub Repo View"
+			GRV.getFiles = GRV.getFilesCurated;
+			//GRV.getFiles = GRV.getFilesAll;
 			GRV.init();
-			// GRVdivIntro.hidden = true;
-			// GRVsumRepo.hidden = true;
-			// GRVbutMenu.hidden = true;
+
+			GRVdivIntro.hidden = true;
+			GRVsumRepo.hidden = true;
+			GRVbutMenu.hidden = true;
 			GRVdet.open = true;
-
-
 
 			FRX.onHashChange();
 
@@ -117,7 +116,7 @@
 
 			if ( location.protocol === "https:" ) {
 
-				if ( COR.version !== "2022-01-02" ) { window.history.pushState( "", "", "../" + location.hash ); }
+				if ( COR.version !== "2022-01-02" ) { window.history.pushState( "", "", "./" + location.hash ); }
 
 				COR.ignoreFolders = COR.defaultIgnoreFolders;
 				COR.pathContent = "";
