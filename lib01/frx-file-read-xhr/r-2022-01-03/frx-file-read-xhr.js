@@ -215,7 +215,6 @@ FRX.selectHandler = function ( fName ) {
 
 	}
 
-
 	if ( [ "htm", "html" ].includes( extension ) ) {
 
 		main.style.overflow = "auto";
@@ -232,7 +231,6 @@ FRX.selectHandler = function ( fName ) {
 
 	}
 
-
 	if ( [ "gif", "jpg", "jpeg", "png", "svg" ].includes( extension ) ) {
 
 		main.style.overflow = "auto";
@@ -240,7 +238,6 @@ FRX.selectHandler = function ( fName ) {
 		FRX.loadHandler( "IMG", "img-image-handler.js" ); return;
 
 	}
-
 
 	if ( window[ "THR" ] ) {
 
