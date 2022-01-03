@@ -34,9 +34,9 @@ FRX.init = function () {
 	window.addEventListener( "dragover", FRX.dragover, false );
 	window.addEventListener( "drop", FRX.drop, false );
 
-}
+};
 
-FRX.getMenu = function() {
+FRX.getMenu = function () {
 
 	if ( !window.FRXdivDetails ) {
 
@@ -83,7 +83,7 @@ Release: ${ FRX.release }<br>`;
 
 };
 
-FRX.saveFile =function () {
+FRX.saveFile = function () {
 
 	const blob = new Blob( [ divMainContent.innerHTML ] );
 	let a = document.createElement( 'a' );
@@ -92,7 +92,7 @@ FRX.saveFile =function () {
 	a.click();
 	a = null;
 
-}
+};
 
 
 FRX.dragenter = function ( event ) {
@@ -136,7 +136,8 @@ FRX.handleEvent = function ( e ) {
 	if ( !window.FRXdivLog2 ) {
 		return;
 	}
-		FRXdivLog2.innerText = `${ e.type }: ${ e.loaded.toLocaleString() } bytes transferred\n`;
+	
+	FRXdivLog2.innerText = `${ e.type }: ${ e.loaded.toLocaleString() } bytes transferred\n`;
 
 };
 
