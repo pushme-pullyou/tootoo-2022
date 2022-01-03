@@ -16,10 +16,10 @@ All JavaScript files are with 3 letter namespaces. The same three letter are use
 
 ## To Do / Wish List
 
-*   View files in 3D
-*   View files in galleries
-*   Edit files is different app
-* this add is for viewing Markdown anf HTML files. Don't add more
+* View files in 3D
+* View files in galleries
+* Edit files is different app
+* this app is for viewing Markdown and HTML files. Don't add more
 
 ## Issues
 
@@ -39,7 +39,11 @@ Switching themes
 
 ## Change Log
 
+### 2022-01-01
 
----
+Happy New Year!
 
-[❦](javascript:window.main.scrollTo(0,0);)
+
+***
+
+<center title="Hello! Click me to go up to the top" ><a class=aDingbat href=javascript:window.main.scrollTo(0,0);> ❦ </a></center>
