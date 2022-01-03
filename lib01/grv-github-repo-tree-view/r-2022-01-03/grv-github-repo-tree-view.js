@@ -125,8 +125,6 @@ GRV.requestFile = function ( url = GRV.urlApi, callback = GRV.onLoadTree ) {
 
 
 
-
-
 GRV.onLoadTree = function ( json ) {
 	//console.log( "json", json );
 
@@ -167,12 +165,14 @@ GRV.onLoadTree = function ( json ) {
 
 		filesRoot = files
 			.filter( file => !file.includes( "/" ) )
-			.filter( file => ![ "404.html", "index.html", "LICENSE", "readme.html" ].includes( file ) )
+			.filter( file => !COR.ignoreFiles.includes( file ) )
 			.filter( file => COR.filterFiles.includes( file.split( "." ).pop().toLowerCase() ) )
 			.map( ( item, i ) => `
 		<div class=GRVdiv >
 			<a href="#${ item }" >${ item.split( "." ).shift().replace( /-/g, " " ) }</a>
 		</div>`);
+
+		console.log( "filesRoot", filesRoot );
 
 	} else {
 

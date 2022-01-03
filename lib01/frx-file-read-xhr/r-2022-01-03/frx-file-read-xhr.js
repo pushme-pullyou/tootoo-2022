@@ -60,6 +60,7 @@ Release: ${ FRX.release }<br>`;
 	<div id=GRAdivDetails></div>
 
 	<p>Select a file from your device or network.</p>
+
 	<p>
 		<input type=file id=FRXinpFiles onchange=FRX.onInputFiles(this); accept="*" multiple>
 	</p>
@@ -69,7 +70,7 @@ Release: ${ FRX.release }<br>`;
 	<div id=FRXdivLog2 ></div>
 
 	<p>
-	<button onclick=FRX.saveFile(); >save file to html</button>
+		<button onclick=FRX.saveFile(); >save file to html</button>
 	</p>
 
 
@@ -198,11 +199,10 @@ FRX.reader.onload = function () {
 
 
 FRX.selectHandler = function ( fName ) {
-
 	//console.log( "handler fName", fName );
 
 	const extension = fName.includes( "." ) ? fName.toLowerCase().split( '.' ).pop() : "";
-	console.log( "extension", extension );
+	//console.log( "extension", extension );
 
 	main.hidden = false;
 

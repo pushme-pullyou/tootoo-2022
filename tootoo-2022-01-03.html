@@ -25,14 +25,7 @@
 
 <body>
 
-	<script src="./lib01/mnu-menu/r-2022-01-03/mnu-menu.js"></script>
-
-	<script src="./lib01/frx-file-read-xhr/r-2022-01-03/frx-file-read-xhr.js"></script>
-
-	<script src="./lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js"></script>
-
-
-	<div id=MNUdivShowHide ></div>
+	<div id=MNUdivShowHide></div>
 
 
 	<main id=main>
@@ -45,6 +38,10 @@
 	<script>
 
 		const COR = {
+			// Used by GRV
+			user: "pushme-pullyou",
+			repo: "tootoo-2022",
+			branch: "main",
 
 			// Used by MNU ~ mnu-menu.js
 			description: document.head.querySelector( "[ name=description ]" ).content,
@@ -55,11 +52,6 @@
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
 			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/", ////////// remember to update
 			version: document.head.querySelector( "[ name=date ]" ).content,
-
-			// Used by GRV
-			user: "pushme-pullyou",
-			repo: "tootoo-2022",
-			branch: "main",
 
 			// Used by FRX
 			//pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
@@ -73,32 +65,60 @@
 			defaultIgnoreFolders: [],
 			//defaultIgnoreFolders: [ "archive", "lib-templates" ],
 			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt" ],
+			ignoreFiles: [ "404.html", "index.html", "LICENSE", "readme.html" ], // root only
 
 		};
 
 
-		init();
+		COR.scripts = [
+			"./lib01/mnu-menu/r-2022-01-03/mnu-menu.js",
+			"./lib01/frx-file-read-xhr/r-2022-01-03/frx-file-read-xhr.js",
+			"./lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js"
+		];
+
+		COR.loaded = 0;
+
+		COR.loading = function () {
+
+			COR.loaded++;
+			if ( COR.loaded === COR.scripts.length ) { init(); }
+
+		};
+
+		COR.loadLoaders = function () {
+
+			for ( script of COR.scripts ) {
+
+				const load = document.body.appendChild( document.createElement( 'script' ) );
+				load.onload = COR.loading;
+				load.src = COR.pathTooToo + script;
+
+			}
+
+		};
+
+		COR.loadLoaders();
 
 
 		function init() {
 
-			// MNU = Menu ~ mnu-menu.js
+			// MNU => "Menu ~ mnu-menu.js"
 
 			MNU.init();
 			//MNU.getSample();
-			//sumNavMenu.hidden = false;
+			//sumNavMenu.hidden = true;
 
 			//MNUaSource.hidden = true;
 			//MNUspnVersion.hidden = true;
 
-			// FRX = File Read XHR
+			// FRX => "File Read XHR"
 			FRX.init();
 			FRX.getMenu();
 
 			// GR
 			//GRA.init();
 
-			//GRV = GitHub Repo View
+			//GRV => "GitHub Repo View"
 			//GRV.getFiles = GRV.getFilesCurated;
 			GRV.getFiles = GRV.getFilesAll;
 			GRV.init();
@@ -114,7 +134,7 @@
 
 			if ( location.protocol === "https:" ) {
 
-				if ( COR.version !== "2022-01-02" ) { window.history.pushState( "", "", "./" + location.hash ); }
+				window.history.pushState( "", "", "./" + location.hash );
 
 				COR.ignoreFolders = COR.defaultIgnoreFolders;
 
