@@ -24,7 +24,7 @@ Release: 2022-01-01<br>
 	//MNU.iconRepo = COR.iconRepo ? COR.iconRepo : "❦";
 	//MNU.title = COR.title ? COR.title : location.href.split( "/" ).pop().slice( 0, -5 ).replace( /-/g, " " );
 	//MNU.urlSource = COR.urlSource ? COR.urlSource : "https://github.com/pushme-pullyou/tootoo-2022/";
-	MNU.version = COR.version ? COR.version : document.head.querySelector( "[ name=date ]" ).content;
+	//MNU.version = COR.version ? COR.version : document.head.querySelector( "[ name=date ]" ).content;
 
 	MNUdivShowHide.innerHTML = `
 

@@ -29,7 +29,7 @@
 
 	<script src="./lib01/frx-file-read-xhr/r-2022-01-01/frx-file-read-xhr.js"></script>
 
-	<script src="./lib01/grv-github-repo-tree-view/r-2022-01-01/grv-github-repo-tree-view.js"></script>
+	<script src="./lib01/grv-github-repo-tree-view/r-2022-01-02/grv-github-repo-tree-view.js"></script>
 
 
 	<div id=MNUdivShowHide ></div>
@@ -62,14 +62,15 @@
 			branch: "main",
 
 			// Used by FRX
-			pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
-			//pathContent: "./",
+			//pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
+			pathContent: "./",
 
 			// pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
 			pathTooToo: "./",
 			defaultFile: "README.md",
 
 			// defaultIgnoreFolders: [],
+			filesAll: true,
 			defaultIgnoreFolders: [ "archive", "lib", "lib3d", "lib-geo", "lib-templates" ],
 			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt" ],
 
@@ -82,6 +83,7 @@
 		function init() {
 
 			// MNU = Menu ~ mnu-menu.js
+
 			MNU.init();
 			//MNU.getSample();
 			//sumNavMenu.hidden = false;
