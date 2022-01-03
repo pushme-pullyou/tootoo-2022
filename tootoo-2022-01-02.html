@@ -69,9 +69,9 @@
 			pathTooToo: "./",
 			defaultFile: "README.md",
 
-			// defaultIgnoreFolders: [],
 			filesAll: true,
-			defaultIgnoreFolders: [ "archive", "lib", "lib3d", "lib-geo", "lib-templates" ],
+			defaultIgnoreFolders: [],
+			//defaultIgnoreFolders: [ "archive", "lib-templates" ],
 			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt" ],
 
 		};
@@ -100,23 +100,22 @@
 			//GRA.init();
 
 			//GRV = GitHub Repo View
-			GRV.getFiles = GRV.getFilesAll;
 			//GRV.getFiles = GRV.getFilesCurated;
+			GRV.getFiles = GRV.getFilesAll;
 			GRV.init();
-			GRVdet.open = true;
+			//GRVdivIntro.hidden = true;
 			//GRVsumRepo.hidden = true;
-			GRV.getRepo();
+			//GRVbutMenu.hidden = true;
+			GRVdet.open = true;
 
-			//FRX.defaultUrl = C.pathContent + "README.md"; //FRX.defaultFile;
 
 			FRX.onHashChange();
-
 
 			// if running on server, keeps address bar pointed to latest dev
 
 			if ( location.protocol === "https:" ) {
 
-				if ( COR.version !== "2022-01-01" ) { window.history.pushState( "", "", "../" + location.hash ); }
+				if ( COR.version !== "2022-01-02" ) { window.history.pushState( "", "", "../" + location.hash ); }
 
 				COR.ignoreFolders = COR.defaultIgnoreFolders;
 

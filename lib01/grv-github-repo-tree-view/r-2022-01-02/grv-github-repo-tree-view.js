@@ -25,7 +25,7 @@ GRV.getFiles = GRV.getFilesAll;
 
 GRV.init = function () {
 
-	GRV.ignoreFolders = COR.defaultIgnoreFolders.slice() || [];
+	COR.ignoreFolders = COR.defaultIgnoreFolders.slice() || [];
 
 	GRV.getFiles = COR.filesAll === true ? GRV.getFilesAll : GRV.getFilesCurated;
 	GRV.getMenu = COR.filesAll === true ? GRV.menuCurated : GRV.menuAll;
@@ -37,7 +37,7 @@ GRV.init = function () {
 
 	GRV.links = undefined;
 
-	GRV.getRepo();
+
 
 	const htm = `
 <details id=GRVdet >
@@ -67,6 +67,7 @@ GRV.init = function () {
 
 	GRVdivDetails.innerHTML = htm;
 
+	GRV.getRepo();
 };
 
 
@@ -85,14 +86,14 @@ GRV.toggleMenu = function () {
 
 		GRVbutMenu.innerHTML = GRV.menuCurated;
 		GRV.getFiles = GRV.getFilesAll;
-		GRV.ignoreFolders = [];
+		COR.ignoreFolders = [];
 
 
 	} else {
 
 		GRVbutMenu.innerHTML = GRV.menuAll;
 		GRV.getFiles = GRV.getFilesCurated;
-		GRV.ignoreFolders = COR.defaultIgnoreFolders;
+		COR.ignoreFolders = COR.defaultIgnoreFolders;
 	}
 
 	//console.log( "", GRV.getFiles );
@@ -124,7 +125,7 @@ GRV.requestFile = function ( url = GRV.urlApi, callback = GRV.onLoadTree ) {
 
 
 
-GRV.onLoadTree = function ( json ) {
+GRV.xxxonLoadTree = function ( json ) {
 	//console.log( "json", json );
 
 	const tree = json.tree.slice();
@@ -140,10 +141,11 @@ GRV.onLoadTree = function ( json ) {
 
 		let count = 0;
 
-		for ( let ignore of GRV.ignoreFolders ) {
+		for ( let ignore of COR.ignoreFolders ) {
 
-			if ( path.includes( ignore ) ) { count++; }
+			//if ( path.includes( ignore ) ) { count++; }
 
+			if ( path[ 0 ] === ignore ) { count++; }
 		}
 
 		if ( count === 0 ) { folders.push( path ); }
@@ -161,7 +163,7 @@ GRV.onLoadTree = function ( json ) {
 
 	// 	let ignore;
 
-	// 	for ( ignore of GRV.ignoreFolders ) {
+	// 	for ( ignore of COR.ignoreFolders ) {
 
 	// 		if ( subtree.path.includes( ignore )) { count++; }
 
@@ -226,7 +228,87 @@ GRV.onLoadTree = function ( json ) {
 
 
 
+
+
+GRV.onLoadTree = function ( json ) {
+	//console.log( "json", json );
+
+	const tree = json.tree.slice();
+
+	const subtrees = tree.filter( item => item.type === "tree" )
+		.map( subtree => subtree.path.split( "/" ) );
+	//console.log( "subtrees", subtrees );
+
+	const folders = [];
+
+	for ( let path of subtrees ) {
+
+		let count = 0;
+
+		for ( let ignore of COR.ignoreFolders ) {
+
+			if ( path[ 0 ] === ignore ) { count++; }
+
+		}
+
+		if ( count === 0 ) { folders.push( path ); }
+
+	}
+
+	const files = tree.filter( obj => obj.type === "blob" ).map( subtree => subtree.path );
+	//console.log( "files", files );
+	GRV.files = files;
+
+	const htm = `
+	<div id=GRVdivFolders >
+		<!-- <p>Use right-click menu to open or close all folders</p> -->
+		${ GRV.subtreesToDetails( folders, files ).join( "" ) }
+	</div>`;
+
+	let filesRoot;
+
+	//COR.urlBaseContent = ""
+
+	if ( GRV.getFiles === GRV.getFilesCurated ) {
+
+		filesRoot = files
+			.filter( file => !file.includes( "/" ) )
+			.filter( file => ![ "404.html", "index.html", "readme.html" ].includes( file ) )
+			.filter( file => COR.filterFiles.includes( file.split( "." ).pop().toLowerCase() ) )
+			.map( ( item, i ) => `
+		<div class=GRVdiv >
+			<a href="#${ item }" >${ item.split( "." ).shift().replace( /-/g, " " ) }</a>
+		</div>`);
+
+	} else {
+
+		filesRoot = files
+			.filter( file => !file.includes( "/" ) )
+			//.filter( file => file.endsWith( ".md" ) )
+			.map( ( item, i ) => `
+		<div class=GRVdiv >
+			<a href="${ GRV.urlSource }${ item }" title="Source code on GitHub. Edit me!" target="_blank" >
+			${ COR.iconGitHub }</a>
+			<a href="#${ item }" >${ item.split( "/" ).pop() }</a>
+			<a href="${ COR.urlBaseContent }${ item }" title="Link to just this file. Open file in new tab." target="_blank" >${ COR.iconExternalFile }</a>
+		</div>`);
+
+	}
+
+	GRVdivGitHubRepoTreeView.innerHTML = filesRoot.join( "" ) + htm;
+
+	window.addEventListener( "hashchange", GRV.onHashChange, false );
+
+	//GRVdivFolders.addEventListener( "contextmenu", GRV.onContextMenu );
+
+	GRV.onHashChange();
+
+};
+
+
 GRV.onHashChange = function () {
+
+	//console.log( "grv hash", 23, GRV.links );
 
 	if ( !GRV.links ) {
 
@@ -239,20 +321,28 @@ GRV.onHashChange = function () {
 	const str = location.hash ? location.hash.slice( 1 ) : COR.defaultFile;
 	//const str = location.hash.slice( 1 );
 	//console.log( "str", str );
-	const item = GRV.links.find( a => a.getAttribute( "href" ).includes( str ) );
+	item = GRV.links.find( a => a.getAttribute( "href" ).includes( str ) );
 	//console.log( "item", item );
 
 	if ( item ) {
 
-		//item.parentNode.classList.add( "highlight" );
-		item.classList.add( "highlight" );
+		item.parentNode.classList.add( "highlight" );
+		//item.classList.add( "highlight" );
 		//console.log( "item.parentNode", item.parentNode );
 
-		if ( item.parentNode.parentNode ) { item.parentNode.parentNode.open = true; }
+		let parentNode = item.parentNode;
+
+		while ( parentNode && parentNode.id !== "GRV.det " ) {
+
+			parentNode.open = true;
+
+			parentNode = parentNode.parentNode
+
+		}
+
+		item.scrollIntoView();
 
 	}
-
-	//item.scrollIntoView();
 
 };
 
@@ -339,7 +429,7 @@ GRV.getFilesAll = function ( subtree, files ) {
 	//console.log( "files", files );
 	//console.log( "subtree", subtree );
 
-	const str = subtree; //.join( "/" );
+	const str = subtree.join( "/" );
 	//console.log( "str", str );
 
 	const filtered = files

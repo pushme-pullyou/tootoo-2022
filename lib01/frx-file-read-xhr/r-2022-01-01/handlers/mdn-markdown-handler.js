@@ -83,6 +83,7 @@ ${ htm }
 </div>`;
 
 	FRX.timeEnd = performance.now();
+
 	//console.log( "FRX time load", ( FRX.timeEnd - FRX.timeStart ).toLocaleString() );
 
 
