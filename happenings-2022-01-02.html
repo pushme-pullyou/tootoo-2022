@@ -58,23 +58,23 @@
 			pathContent: "https://heritage-happenings.github.io/",
 			//pathContent: "./",
 
-			pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
-			//pathTooToo: "./",
+			//pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
+			pathTooToo: "./",
 			defaultFile: "HOME.md",
 
 			filesAll: false,
 			// defaultIgnoreFolders: [],
 			defaultIgnoreFolders: [ "archive", "lib-templates" ],
 			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt", "xlsx", "" ],
-			ignoreFiles: [ "404.html", "index.html", "LICENSE", "HOME.md", "readme.html" ]
+			ignoreFiles: [ "404.html", "index.html", "LICENSE", "README.md", "readme.html" ], // root only
 
 		};
 
 
 		COR.scripts = [
-			"lib01/mnu-menu/r-2022-01-03/mnu-menu.js",
-			"lib01/frx-file-read-xhr/r-2022-01-03/frx-file-read-xhr.js",
-			"lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js"
+			"./lib01/mnu-menu/r-2022-01-03/mnu-menu.js",
+			"./lib01/frx-file-read-xhr/r-2022-01-03/frx-file-read-xhr.js",
+			"./lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js"
 		];
 
 		COR.loaded = 0;
@@ -143,7 +143,6 @@
 			} else {
 
 				COR.ignoreFolders = [];
-				COR.pathTooToo = "./"
 
 			}
 

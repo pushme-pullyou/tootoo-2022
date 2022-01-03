@@ -87,7 +87,7 @@
 
 		COR.loadLoaders = function () {
 
-			for ( script of COR.scripts ) {
+			for ( let script of COR.scripts ) {
 
 				const load = document.body.appendChild( document.createElement( 'script' ) );
 				load.onload = COR.loading;

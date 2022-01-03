@@ -172,8 +172,6 @@ GRV.onLoadTree = function ( json ) {
 			<a href="#${ item }" >${ item.split( "." ).shift().replace( /-/g, " " ) }</a>
 		</div>`);
 
-		console.log( "filesRoot", filesRoot );
-
 	} else {
 
 		filesRoot = files
