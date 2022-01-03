@@ -125,107 +125,6 @@ GRV.requestFile = function ( url = GRV.urlApi, callback = GRV.onLoadTree ) {
 
 
 
-GRV.xxxonLoadTree = function ( json ) {
-	//console.log( "json", json );
-
-	const tree = json.tree.slice();
-	//console.log( "tree", tree.filter( item => item.type === "tree" ) );
-
-	const subtrees = tree.filter( item => item.type === "tree" )
-		.map( subtree => subtree.path.split( "/" ) );
-	console.log( "subtrees", subtrees );
-
-	const folders = [];
-
-	for ( let path of subtrees ) {
-
-		let count = 0;
-
-		for ( let ignore of COR.ignoreFolders ) {
-
-			//if ( path.includes( ignore ) ) { count++; }
-
-			if ( path[ 0 ] === ignore ) { count++; }
-		}
-
-		if ( count === 0 ) { folders.push( path ); }
-
-	}
-
-
-	//WIP
-	// const subtrees = tree.filter( item => item.type === "tree" );
-	// const folders = [];
-
-	// for ( let subtree of subtrees ) {
-
-	// 	let count = 0;
-
-	// 	let ignore;
-
-	// 	for ( ignore of COR.ignoreFolders ) {
-
-	// 		if ( subtree.path.includes( ignore )) { count++; }
-
-	// 	}
-
-	// 	if ( count === 0 ) { folders.push( subtree.path ); }
-
-	// }
-
-	// console.log( "folders", folders );
-
-
-	const files = tree.filter( obj => obj.type === "blob" ).map( subtree => subtree.path );
-	//console.log( "files", files );
-	GRV.files = files;
-
-	const htm = `
-	<div id=GRVdivFolders >
-		<!-- <p>Use right-click menu to open or close all folders</p> -->
-		${ GRV.subtreesToDetails( folders, files ).join( "" ) }
-	</div>`;
-
-	let filesRoot;
-
-	if ( GRV.getFiles === GRV.getFilesCurated ) {
-
-		filesRoot = files
-			.filter( file => !file.includes( "/" ) )
-			.filter( file => !["404.html", "index.html","readme.html"].includes( file ) )
-			.filter( file => COR.filterFiles.includes( file.split( "." ).pop().toLowerCase() ) )
-			.map( ( item, i ) => `
-		<div class=GRVdiv >
-			<a href="#${ item }" >${ item.split( "." ).shift().replace( /-/g, " " ) }</a>
-		</div>`);
-
-	} else {
-
-		filesRoot = files
-			.filter( file => !file.includes( "/" ) )
-			//.filter( file => file.endsWith( ".md" ) )
-			.map( ( item, i ) => `
-		<div class=GRVdiv >
-			<a href="${ GRV.urlSource }${ item }" title="Source code on GitHub. Edit me!" target="_blank" >
-			${ COR.iconGitHub }</a>
-			<a href="#${ item }" >${ item.split( "/" ).pop() }</a>
-			<a href="${ COR.pathContent }${ item }" title="Link to just this file. Open file in new tab." target="_blank" >${ COR.iconExternalFile }</a>
-		</div>`);
-
-	}
-
-	GRVdivGitHubRepoTreeView.innerHTML = filesRoot.join( "" ) + htm;
-
-	window.addEventListener( "hashchange", GRV.onHashChange, false );
-
-	//GRVdivFolders.addEventListener( "contextmenu", GRV.onContextMenu );
-
-	//GRV.onHashChange();
-
-};
-
-
-
 
 
 GRV.onLoadTree = function ( json ) {
@@ -235,7 +134,6 @@ GRV.onLoadTree = function ( json ) {
 
 	const subtrees = tree.filter( item => item.type === "tree" )
 		.map( subtree => subtree.path.split( "/" ) );
-	//console.log( "subtrees", subtrees );
 
 	const folders = [];
 
@@ -254,7 +152,7 @@ GRV.onLoadTree = function ( json ) {
 	}
 
 	const files = tree.filter( obj => obj.type === "blob" ).map( subtree => subtree.path );
-	//console.log( "files", files );
+
 	GRV.files = files;
 
 	const htm = `
@@ -269,7 +167,7 @@ GRV.onLoadTree = function ( json ) {
 
 		filesRoot = files
 			.filter( file => !file.includes( "/" ) )
-			.filter( file => ![ "404.html", "index.html", "readme.html" ].includes( file ) )
+			.filter( file => ![ "404.html", "index.html", "LICENSE", "readme.html" ].includes( file ) )
 			.filter( file => COR.filterFiles.includes( file.split( "." ).pop().toLowerCase() ) )
 			.map( ( item, i ) => `
 		<div class=GRVdiv >
@@ -315,7 +213,6 @@ GRV.onHashChange = function () {
 	GRV.links.forEach( link => link.parentNode.classList.remove( "highlight" ) );
 
 	const str = location.hash ? location.hash.slice( 1 ) : COR.defaultFile;
-	//const str = location.hash.slice( 1 );
 	//console.log( "str", str );
 	item = GRV.links.find( a => a.getAttribute( "href" ).includes( str ) );
 	//console.log( "item", item );
@@ -323,8 +220,6 @@ GRV.onHashChange = function () {
 	if ( item ) {
 
 		item.parentNode.classList.add( "highlight" );
-		//item.classList.add( "highlight" );
-		//console.log( "item.parentNode", item.parentNode );
 
 		let parentNode = item.parentNode;
 
@@ -382,12 +277,7 @@ GRV.subtreesToDetails = function ( subtrees, files ) {
 		const GRVclass = lengthSlicePrevious !== 0 ? "summary-tertiary" : "summary-secondary";
 		const filesHtm = GRV.getFiles( subtree, files );
 
-		//console.log( "subtreeTitle", subtreeTitle );
-
-		// eel
-		const detOpen = ""; //subtreeTitle[ 0 ] === "pages" ? "open" : "";
-
-		//GRV.files = files;
+		const detOpen = "";
 
 		return `
 		${ closer }
@@ -397,15 +287,12 @@ GRV.subtreesToDetails = function ( subtrees, files ) {
 		`;
 	} );
 
-	//console.log( "htmArr", htmArr );
-
 	return htmArr;
 };
 
 
 
 GRV.onDetToggle = function ( title ) {
-
 	//console.log( "title", title );
 	//console.log( "hash", location.hash );
 

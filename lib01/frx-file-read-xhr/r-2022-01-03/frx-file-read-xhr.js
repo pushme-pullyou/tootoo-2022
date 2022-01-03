@@ -41,9 +41,7 @@ FRX.getMenu = function () {
 	if ( !window.FRXdivDetails ) {
 
 		const info = `
-<p>Open <a href="http://gbxml.org" target="_blank">gbXML</a>, HBJSON, Rhino 3DM, gLTF,
-<a href="https://www.energyplus.net/" target="_blank">EnergyPlus</a> IDF and OSM, OBJ, STL, VTK files.</p>
-Use the file dialog, drag&drop or a URL.</p>
+<p>Browse, open and display a wide variety of file types</p>
 File: frx-file-read-xhr.js<br>
 Name space: FRX<br>
 Release: ${ FRX.release }<br>`;
@@ -51,7 +49,7 @@ Release: ${ FRX.release }<br>`;
 		FRXdivDetails = MNUdivContent.appendChild( document.createElement( 'div' ) );
 
 		FRXdivDetails.innerHTML = `
-<details id=detFile open>
+<details id=detFile>
 	<summary class="summary-primary gmd-1" title="Open files on your device: ">
 		File menu
 		${ MNU.addInfoBox( info ) }
@@ -79,9 +77,9 @@ Release: ${ FRX.release }<br>`;
 
 	}
 
-
-
 };
+
+
 
 FRX.saveFile = function () {
 
@@ -136,7 +134,7 @@ FRX.handleEvent = function ( e ) {
 	if ( !window.FRXdivLog2 ) {
 		return;
 	}
-	
+
 	FRXdivLog2.innerText = `${ e.type }: ${ e.loaded.toLocaleString() } bytes transferred\n`;
 
 };
@@ -204,7 +202,7 @@ FRX.selectHandler = function ( fName ) {
 	//console.log( "handler fName", fName );
 
 	const extension = fName.includes( "." ) ? fName.toLowerCase().split( '.' ).pop() : "";
-	//console.log( "extension", extension );
+	console.log( "extension", extension );
 
 	main.hidden = false;
 
@@ -226,7 +224,7 @@ FRX.selectHandler = function ( fName ) {
 
 	}
 
-	if ( [ "", "txt", "md", "markdown" ].includes( extension ) ) {
+	if ( [ "", "LICENSE", "txt", "md", "markdown" ].includes( extension ) ) {
 
 		main.style.overflow = "auto";
 
