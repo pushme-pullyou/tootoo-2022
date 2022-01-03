@@ -15,6 +15,8 @@ _"MNU menu" in a resizable window. One finger to rotate. Two to zoom._
 ## To Do / Wish List
 
 * Menu pop-up not on main menu
+* More work on pop-up
+* More work on dark mode
 
 ## Issues
 
@@ -28,6 +30,7 @@ _"MNU menu" in a resizable window. One finger to rotate. Two to zoom._
 ### 2022-01-03
 
 * First commit this readme
+* Update mn0menu.html
 
 
 ***
