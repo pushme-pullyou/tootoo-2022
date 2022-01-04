@@ -38,10 +38,6 @@
 	<script>
 
 		const COR = {
-			// Used by GRV
-			user: "pushme-pullyou",
-			repo: "tootoo-2022",
-			branch: "main",
 
 			// Used by MNU ~ mnu-menu.js
 			description: document.head.querySelector( "[ name=description ]" ).content,
@@ -54,18 +50,25 @@
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
 			// Used by FRX
+			defaultFile: "README.md",
+			
 			//pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
 			pathContent: "./",
 
 			// pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
 			pathTooToo: "./",
-			defaultFile: "README.md",
 
-			filesAll: true,
+			// Used by GRV
+			user: "pushme-pullyou",
+			repo: "tootoo-2022",
+			branch: "main",
+
 			//defaultIgnoreFolders: [],
 			defaultIgnoreFolders: [ "archive", "lib-templates" ],
-			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt" ],
-			ignoreFiles: [ "404.html", "index.html", "LICENSE", "readme.html" ], // root only
+
+			filesAll: true,
+			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt", "xlsx", "" ],
+			ignoreFiles: [ "404.html", "index.html", "LICENSE", "readme.html" ],
 
 		};
 
@@ -122,6 +125,7 @@
 			//GRV.getFiles = GRV.getFilesCurated;
 			//GRV.getFiles = GRV.getFilesAll;
 			GRV.init();
+			
 			//GRVdivIntro.hidden = true;
 			//GRVsumRepo.hidden = true;
 			//GRVbutMenu.hidden = true;
