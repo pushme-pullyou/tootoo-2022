@@ -316,7 +316,7 @@ GRV.getFilesAll = function ( subtree, files ) {
 
 	const filtered = files
 		.filter( file => file.slice( 0, file.lastIndexOf( "/" ) ) === str )
-		.filter( file => !COR.ignoreFiles.includes( file.split( "/" ).pop() ) )
+		.filter( file => !COR.ignoreFiles.includes( file.split( "/" ).pop().toLowerCase() ) )
 		.map( item => `
 		<div class=GRVdiv>
 			<a href="${ GRV.urlSource }${ item }" title="Source code on GitHub" target="_blank" >
