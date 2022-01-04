@@ -307,7 +307,8 @@ GRV.onDetToggle = function ( title ) {
 
 
 GRV.getFilesAll = function ( subtree, files ) {
-	//console.log( "files", files );
+	console.log( "files", files );
+
 	//console.log( "subtree", subtree );
 
 	const str = subtree.join( "/" );
@@ -315,6 +316,7 @@ GRV.getFilesAll = function ( subtree, files ) {
 
 	const filtered = files
 		.filter( file => file.slice( 0, file.lastIndexOf( "/" ) ) === str )
+		.filter( file => !COR.ignoreFiles.includes( file.split( "/" ).pop() ) )
 		.map( item => `
 		<div class=GRVdiv>
 			<a href="${ GRV.urlSource }${ item }" title="Source code on GitHub" target="_blank" >
