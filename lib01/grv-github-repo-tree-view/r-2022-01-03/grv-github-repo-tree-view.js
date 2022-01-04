@@ -307,12 +307,10 @@ GRV.onDetToggle = function ( title ) {
 
 
 GRV.getFilesAll = function ( subtree, files ) {
-	console.log( "files", files );
-
+	//console.log( "files", files );
 	//console.log( "subtree", subtree );
 
 	const str = subtree.join( "/" );
-	//console.log( "str", str );
 
 	const filtered = files
 		.filter( file => file.slice( 0, file.lastIndexOf( "/" ) ) === str )
@@ -332,7 +330,6 @@ GRV.getFilesAll = function ( subtree, files ) {
 
 
 GRV.getFilesCurated = function ( subtree, files ) {
-
 	// console.log( "subtree", subtree );
 	// console.log( "files", files );
 
@@ -342,8 +339,8 @@ GRV.getFilesCurated = function ( subtree, files ) {
 
 	const filtered = files
 		.filter( file => file.slice( 0, file.lastIndexOf( "/" ) ) === str )
-		//.filter( file => file.endsWith( ".md" ) || file.endsWith( ".jpg" ) || file.endsWith( ".pdf" ) )
 		.filter( file => COR.filterFiles.includes( file.split( "." ).pop().toLowerCase() ) )
+		.filter( file => !COR.ignoreFiles.includes( file.split( "/" ).pop().toLowerCase() ) )
 		.map( item => `
 		<div style="margin: 5px 0;" >
 			<a href="#${ item }" title="" onclick="JavaScript:if(window.innerWidth<640||window.innerHeight<500){navMenuDet.open=false;}" >${ item.split( "/" ).pop().split( "." ).shift().replace( /-/g, " " ) }</a>
