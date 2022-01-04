@@ -5,7 +5,7 @@
 
 HTM = {};
 
-HTM.src = FRX.urlLoaders + "3DMLoader.js";
+HTM.src = FRX.urlLoaders;
 
 HTM.handle = function () {
 
@@ -39,10 +39,17 @@ HTM.readFile = function () {
 
 HTM.onChange = function () {
 
-	HTM.request();
+	//HTM.request();
 
 };
 
+
+HTM.onChange = function () {
+
+	divMainContent.innerHTML =
+		`<iframe src="${ FRX.url }" height=${ window.innerHeight } style="border:none;width:100%;" ></iframe>`;
+
+};
 
 
 HTM.checkLoader = function () {
@@ -68,12 +75,13 @@ HTM.request = function () {
 
 HTM.display = function ( content = FRX.content ) {
 
-	//console.log( "url", url );
+	//console.log( "url display", url );
 
 	divMainContent.innerHTML = `
 <div style="border:0px solid red; margin: 0 auto; padding: 0 1rem; max-width: 40rem;" >
 	${ content }
 </div>`;
+
 };
 
 
