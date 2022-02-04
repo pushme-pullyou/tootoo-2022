@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
+	<meta name="description" content="">
+	<meta name="date" content="2022-02-03">
+	<title>CKE</title>
+	<style>
+		body {
+			font: 100% monospace;
+		}
+	</style>
+</head>
+
+<body>
+
+	<script src="./2022-02-03-cke/build/ckeditor.js"></script>
+	<h1>
+		<a href="https://github.com/pushme-pullyou/tootoo-2021/tree/master/xxxxxx/" target="_blank"
+			title="source code on GitHub"><img
+				src=https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg></a>
+		<a href="" title="Click this menu title to reset the model">
+			<span id=spnTitle></span>
+			<span id=spnVersion></span>
+		</a>
+	</h1>
+
+	<div id="divContent">
+
+
+		<div class="editor">
+			<h2>CKE Test</h2>
+
+			<p>lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?</p>
+		</div>
+	</div>
+
+
+	<script>
+
+		init();
+
+		function init() {
+
+			spnTitle.innerHTML = document.title ? document.title : location.href.split( '/' ).pop().slice( 0, - 5 ).replace( /-/g, ' ' );
+
+			spnVersion.innerHTML = document.head.querySelector( "[ name=date ]" ).content;
+
+			//requestFile();
+
+			ClassicEditor
+				.create( document.querySelector( '.editor' ), {
+
+					licenseKey: '',
+
+
+
+				} )
+				.then( editor => {
+					window.editor = editor;
+
+
+
+
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+					console.warn( 'Build id: dgdeuqd4cpet-wmmf9tcepw2' );
+					console.error( error );
+				} );
+
+		}
+
+
+
+		function requestFile( url = "https://example.com", callback = onLoad ) {
+
+			url = "https://cdn.jsdelivr.net/gh/pushme-pullyou/tootoo-2021@master/README.md";
+			const urlCORS = ""; //https://cors-anywhere.herokuapp.com/";
+
+			xhr = new XMLHttpRequest();
+			xhr.open( "GET", urlCORS + url, true );
+			xhr.responseType = "text";
+			xhr.onerror = ( xhr ) => console.log( "error:", xhr );
+			//xhr.onprogress = ( xhr ) => console.log( "bytes loaded:", xhr.loaded );
+			xhr.onload = ( xhr ) => callback( xhr.target.response );
+			xhr.send( null );
+
+		}
+
+
+
+		function onLoad( response ) {
+
+			console.log( "response", response );
+
+			divContent.innerText = response;
+
+		}
+
+	</script>
+
+
+</body>
+
+</html>
