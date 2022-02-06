@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+	<style>
+		body {
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		.result {
+			font-size: 18px;
+			font-weight: 500;
+			color: rebeccapurple;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Convert an Image to blob using JavaScript</h1>
+	<div class="sample">
+		<img src="https://picsum.photos/id/222/300/300.jpg" />
+	</div>
+	<button class="Btn">Convert</button>
+	<div class="result"></div>
+	<h3>Click on the above button to convert the above image to blob</h3>
+	<script>
+		let BtnEle = document.querySelector( ".Btn" );
+		let resEle = document.querySelector( ".result" );
+		BtnEle.addEventListener( "click", () => {
+			fetch( "https://i.picsum.photos/id/222/300/300.jpg" )
+				.then( function ( response ) {
+					return response.blob();
+				} )
+				.then( function ( blob ) {
+					resEle.innerHTML = "blob.size = " + blob.size + "<br>";
+					resEle.innerHTML += "blob.type = " + blob.type + "<br>";
+				} );
+		} );
+	</script>
+</body>
+
+</html>
