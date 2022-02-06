@@ -11,6 +11,20 @@
 		body {
 			font: 100% monospace;
 		}
+
+		h1 {
+			margin: 0;
+		}
+
+		ul {
+			list-style-position: inside;
+			padding: 0.5rem;
+		}
+
+		li:before {
+			content: "";
+			margin-left: -0.5rem;
+		}
 	</style>
 </head>
 
@@ -25,9 +39,10 @@
 				src=https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg></a>
 		<a href="" title="Click this menu title to reset the model">
 			<span id=spnTitle></span>
-			<span id=spnVersion></span>
+			<span id=spnVersion></span></a>
+		<button onclick=CKE.getSha()>putToGitHub</button>
 
-		</a>
+		<label><input type=checkbox onchange=CKE.autoSave(); id=chkAutoSave style=vertical-align:text-top>save</label>
 	</h1>
 
 	<span id="spnMessage"></span>

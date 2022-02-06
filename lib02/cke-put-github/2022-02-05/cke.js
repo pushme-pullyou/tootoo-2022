@@ -96,6 +96,21 @@ CKE.onLoad = function ( xhr ) {
 
 //////////
 
+
+CKE.autoSave = function () {
+
+	if ( chkAutoSave.checked ) {
+
+		CKE.saveInterval = setInterval( CKE.getSha, 5000 ); // in ms
+
+	} else {
+
+		clearInterval( CKE.saveInterval );
+
+	}
+
+};
+
 CKE.getSha = function () {
 
 	if ( CKE.url === "" ) { alert( "No URL" ); return; }
@@ -122,6 +137,10 @@ CKE.putFile = function () {
 	CKE.contentEditor = CKE.editor.data.get();
 	//console.log( "CKE.contentEditor.length", CKE.contentEditor.length );
 
+	//str = JSON.stringify( CKE.contentEditor, null, "  \n" );
+
+	//spnMessage.innerText = str
+
 	const codedData = window.btoa( CKE.contentEditor ); // encode the string
 
 	const body = JSON.stringify( {
@@ -142,6 +161,7 @@ CKE.putFile = function () {
 
 	spnMessage.innerText = `Put ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.contentEditor.length }`;
 
+	//spnMessage.innerText = str
 };
 
 
