@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CKE</title>
+	<style>
+		body {
+			font: 100% monospace;
+			margin: 0;
+			overflow: hidden;
+		}
+
+		/* nav {} */
+
+		p,
+		h2,
+		h3 {
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+
+		ul {
+			list-style-position: inside;
+			padding: 0.5rem;
+		}
+
+		li:before {
+			content: "";
+			margin-left: -0.5rem;
+		}
+
+		img {
+			vertical-align: middle;
+		}
+
+		summary {
+			font-size: 120%;
+		}
+
+		/* #divMainContent {
+		} */
+
+		.ck-content {
+			border: 0px solid red !important;
+			height: 91vh;
+			overflow: auto;
+		}
+
+		.ck-source-editing-area {
+
+			border: 0px solid red !important;
+			height: 91vh;
+			overflow: auto;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav>
+		<a id=aSource target="_blank"><img
+				src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg"></a>
+		<a href=""><span id=spnTitle></span></a>
+		<button onclick=CKE.getSha()>putGH</button><label><input type=checkbox onchange=CKE.autoSave(); id=chkAutoSave
+				style=vertical-align:text-top>save</label>
+		<span id=spnMessage></span>
+	</nav>
+
+	<div id="divMainContent">
+
+		<div id="container">
+
+			<div class="editor"></div>
+
+		</div>;
+
+	</div>
+
+
+	<script
+		src="../../ckeditor/ckeditor5-32.0.0-gsw55qtixqey/build/ckeditor.js"></script>
+	<script src="cke-ckeditor-put-github.js"></script>
+
+
+	<script>
+
+		const base = "https://api.github.com/repos/theo-armour/qdata/contents/";
+		const source = "https://github.com/theo-armour/qdata/tree/master/";
+		const file = "0-to-do/0-to-do.htm";
+		const content = divMainContent;
+
+		if ( window.self === window.top ) { init( base, file ); };
+
+		function init ( base, file ) {
+
+			aSource.href = source + file;
+
+			spnTitle.innerText = file.split( "/" ).pop().split( "." ).shift();
+
+			chkAutoSave.checked = true;
+
+			CKE.init( base + file );
+
+		}
+
+	</script>
+
+</body>
+
+</html>

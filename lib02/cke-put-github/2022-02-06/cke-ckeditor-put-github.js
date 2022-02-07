@@ -5,16 +5,21 @@
 
 const CKE = {};
 
-CKE.base = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
-CKE.file = "test-cases/text-to-hack-3.html";
+
+CKE.defaultBase = "https://api.github.com/repos/theo-armour/qdata/contents/";
+CKE.defaultFile = "snippets/notes.htm";
+CKE.url = CKE.defaultBase + CKE.defaultFile;
+CKE.content = divMainContent;
 
 
-CKE.init = function () {
+CKE.init = function ( url ) {
+
+	//console.log( "url", url);
 
 	ClassicEditor
 		.create( document.querySelector( '.editor' ), {
 
-			licenseKey: '',
+			licenseKey: "",
 
 			htmlSupport: {
 				allow: [
@@ -32,6 +37,10 @@ CKE.init = function () {
 		.then( editor => {
 			CKE.editor = editor;
 
+			CKE.onHashChange();
+
+			CKE.autoSave();
+
 		} )
 
 		.catch( error => {
@@ -40,6 +49,8 @@ CKE.init = function () {
 			console.warn( 'Build id: dgdeuqd4cpet-wmmf9tcepw2' );
 			console.error( error );
 		} );
+
+	CKE.url = url || CKE.url;
 
 	CKE.accessToken = localStorage.getItem( "githubAccessToken" ) || "";
 
@@ -51,10 +62,7 @@ CKE.init = function () {
 
 	}
 
-
-	CKE.url = CKE.base + CKE.file;
-
-	CKE.requestFile();
+	window.addEventListener( "hashchange", CKE.onHashChange, false );
 
 	window.addEventListener( "beforeunload", CKE.checkForChange );
 
@@ -62,8 +70,35 @@ CKE.init = function () {
 
 
 
+CKE.onHashChange = function () {
+
+	if ( CKE.contentEditor !== undefined ) {
+
+	  //console.log( "equal", CKE.editor.data.get() === CKE.contentEditor );
+
+		if ( CKE.editor.data.get() !== CKE.contentEditor ) {
+
+			const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
+
+			if ( response !== true ) { return; }
+
+		}
+
+	}
+
+	CKE.url = location.hash ? base + location.hash.slice( 1 ) : CKE.url;
+
+	CKE.fileName = CKE.url.split( "/" ).pop();
+	console.log( "file", CKE.fileName );
+
+	CKE.requestFile();
+
+};
+
+
+
 CKE.requestFile = function () {
-	//console.log( "CKE.hash ", CKE.hash );
+	//console.log( "CKE.url ", CKE.url );
 
 	const xhr = new XMLHttpRequest();
 	xhr.open( "GET", CKE.url, true );
@@ -80,7 +115,6 @@ CKE.requestFile = function () {
 
 CKE.onLoad = function ( xhr ) {
 
-	//console.log( "xhr", xhr );
 	CKE.content = atob( xhr.target.response.content );
 
 	CKE.editor.data.set( CKE.content );
@@ -91,10 +125,6 @@ CKE.onLoad = function ( xhr ) {
 
 };
 
-
-
-
-//////////
 
 
 CKE.autoSave = function () {
@@ -111,9 +141,19 @@ CKE.autoSave = function () {
 
 };
 
+
+
+//////////
+
 CKE.getSha = function () {
 
 	if ( CKE.url === "" ) { alert( "No URL" ); return; }
+
+	if ( CKE.contentEditor.length === CKE.editor.data.get().length ) return;
+
+	CKE.contentEditor = CKE.editor.data.get();
+
+	console.log( "saving" );
 
 	const xhr = new XMLHttpRequest();
 	xhr.open( "GET", CKE.url, true );
@@ -137,10 +177,6 @@ CKE.putFile = function () {
 	CKE.contentEditor = CKE.editor.data.get();
 	//console.log( "CKE.contentEditor.length", CKE.contentEditor.length );
 
-	//str = JSON.stringify( CKE.contentEditor, null, "  \n" );
-
-	//spnMessage.innerText = str
-
 	const codedData = window.btoa( CKE.contentEditor ); // encode the string
 
 	const body = JSON.stringify( {
@@ -161,7 +197,6 @@ CKE.putFile = function () {
 
 	spnMessage.innerText = `Put ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.contentEditor.length }`;
 
-	//spnMessage.innerText = str
 };
 
 
@@ -170,7 +205,7 @@ CKE.checkForChange = function ( event ) {
 
 	if ( CKE.editor.data.get() === CKE.contentEditor ) { return; }
 
-	//console.log( "file", CKE.url.split( "/" ).pop() );
+	console.log( "file", CKE.url.split( "/" ).pop() );
 
 	event.preventDefault();
 
@@ -193,3 +228,5 @@ CKE.onKeyUp = function ( event ) {
 	}
 
 };
+
+
