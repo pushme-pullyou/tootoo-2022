@@ -7,7 +7,7 @@
 	<meta name="description"
 		content="TooToo 2022 uses the GitHub API to provide access to all the current files in a repository hosted with GitHub Pages.">
 	<meta name="keywords" content="JavaScript,Markdown,GitHub,FOSS">
-	<meta name="date" content="2022-01-06">
+	<meta name="date" content="2022-01-07">
 	<title>Theo qData</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
@@ -27,7 +27,7 @@
 			padding: 0.5rem;
 		}
 
-		li:before {
+		ul li:before {
 			content: "";
 			margin-left: -0.5rem;
 		}
@@ -67,17 +67,21 @@
 
 		<div>
 
-			<button onclick=CKE.getSha()>putGH</button><label><input type=checkbox onchange=CKE.autoSave();
+			<button onclick=CKE.getSha()>putGH</button>
+			<label><input type=checkbox onchange=CKE.autoSave();
 					id=chkAutoSave style=vertical-align:text-top>save</label>
 			<span id=spnMessage></span>
 
 		</div>
+
 		<div id="divMainContent">
 
-			<div class="editor"></div>
+			<div id=divEdit class="editor"></div>
 
 		</div>
 
+		<div id="divOther" contenteditable="true"></div>
+		
 	</main>
 
 
@@ -124,7 +128,7 @@
 			//"lib02/frx-file-read-xhr/r-2022-02-06/frx-file-read-xhr.js",
 			"lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js",
 			"lib02/ckeditor/ckeditor5-32.0.0-gsw55qtixqey/build/ckeditor.js",
-			"lib02/cke-put-github/2022-02-06/cke-ckeditor-put-github.js"
+			"lib02/cke-put-github/2022-02-07/cke-ckeditor-put-github.js"
 		];
 
 		COR.loaded = 0;
