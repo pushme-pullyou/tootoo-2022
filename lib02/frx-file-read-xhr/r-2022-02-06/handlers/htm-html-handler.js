@@ -52,7 +52,7 @@ HTM.onChange = function () {
 	//file = "../../cke-put-github/2022-02-06/cke-put-github.html";
 
 	divMainContent.innerHTML =
-		`<iframe src=${ file } height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
+		`<iframe src="${ file }" height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
 
 };
 

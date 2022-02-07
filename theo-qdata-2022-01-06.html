@@ -11,13 +11,49 @@
 	<title>Theo qData</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
-	<link id=CORstyle rel="stylesheet" href="https://pushme-pullyou.github.io/tootoo-2022/lib01/style/style-2022-01-01.css">
+	<link id=CORstyle rel="stylesheet"
+		href="https://pushme-pullyou.github.io/tootoo-2022/lib01/style/style-2022-01-01.css">
 
 	<style>
 		:root {
 			/* --mnu-width: 20rem; commit*/
 			--main-hue: 240;
 			/* 0 to 360 0=red 120=green 240=blue */
+		}
+
+
+		ul {
+			list-style-position: inside;
+			padding: 0.5rem;
+		}
+
+		li:before {
+			content: "";
+			margin-left: -0.5rem;
+		}
+
+		img {
+			vertical-align: middle;
+		}
+
+		summary {
+			font-size: 120%;
+		}
+
+		/* #divMainContent {
+		} */
+
+		.ck-content {
+			border: 0px solid red !important;
+			height: 91vh;
+			overflow: auto;
+		}
+
+		.ck-source-editing-area {
+
+			border: 0px solid red !important;
+			height: 91vh;
+			overflow: auto;
 		}
 	</style>
 
@@ -29,7 +65,18 @@
 
 	<main id=main>
 
-		<div id="divMainContent"></div>
+		<div>
+
+			<button onclick=CKE.getSha()>putGH</button><label><input type=checkbox onchange=CKE.autoSave();
+					id=chkAutoSave style=vertical-align:text-top>save</label>
+			<span id=spnMessage></span>
+
+		</div>
+		<div id="divMainContent">
+
+			<div class="editor"></div>
+
+		</div>
 
 	</main>
 
@@ -74,8 +121,10 @@
 
 		COR.scripts = [
 			"lib01/mnu-menu/r-2022-01-03/mnu-menu.js",
-			"lib02/frx-file-read-xhr/r-2022-02-06/frx-file-read-xhr.js",
-			"lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js"
+			//"lib02/frx-file-read-xhr/r-2022-02-06/frx-file-read-xhr.js",
+			"lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js",
+			"lib02/ckeditor/ckeditor5-32.0.0-gsw55qtixqey/build/ckeditor.js",
+			"lib02/cke-put-github/2022-02-06/cke-ckeditor-put-github.js"
 		];
 
 		COR.loaded = 0;
@@ -114,8 +163,8 @@
 			//MNUspnVersion.hidden = true;
 
 			// FRX => "File Read XHR"
-			FRX.init();
-			FRX.getMenu();
+			//FRX.init();
+			//FRX.getMenu();
 
 			// GR
 			//GRA.init();
@@ -131,7 +180,14 @@
 			GRVdet.open = true;
 
 
-			FRX.onHashChange();
+			//FRX.onHashChange();
+
+			const base = "https://api.github.com/repos/theo-armour/qdata/contents/";
+			const source = "https://github.com/theo-armour/qdata/tree/master/";
+			const file = "0-to-do/0-to-do.htm";
+			const content = divMainContent;
+
+			CKE.init( base + file );
 
 			// if running on server, keeps address bar pointed to latest dev
 

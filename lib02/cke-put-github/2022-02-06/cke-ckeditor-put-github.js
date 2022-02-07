@@ -72,7 +72,7 @@ CKE.init = function ( url ) {
 
 CKE.onHashChange = function () {
 
-	
+
 
 	if ( CKE.contentEditor !== undefined ) {
 
@@ -88,7 +88,7 @@ CKE.onHashChange = function () {
 
 	}
 
-	CKE.url = location.hash ? base + location.hash.slice( 1 ) : CKE.url;
+	CKE.url = location.hash ? CKE.defaultBase  + location.hash.slice( 1 ) : CKE.url;
 
 	CKE.fileName = CKE.url.split( "/" ).pop();
 	console.log( "file", CKE.fileName );
