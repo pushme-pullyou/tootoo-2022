@@ -7,7 +7,7 @@ const CKE = {};
 
 
 CKE.defaultBase = "https://api.github.com/repos/theo-armour/qdata/contents/";
-CKE.defaultFile = "snippets/notes.htm";
+CKE.defaultFile = "snippets/zzz-cke-test.htm";
 //CKE.defaultFile = "README.md";
 CKE.url = CKE.defaultBase + CKE.defaultFile;
 CKE.content = divMainContent;
