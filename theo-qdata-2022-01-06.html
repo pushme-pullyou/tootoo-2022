@@ -7,11 +7,11 @@
 	<meta name="description"
 		content="TooToo 2022 uses the GitHub API to provide access to all the current files in a repository hosted with GitHub Pages.">
 	<meta name="keywords" content="JavaScript,Markdown,GitHub,FOSS">
-	<meta name="date" content="2022-01-03">
-	<title>TooToo</title>
+	<meta name="date" content="2022-01-06">
+	<title>Theo qData</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
-	<link id=CORstyle rel="stylesheet" href="./lib01/style/style-2022-01-01.css">
+	<link id=CORstyle rel="stylesheet" href="https://pushme-pullyou.github.io/tootoo-2022/lib01/style/style-2022-01-01.css">
 
 	<style>
 		:root {
@@ -26,7 +26,6 @@
 <body>
 
 	<div id=MNUdivShowHide></div>
-
 
 	<main id=main>
 
@@ -46,22 +45,22 @@
 			iconInfo: `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/noun_Information_585560.svg">`,
 			iconRepo: "❦",
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
-			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/", ////////// remember to update
+			urlSource: "https://github.com/theo-armour/qdata/",
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
 			// Used by FRX
 			defaultFile: "README.md",
 
-			//pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
-			pathContent: "./",
+			pathContent: "https://theo-armour.github.io/qdata/",
+			//pathContent: "./",
 
 			// pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
 			pathTooToo: "./",
 
 			// Used by GRV
-			user: "pushme-pullyou",
-			repo: "tootoo-2022",
-			branch: "main",
+			user: "theo-armour",
+			repo: "qdata",
+			branch: "master",
 
 			//defaultIgnoreFolders: [],
 			defaultIgnoreFolders: [ "archive", "lib-templates" ], // curated
@@ -75,7 +74,7 @@
 
 		COR.scripts = [
 			"lib01/mnu-menu/r-2022-01-03/mnu-menu.js",
-			"lib01/frx-file-read-xhr/r-2022-01-03/frx-file-read-xhr.js",
+			"lib02/frx-file-read-xhr/r-2022-02-06/frx-file-read-xhr.js",
 			"lib01/grv-github-repo-tree-view/r-2022-01-03/grv-github-repo-tree-view.js"
 		];
 
@@ -103,7 +102,7 @@
 		COR.loadLoaders();
 
 
-		function init() {
+		function init () {
 
 			// MNU => "Menu ~ mnu-menu.js"
 

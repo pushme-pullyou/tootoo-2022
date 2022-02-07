@@ -95,6 +95,7 @@
 
 		function init ( base, file ) {
 
+			console.log( "hah", location.hash );
 			aSource.href = source + file;
 
 			spnTitle.innerText = file.split( "/" ).pop().split( "." ).shift();

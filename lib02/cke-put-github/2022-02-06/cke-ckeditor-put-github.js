@@ -72,6 +72,8 @@ CKE.init = function ( url ) {
 
 CKE.onHashChange = function () {
 
+	
+
 	if ( CKE.contentEditor !== undefined ) {
 
 	  //console.log( "equal", CKE.editor.data.get() === CKE.contentEditor );
