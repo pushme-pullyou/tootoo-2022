@@ -48,11 +48,11 @@ HTM.onChange = function () {
 
 	console.log( "", 23 );
 
-	file = "https://pushme-pullyou.github.io/tootoo-2022/lib02/cke-put-github/2022-02-06/cke-put-github.html";
+	file = "https://pushme-pullyou.github.io/tootoo-2022/lib02/cke-put-github/2022-02-06/cke-ckeditor-put-github.html";
 	//file = "../../cke-put-github/2022-02-06/cke-put-github.html";
 
 	divMainContent.innerHTML =
-		`<iframe src="${ file }#{ FRX.url}" height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
+		`<iframe src=${ file } height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
 
 };
 
