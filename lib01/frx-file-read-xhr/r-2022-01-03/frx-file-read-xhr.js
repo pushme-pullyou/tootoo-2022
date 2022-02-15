@@ -272,6 +272,7 @@ FRX.selectHandler = function ( fName ) {
 		//divMainContent.style.display = "block";
 
 	}
+	
 	main.hidden = false;
 	main.style.overflow = "hidden";
 
