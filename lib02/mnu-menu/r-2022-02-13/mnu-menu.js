@@ -9,20 +9,19 @@ let MNU = {};
 
 MNU.init = function () {
 
-
 	MNU.info = `
 Menu system<br>
 <br>
 File: mnu-menu.js<br>
 Name space: MNU<br>
-Release: 2022-02-13<br>
+Release: 2022-02-16<br>
 <button onclick=MNU.getSample()>Testing: add sample menu</button>`;
 
 	MNU.infoBoxHtm = COR.description ? COR.description : MNU.info;
 
 	MNUdivShowHide.innerHTML = `
 
-	<details id=detNavMenu class="gmd-4">
+	<details id=detNavMenu class="gmd-4" open=false>
 
 		<summary id=sumNavMenu class="summary-nav gmd-1">
 			☰ <span id=spnMenuHelp>show&darr; || hide&uarr; menu</span>
@@ -51,6 +50,9 @@ Release: 2022-02-13<br>
 	if ( window.innerWidth < 800 || window.innerHeight < 500 ) {
 
 		//document.documentElement.style.setProperty( "--mnu-width", "35%" );
+		console.log( "", 23 );
+		navMenu.hidden = true;
+		detNavMenu.open = false;
 
 	} else {
 
@@ -58,7 +60,8 @@ Release: 2022-02-13<br>
 		//console.log( "value", value );
 		detNavMenu.style.width = value;
 		detNavMenu.style.maxWidth = "50%";
-		detNavMenu.open = true;
+		//detNavMenu.open = true;
+		//navMenu.hidden = false;
 		//sumNavMenu.hidden = true;
 	}
 
@@ -98,6 +101,7 @@ Release: 2022-02-13<br>
 	</center>
 
 </footer>`;
+
 
 };
 
@@ -255,7 +259,7 @@ MNU.getSample = function () {
 
 </details>
 
-<details class=detNavMenu id=detView ontoggle="">
+<details class=detNavMenuXX id=detView ontoggle="">
 
 	<summary class="summary-primary gmd-1" title="View selected model aspects">
 	MNU view menu ${ MNU.addInfoBox( "Files to try" ) } </summary>

@@ -30,24 +30,31 @@
 
 		@media all and (max-width: 800px) {
 
+			#navMenu {
+				display: none;
+			}
+
 			#spnMenuHelp {
 				display: none;
 			}
 
 			#sumNavMenu {
-				display: none;
+				display: block;
 			}
 		}
 
 		@media all and (max-height: 500px) {
 
+			#navMenu {
+				display: none;
+			}
+
 			#spnMenuHelp {
 				display: none;
 			}
 
-
 			#sumNavMenu {
-				display: none;
+				display: block;
 			}
 		}
 	</style>
@@ -136,7 +143,6 @@
 		function init () {
 
 			// MNU => "Menu ~ mnu-menu.js"
-
 			MNU.init();
 			//MNU.getSample();
 			//sumNavMenu.style.display = "none";

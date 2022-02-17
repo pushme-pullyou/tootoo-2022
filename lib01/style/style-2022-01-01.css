@@ -353,6 +353,9 @@ pre {
 		padding: var( --margin);
 		width: 100%;
 	}
+	/* #navMenu {
+		display: block;
+	} */
 	#spnMenuHelp {
 		display: none;
 	}
@@ -369,6 +372,9 @@ pre {
 		padding: var( --margin);
 		width: 100%;
 	}
+	/* #navMenu {
+		display: block;
+	} */
 	#spnMenuHelp {
 		display: none;
 	}

@@ -230,7 +230,7 @@ GRV.onHashChange = function () {
 
 		}
 
-		if ( !fileName.includes( "README" ) ) {
+		if ( !fileName.includes( "README" ) && fileName !== COR.defaultFile ) {
 
 			item.scrollIntoView();
 
