@@ -28,7 +28,7 @@ Release: 2022-02-13<br>
 			☰ <span id=spnMenuHelp>show&darr; || hide&uarr; menu</span>
 		</summary>
 
-		<nav id="navMenu" class="">
+		<nav id="navMenu" class="gmd-4">
 
 			<div id=MNUdivHeader></div>
 
