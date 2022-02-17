@@ -40,7 +40,7 @@ GRV.init = function () {
 
 
 	const htm = `
-<details id=GRVdet >
+<details id=GRVdet>
 
 	<summary id=GRVsumRepo class="summary-primary gmd-1" title="View selected items">
 		<span id=GRVsumTitle >${ COR.repo } folders & files</span>
