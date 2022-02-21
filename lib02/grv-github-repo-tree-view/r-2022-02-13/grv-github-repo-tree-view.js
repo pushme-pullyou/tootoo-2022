@@ -164,7 +164,7 @@ GRV.onLoadTree = function ( json ) {
 
 		filesRoot = files
 			.filter( file => !file.includes( "/" ) )
-			//.filter( file => !COR.ignoreFiles.includes( file ) )
+			.filter( file => !COR.ignoreFiles.includes( file ) )
 			.filter( file => COR.filterFiles.includes( file.split( "." ).pop().toLowerCase() ) )
 			.map( ( item, i ) => `
 		<div class=GRVdiv >
@@ -197,6 +197,7 @@ GRV.onLoadTree = function ( json ) {
 };
 
 
+
 GRV.onHashChange = function () {
 
 	//console.log( "grv hash", 23, GRV.links );
@@ -222,7 +223,7 @@ GRV.onHashChange = function () {
 		let parentNode = item.parentNode;
 
 		while ( parentNode && parentNode.id !== "detNavMenu" ) {
-			console.log( "parentNode",  parentNode );
+			//console.log( "parentNode",  parentNode );
 
 			parentNode.open = true;
 
@@ -336,7 +337,7 @@ GRV.getFilesAll = function ( subtree, files ) {
 
 GRV.getFilesCurated = function ( subtree, files ) {
 	// console.log( "subtree", subtree );
-	// console.log( "files", files );
+	//console.log( "files curated", files );
 
 	const str = subtree.join( "/" );
 
@@ -345,11 +346,13 @@ GRV.getFilesCurated = function ( subtree, files ) {
 	const filtered = files
 		.filter( file => file.slice( 0, file.lastIndexOf( "/" ) ) === str )
 		.filter( file => COR.filterFiles.includes( file.split( "." ).pop().toLowerCase() ) )
-		//.filter( file => !COR.ignoreFiles.includes( file.split( "/" ).pop().toLowerCase() ) )
+		.filter( file => !COR.ignoreFiles.includes( file.split( "/" ).pop().toLowerCase() ) )
 		.map( item => `
 		<div style="margin: 5px 0;" >
 			<a href="#${ item }" title="" onclick="JavaScript:if(window.innerWidth<640||window.innerHeight<500){navMenuDet.open=false;}" >${ item.split( "/" ).pop().split( "." ).shift().replace( /-/g, " " ) }</a>
 		</div>`);
+
+	console.log( "filtered", filtered );
 
 	return filtered;
 
