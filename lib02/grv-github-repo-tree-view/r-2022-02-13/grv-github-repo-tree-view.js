@@ -10,7 +10,7 @@ Right-click folder names to bring up the context menu to open and close multiple
 <br>
 File: grv-github-repo-tree-view.js<br>
 Name space: GRV<br>
-Release: 2022-01-02<br>
+Release: 2022-01-13<br>
 <button onclick=GRV.test()>Testing: view all files in this repository</button>
 <button onclick=GRV.getRepos() > get Repo new</button >`;
 
@@ -36,7 +36,6 @@ GRV.init = function () {
 	GRV.accessToken = localStorage.getItem( 'githubAccessToken' ) || "";
 
 	GRV.links = undefined;
-
 
 
 	const htm = `
@@ -222,7 +221,8 @@ GRV.onHashChange = function () {
 
 		let parentNode = item.parentNode;
 
-		while ( parentNode && parentNode.id !== "GRV.det " ) {
+		while ( parentNode && parentNode.id !== "detNavMenu" ) {
+			console.log( "parentNode",  parentNode );
 
 			parentNode.open = true;
 
