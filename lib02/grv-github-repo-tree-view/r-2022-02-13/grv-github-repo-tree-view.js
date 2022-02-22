@@ -352,8 +352,6 @@ GRV.getFilesCurated = function ( subtree, files ) {
 			<a href="#${ item }" title="" onclick="JavaScript:if(window.innerWidth<640||window.innerHeight<500){navMenuDet.open=false;}" >${ item.split( "/" ).pop().split( "." ).shift().replace( /-/g, " " ) }</a>
 		</div>`);
 
-	console.log( "filtered", filtered );
-
 	return filtered;
 
 };

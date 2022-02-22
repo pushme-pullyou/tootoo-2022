@@ -50,7 +50,6 @@ Release: ${ FRX.release }<br>`;
 
 		FRXdivDetails.innerHTML = `
 <details id=detFile>
-
 	<summary class="summary-primary gmd-1" title="Open files on your device: ">
 		File menu
 		${ MNU.addInfoBox( info ) }
@@ -73,6 +72,7 @@ Release: ${ FRX.release }<br>`;
 	<p>
 		<button onclick=FRX.saveFile(); >save file to html</button>
 	</p>
+
 
 </details>`;
 
@@ -239,6 +239,39 @@ FRX.selectHandler = function ( fName ) {
 
 	}
 
+	if ( window[ "THR" ] ) {
+
+		main.hidden = true;
+		THR.renderer.domElement.style.display = "block";
+
+		if ( fName.endsWith( ".3dm" ) ) { FRX.loadHandler( "r3DM", "3dm-handler.js" ); return; }
+
+		if ( fName.endsWith( "xml" ) || fName.endsWith( "gbxml" ) ) { FRX.loadHandler( "GBX", "gbx-handler.js" ); return; }
+
+		if ( fName.endsWith( "gltf" ) || fName.endsWith( "glb" ) ) { FRX.loadHandler( "GLTF", "gltf-handler.js" ); return; }
+
+		if ( fName.endsWith( "hbjson" ) ) { FRX.loadHandler( "HBJ", "hbj-handler.js" ); return; }
+
+		if ( fName.endsWith( ".idf" ) || fName.endsWith( ".osm" ) ) { FRX.loadHandler( "IDF", "idf-handler.js" ); return; }
+
+		if ( fName.endsWith( ".ifc" ) ) { FRX.loadHandler( "IFC", "ifc-handler.js" ); return; }
+
+		if ( fName.endsWith( ".json" ) ) { FRX.loadHandler( "JSN", "jsn-three-handler.js" ); return; }
+
+		if ( fName.endsWith( ".obj" ) ) { FRX.loadHandler( "OBJ", "obj-handler.js" ); return; }
+
+		if ( fName.endsWith( ".rad" ) ) { FRX.loadHandler( "RAD", "rad-handler.js" ); return; }
+
+		if ( fName.endsWith( ".stl" ) ) { FRX.loadHandler( "STL", "stl-handler.js" ); return; }
+
+		if ( fName.endsWith( ".vtk" ) || fName.endsWith( ".vtp" ) ) { FRX.loadHandler( "VTK", "vtk-handler.js" ); return; }
+
+		if ( fName.endsWith( ".vtkjs" ) ) { alert( "VTKjs support coming soon!" ); return; }
+
+		if ( window[ "THR" ] ) { THR.renderer.domElement.style.display = "none"; }
+		//divMainContent.style.display = "block";
+
+	}
 	main.hidden = false;
 	main.style.overflow = "hidden";
 

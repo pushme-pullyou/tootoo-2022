@@ -41,7 +41,7 @@ body {
 }
 
 header h1 {
-	margin:0;
+	margin-bottom:0;
 }
 
 #main::-webkit-scrollbar, #navMenu::-webkit-scrollbar, .select-resize::-webkit-scrollbar {
