@@ -8,7 +8,7 @@
 		content="TooToo 2022 uses the GitHub API to provide access to all the current files in a repository hosted with GitHub Pages.">
 	<meta name="keywords" content="JavaScript,Markdown,GitHub,FOSS">
 	<meta name="date" content="2022-02-22">
-	<title>TooToo</title>
+	<title>Spider 2022</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
 	<link id=CORstyle rel="stylesheet" href="./lib02/style/r-2022-02-21/style.css">
@@ -44,30 +44,30 @@
 			iconExternalFile: `<img class=infoImg  src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/icon-external-link.svg">`,
 			iconGitHub: `<img src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg">`,
 			iconInfo: `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/noun_Information_585560.svg">`,
-			iconRepo: "❦",
+			iconRepo: `<img title="Your AEC 3D viewer happy place!" height="24" width="24" src="https://ladybug.tools/spider-2022/assets/spider.ico">`,
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
-			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/", ////////// remember to update
+			urlSource: "https://github.com/ladybug-tools/spider-2022/", ////////// remember to update
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
 			// Used by FRX
 			defaultFile: "README.md",
 
-			//pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
-			pathContent: "./",
+			pathContent: "https://www.ladybug.tools/spider-2022/",
+			//pathContent: "./",
 
 			// pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
 			pathTooToo: "./",
 
 			// Used by GRV
-			user: "pushme-pullyou",
-			repo: "tootoo-2022",
-			branch: "main",
+			user: "ladybug-tools",
+			repo: "spider-2022",
+			branch: "master",
 
 			//defaultIgnoreFolders: [],
 			defaultIgnoreFolders: [ "archive", "lib-templates" ], // curated
 
 			filesAll: true,
-			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt", "xlsx", "" ], // curated
+			filterFiles: [ "gif", "md", "html", "jpg", "LICENSE", "pdf", "png", "svg", "txt", "xlsx", "" ], // curated
 			ignoreFiles: [ "404.html", "index.html", "LICENSE", "readme.html" ], // curated
 
 		};
@@ -77,8 +77,6 @@
 			"lib02/mnu-menu/r-2022-02-20/mnu-menu.js",
 			"lib02/frx-file-read-xhr/r-2022-02-22/frx-file-read-xhr.js",
 			"lib02/grv-github-repo-tree-view/r-2022-02-13/grv-github-repo-tree-view.js",
-			//"lib02/ckeditor/ckeditor5-32.0.0-gsw55qtixqey/build/ckeditor.js",
-			//"lib02/cke-put-github/2022-02-07/cke-ckeditor-put-github.js"
 		];
 
 		COR.loaded = 0;
