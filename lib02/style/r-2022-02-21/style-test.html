@@ -57,8 +57,8 @@
 			MNU.getSample();
 
 
-			requestFile(
-				
+			requestFile( "https://pushme-pullyou.github.io/tootoo-2022/test-cases/style-sample.htm" )
+
 		}
 
 
@@ -71,10 +71,8 @@
 
 		function requestFile( url = "https://example.com", callback = onLoad ) {
 
-			const urlCORS = "https://cors-anywhere.herokuapp.com/";
-
 			const xhr = new XMLHttpRequest();
-			xhr.open( "GET", urlCORS + url, true );
+			xhr.open( "GET", url, true );
 			xhr.responseType = "text";
 			xhr.onerror = ( xhr ) => console.log( "error:", xhr );
 			//xhr.onprogress = ( xhr ) => console.log( "bytes loaded:", xhr.loaded );
@@ -87,7 +85,9 @@
 
 		function onLoad( response ) {
 
-			console.log( "response", response );
+			//console.log( "response", response );
+
+			main.innerHTML = response;
 
 		}
 

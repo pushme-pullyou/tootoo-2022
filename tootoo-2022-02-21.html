@@ -4,25 +4,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
-	<meta name="description" content="Built by residents with abilities - for residents with needs">
+	<meta name="description"
+		content="TooToo 2022 uses the GitHub API to provide access to all the current files in a repository hosted with GitHub Pages.">
 	<meta name="keywords" content="JavaScript,Markdown,GitHub,FOSS">
-	<meta name="date" content="2022-02-20">
-	<title>Heritage Happenings</title>
+	<meta name="date" content="2022-02-21">
+	<title>TooToo</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
-	<link id=CORstyle rel="stylesheet"
-		href="https://pushme-pullyou.github.io/tootoo-2022/lib01/style/style-2022-01-01.css">
+	<link id=CORstyle rel="stylesheet" href="./lib02/style/r-2022-02-21/style.css">
 
 	<style>
 		:root {
-			font-size: 150%;
 			/* --mnu-width: 20rem; commit*/
-			--main-hue: 10;
-			--mnu-width: 19rem;
+			--main-hue: 240;
 			/* 0 to 360 0=red 120=green 240=blue */
 		}
-
-
 	</style>
 
 </head>
@@ -44,35 +40,35 @@
 		const COR = {
 
 			// Used by MNU ~ mnu-menu.js
-			description: document.head.querySelector( "[ name=description ]" ).content + `<p>Release: 2022-02-20<p>`,
+			description: document.head.querySelector( "[ name=description ]" ).content,
 			iconExternalFile: `<img class=infoImg  src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/icon-external-link.svg">`,
 			iconGitHub: `<img src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg">`,
 			iconInfo: `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/noun_Information_585560.svg">`,
 			iconRepo: "❦",
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
-			urlSource: "https://github.com/heritage-happenings/heritage-happenings.github.io/",
+			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/", ////////// remember to update
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
 			// Used by FRX
-			defaultFile: "HOME.md",
+			defaultFile: "README.md",
 
-			pathContent: "https://heritage-happenings.github.io/",
-			//pathContent: "./",
+			//pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
+			pathContent: "./",
 
-			//pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
+			// pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
 			pathTooToo: "./",
 
 			// Used by GRV
-			user: "heritage-happenings",
-			repo: "heritage-happenings.github.io",
-			branch: "master",
+			user: "pushme-pullyou",
+			repo: "tootoo-2022",
+			branch: "main",
 
 			//defaultIgnoreFolders: [],
 			defaultIgnoreFolders: [ "archive", "lib-templates" ], // curated
 
-			filesAll: false,
-			filterFiles: [ "docx", "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt", "xlsx", "" ],
-			ignoreFiles: [ "404.html", "index.html", "LICENSE", "README.md", "readme.html" ], // root only
+			filesAll: true,
+			filterFiles: [ "gif", "md", "html", "jpg", "license", "pdf", "png", "svg", "txt", "xlsx", "" ], // curated
+			ignoreFiles: [ "404.html", "index.html", "LICENSE", "readme.html" ], // curated
 
 		};
 
@@ -80,7 +76,9 @@
 		COR.scripts = [
 			"lib02/mnu-menu/r-2022-02-20/mnu-menu.js",
 			"lib02/frx-file-read-xhr/r-2022-02-06/frx-file-read-xhr.js",
-			"lib02/grv-github-repo-tree-view/r-2022-02-13/grv-github-repo-tree-view.js"
+			"lib02/grv-github-repo-tree-view/r-2022-02-13/grv-github-repo-tree-view.js",
+			//"lib02/ckeditor/ckeditor5-32.0.0-gsw55qtixqey/build/ckeditor.js",
+			//"lib02/cke-put-github/2022-02-07/cke-ckeditor-put-github.js"
 		];
 
 		COR.loaded = 0;
@@ -116,24 +114,24 @@
 			//sumNavMenu.hidden = true;
 
 			//MNUaSource.hidden = true;
-			MNUspnVersion.hidden = true;
+			//MNUspnVersion.hidden = true;
 
 			// FRX => "File Read XHR"
 			FRX.init();
-			//FRX.getMenu();
+			FRX.getMenu();
 
-			// GRA
+			// GR
 			//GRA.init();
 
 			//GRV => "GitHub Repo View"
-			GRV.getFiles = GRV.getFilesCurated;
+			//GRV.getFiles = GRV.getFilesCurated;
 			//GRV.getFiles = GRV.getFilesAll;
 			GRV.init();
 
-			GRVdivIntro.hidden = true;
-			GRVsumRepo.hidden = true;
+			//GRVdivIntro.hidden = true;
+			//GRVsumRepo.hidden = true;
 			//GRVbutMenu.hidden = true;
-			//GRVdet.open = true;
+			GRVdet.open = true;
 
 
 			FRX.onHashChange();

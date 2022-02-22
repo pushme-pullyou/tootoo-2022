@@ -40,7 +40,9 @@ body {
 	overflow: hidden;
 }
 
-
+header h1 {
+	margin:0;
+}
 
 #main::-webkit-scrollbar, #navMenu::-webkit-scrollbar, .select-resize::-webkit-scrollbar {
 	width: 1.25rem;
