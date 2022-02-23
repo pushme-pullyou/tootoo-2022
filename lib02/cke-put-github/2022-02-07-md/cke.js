@@ -5,21 +5,16 @@
 
 const CKE = {};
 
-
-CKE.defaultBase = "https://api.github.com/repos/theo-armour/qdata/contents/";
-CKE.defaultFile = "snippets/notes.htm";
-CKE.url = CKE.defaultBase + CKE.defaultFile;
-CKE.content = divMainContent;
+CKE.base = "https://api.github.com/repos/theo-armour/qdata/contents/";
+CKE.file = "apps/2022-new-tab/new-tab-content.htm";
 
 
-CKE.init = function ( url ) {
-
-	//console.log( "url", url);
+CKE.init = function () {
 
 	ClassicEditor
 		.create( document.querySelector( '.editor' ), {
 
-			licenseKey: "",
+			licenseKey: '',
 
 			htmlSupport: {
 				allow: [
@@ -37,10 +32,6 @@ CKE.init = function ( url ) {
 		.then( editor => {
 			CKE.editor = editor;
 
-			CKE.onHashChange();
-
-			CKE.autoSave();
-
 		} )
 
 		.catch( error => {
@@ -49,8 +40,6 @@ CKE.init = function ( url ) {
 			console.warn( 'Build id: dgdeuqd4cpet-wmmf9tcepw2' );
 			console.error( error );
 		} );
-
-	CKE.url = url || CKE.url;
 
 	CKE.accessToken = localStorage.getItem( "githubAccessToken" ) || "";
 
@@ -62,7 +51,10 @@ CKE.init = function ( url ) {
 
 	}
 
-	window.addEventListener( "hashchange", CKE.onHashChange, false );
+
+	CKE.url = CKE.base + CKE.file;
+
+	CKE.requestFile();
 
 	window.addEventListener( "beforeunload", CKE.checkForChange );
 
@@ -70,35 +62,8 @@ CKE.init = function ( url ) {
 
 
 
-CKE.onHashChange = function () {
-
-	if ( CKE.contentEditor !== undefined ) {
-
-	  //console.log( "equal", CKE.editor.data.get() === CKE.contentEditor );
-
-		if ( CKE.editor.data.get() !== CKE.contentEditor ) {
-
-			const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
-
-			if ( response !== true ) { return; }
-
-		}
-
-	}
-
-	CKE.url = location.hash ? CKE.defaultBase  + location.hash.slice( 1 ) : CKE.url;
-
-	CKE.fileName = CKE.url.split( "/" ).pop();
-	console.log( "file", CKE.fileName );
-
-	CKE.requestFile();
-
-};
-
-
-
 CKE.requestFile = function () {
-	//console.log( "CKE.url ", CKE.url );
+	//console.log( "CKE.hash ", CKE.hash );
 
 	const xhr = new XMLHttpRequest();
 	xhr.open( "GET", CKE.url, true );
@@ -115,6 +80,7 @@ CKE.requestFile = function () {
 
 CKE.onLoad = function ( xhr ) {
 
+	//console.log( "xhr", xhr );
 	CKE.content = atob( xhr.target.response.content );
 
 	CKE.editor.data.set( CKE.content );
@@ -127,33 +93,12 @@ CKE.onLoad = function ( xhr ) {
 
 
 
-CKE.autoSave = function () {
-
-	if ( chkAutoSave.checked ) {
-
-		CKE.saveInterval = setInterval( CKE.getSha, 5000 ); // in ms
-
-	} else {
-
-		clearInterval( CKE.saveInterval );
-
-	}
-
-};
-
-
 
 //////////
 
 CKE.getSha = function () {
 
 	if ( CKE.url === "" ) { alert( "No URL" ); return; }
-
-	if ( CKE.contentEditor.length === CKE.editor.data.get().length ) return;
-
-	CKE.contentEditor = CKE.editor.data.get();
-
-	console.log( "saving" );
 
 	const xhr = new XMLHttpRequest();
 	xhr.open( "GET", CKE.url, true );
@@ -205,7 +150,7 @@ CKE.checkForChange = function ( event ) {
 
 	if ( CKE.editor.data.get() === CKE.contentEditor ) { return; }
 
-	console.log( "file", CKE.url.split( "/" ).pop() );
+	//console.log( "file", CKE.url.split( "/" ).pop() );
 
 	event.preventDefault();
 
@@ -228,5 +173,3 @@ CKE.onKeyUp = function ( event ) {
 	}
 
 };
-
-
