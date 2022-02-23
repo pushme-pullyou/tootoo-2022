@@ -10,7 +10,7 @@ CKE.defaultBase = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/conte
 CKE.defaultFile = "test-cases/text-to-hack.htm";
 //CKE.defaultFile = "test-cases/style-sample.htm";
 CKE.url = CKE.defaultBase + CKE.defaultFile;
-CKE.content = divMainContent;
+//CKE.content = divMainContent;
 
 
 CKE.init = function ( url ) {
@@ -52,10 +52,12 @@ CKE.init = function ( url ) {
 			console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
 			console.warn( 'Build id: dgdeuqd4cpet-wmmf9tcepw2' );
 			console.error( error );
-			
+
 		} );
 
 	CKE.url = url || CKE.url;
+
+
 
 	CKE.accessToken = localStorage.getItem( "githubAccessToken" ) || "";
 
@@ -96,6 +98,8 @@ CKE.onHashChange = function () {
 	CKE.fileName = CKE.url.split( "/" ).pop();
 	console.log( "file", CKE.fileName );
 
+
+
 	CKE.requestFile();
 
 };
@@ -125,6 +129,8 @@ CKE.onLoad = function ( xhr ) {
 	CKE.editor.data.set( CKE.content );
 
 	CKE.contentEditor = CKE.editor.data.get();
+
+	CKE.contentEditor.contenteditable = false;
 
 	spnMessage.innerText = `Get ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.contentEditor.length }`;
 
