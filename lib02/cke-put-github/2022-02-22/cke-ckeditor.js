@@ -7,7 +7,7 @@ const CKE = {};
 
 
 CKE.defaultBase = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
-CKE.defaultFile = "test-cases/notes.htm";
+CKE.defaultFile = "test-cases/text-to-hack.htm";
 //CKE.defaultFile = "test-cases/style-sample.htm";
 CKE.url = CKE.defaultBase + CKE.defaultFile;
 CKE.content = divMainContent;
@@ -18,6 +18,7 @@ CKE.init = function ( url ) {
 	//console.log( "url", url);
 
 	ClassicEditor
+
 		.create( document.querySelector( '.editor' ), {
 
 			licenseKey: "",
@@ -36,6 +37,7 @@ CKE.init = function ( url ) {
 		} )
 
 		.then( editor => {
+
 			CKE.editor = editor;
 
 			CKE.onHashChange();
@@ -45,10 +47,12 @@ CKE.init = function ( url ) {
 		} )
 
 		.catch( error => {
+
 			console.error( 'Oops, something went wrong!' );
 			console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
 			console.warn( 'Build id: dgdeuqd4cpet-wmmf9tcepw2' );
 			console.error( error );
+			
 		} );
 
 	CKE.url = url || CKE.url;

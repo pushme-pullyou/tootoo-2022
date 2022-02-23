@@ -29,6 +29,8 @@
 
 		<textarea style=height:1rem;width:15rem;></textarea>
 
+		<a href="#test-cases/text-to-hack.htm" target="_blank">text to hack</a>
+
 	</nav>
 
 	<div id="divMainContent">
@@ -63,9 +65,9 @@
 
 			spnTitle.innerText = file.split( "/" ).pop().split( "." ).shift();
 
-			chkAutoSave.checked = true;
+			//chkAutoSave.checked = true;
 
-			CKE.init();
+			CKE.init( base + file );
 
 		}
 
