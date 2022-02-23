@@ -6,8 +6,9 @@
 const CKE = {};
 
 
-CKE.defaultBase = "https://api.github.com/repos/theo-armour/qdata/contents/";
-CKE.defaultFile = "snippets/notes.htm";
+CKE.defaultBase = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
+CKE.defaultFile = "test-cases/notes.htm";
+//CKE.defaultFile = "test-cases/style-sample.htm";
 CKE.url = CKE.defaultBase + CKE.defaultFile;
 CKE.content = divMainContent;
 

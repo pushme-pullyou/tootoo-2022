@@ -47,17 +47,17 @@
 
 	<script>
 
-		const base = "https://api.github.com/repos/theo-armour/qdata/contents/";
+		const base = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
 		const source = "https://github.com/theo-armour/qdata/tree/master/";
 		//const file = "apps/2022-new-tab/new-tab-content.htm";\
-		const file = "https://pushme-pullyou.github.io/tootoo-2022/test-cases/style-sample.htm";
+		const file = "test-cases/style-sample.htm";
 		const content = divMainContent;
 
 		if ( window.self === window.top ) { init( base, file ); };
 
 		function init ( base, file ) {
 
-			console.log( "hah", location.hash );
+			console.log( "file", location.hash );
 
 			aSource.href = source + file;
 
@@ -65,7 +65,7 @@
 
 			chkAutoSave.checked = true;
 
-			CKE.init( file );
+			CKE.init();
 
 		}
 
