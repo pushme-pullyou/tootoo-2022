@@ -43,16 +43,22 @@ HTM.onChange = function () {
 
 };
 
+HTM.onLoad = function () {
+
+	ifr.contentWindow.location.hash = "test-cases/text-to-hack.htm"
+
+
+}
 
 HTM.onChange = function () {
 
-	console.log( "htm", FRX.url );
+	console.log( "FRX.url", FRX.url );
 
 	file = "https://pushme-pullyou.github.io/tootoo-2022/lib02/cke-put-github/2022-02-22/cke-ckeditor.html";
 	//file = "../../cke-put-github/2022-02-06/cke-put-github.html";
 
 	divMainContent.innerHTML =
-		`<iframe src="${ file }#${ FRX.url }" height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
+		`<iframe id=ifr onload=HTM.onLoad(); src="${ file }" height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
 
 };
 
