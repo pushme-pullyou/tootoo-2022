@@ -67,7 +67,9 @@ CKE.init = function ( url ) {
 
 	}
 
-	window.addEventListener( "hashchange", CKE.onHashChange, false );
+	//window.addEventListener( "hashchange", CKE.onHashChange, false );
+
+	parent.addEventListener( "hashchange", CKE.onHashChange, false );
 
 	window.addEventListener( "beforeunload", CKE.checkForChange );
 
@@ -89,7 +91,7 @@ CKE.onHashChange = function () {
 
 	}
 
-	CKE.url = location.hash ? CKE.base  + location.hash.slice( 1 ) : CKE.url;
+	CKE.url = parent.location.hash ? CKE.base  + parent.location.hash.slice( 1 ) : CKE.url;
 
 	CKE.fileName = CKE.url.split( "/" ).pop();
 	console.log( "file", CKE.fileName );

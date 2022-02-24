@@ -55,9 +55,11 @@
 		const file = "test-cases/style-sample.htm";
 		const source = "https://github.com/pushme-pullyou/tootoo-2022/blob/main/";
 
-		if ( window.self === window.top ) { init( base, file ); };
+		//if ( window.self === window.top ) { init( base, file ); };
 
-		function init ( base, file ) {
+		init();
+
+		function init () {
 
 			aSource.href = source + file;
 
