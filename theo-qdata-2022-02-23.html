@@ -7,7 +7,7 @@
 	<meta name="description"
 		content="TooToo 2022 uses the GitHub API to provide access to all the current files in a repository hosted with GitHub Pages.">
 	<meta name="keywords" content="JavaScript,Markdown,GitHub,FOSS">
-	<meta name="date" content="2022-02-22">
+	<meta name="date" content="2022-02-3">
 	<title>Theo qData</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
@@ -28,14 +28,6 @@
 	<div id=MNUdivShowHide></div>
 
 	<main id=main>
-
-		<div>
-
-			<button onclick=CKE.getSha()>putGH</button>
-			<label><input type=checkbox onchange=CKE.autoSave(); id=chkAutoSave style=vertical-align:text-top>save</label>
-			<span id=spnMessage></span>
-
-		</div>
 
 		<div id="divMainContent">
 
@@ -88,10 +80,10 @@
 
 		COR.scripts = [
 			"lib02/mnu-menu/r-2022-02-20/mnu-menu.js",
-			"lib02/frx-file-read-xhr/r-2022-02-22/frx-file-read-xhr.js",
+			"lib02/frx-file-read-xhr/r-2022-02-23/frx-file-read-xhr.js",
 			"lib02/grv-github-repo-tree-view/r-2022-02-13/grv-github-repo-tree-view.js",
-			"lib02/ckeditor/ckeditor5-32.0.0-gsw55qtixqey/build/ckeditor.js",
-			"lib02/cke-put-github/2022-02-07/cke-ckeditor-put-github.js"
+			// "lib02/ckeditor/ckeditor5-32.0.0-gsw55qtixqey/build/ckeditor.js",
+			// "lib02/cke-put-github/2022-02-07/cke-ckeditor-put-github.js"
 		];
 
 		COR.loaded = 0;
@@ -147,14 +139,14 @@
 			GRVdet.open = true;
 
 
-			//FRX.onHashChange();
+			FRX.onHashChange();
 
-			const base = "https://api.github.com/repos/theo-armour/qdata/contents/";
-			const source = "https://github.com/theo-armour/qdata/tree/master/";
-			const file = "0-to-do/0-to-do.htm";
-			const content = divMainContent;
+			// const base = "https://api.github.com/repos/theo-armour/qdata/contents/";
+			// const source = "https://github.com/theo-armour/qdata/tree/master/";
+			// const file = "0-to-do/0-to-do.htm";
+			// const content = divMainContent;
 
-			CKE.init( base + file );
+			// CKE.init( base + file );
 
 			// if running on server, keeps address bar pointed to latest dev
 
