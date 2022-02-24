@@ -6,15 +6,15 @@
 const CKE = {};
 
 
-CKE.defaultBase = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
-CKE.defaultFile = "test-cases/text-to-hack.htm";
+CKE.base = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
+CKE.file = "test-cases/text-to-hack.htm";
 //CKE.defaultFile = "test-cases/style-sample.htm";
-CKE.url = CKE.defaultBase + CKE.defaultFile;
-//CKE.content = divMainContent;
+CKE.url = CKE.base + CKE.file;
 
 
 CKE.init = function ( url ) {
 
+	CKE.url = url || CKE.url;
 	//console.log( "url", url);
 
 	ClassicEditor
@@ -55,8 +55,6 @@ CKE.init = function ( url ) {
 
 		} );
 
-	CKE.url = url || CKE.url;
-
 
 
 	CKE.accessToken = localStorage.getItem( "githubAccessToken" ) || "";
@@ -81,8 +79,6 @@ CKE.onHashChange = function () {
 
 	if ( CKE.contentEditor !== undefined ) {
 
-	  //console.log( "equal", CKE.editor.data.get() === CKE.contentEditor );
-
 		if ( CKE.editor.data.get() !== CKE.contentEditor ) {
 
 			const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
@@ -93,12 +89,10 @@ CKE.onHashChange = function () {
 
 	}
 
-	CKE.url = location.hash ? CKE.defaultBase  + location.hash.slice( 1 ) : CKE.url;
+	CKE.url = location.hash ? CKE.base  + location.hash.slice( 1 ) : CKE.url;
 
 	CKE.fileName = CKE.url.split( "/" ).pop();
 	console.log( "file", CKE.fileName );
-
-
 
 	CKE.requestFile();
 
@@ -185,7 +179,7 @@ CKE.getSha = function () {
 
 CKE.putFile = function () {
 
-	CKE.contentEditor = CKE.editor.data.get();
+	CKE.contentEditor = CKE.editor.getData();
 	//console.log( "CKE.contentEditor.length", CKE.contentEditor.length );
 
 	const codedData = window.btoa( CKE.contentEditor ); // encode the string
@@ -211,7 +205,7 @@ CKE.putFile = function () {
 };
 
 
-
+// beforeunload
 CKE.checkForChange = function ( event ) {
 
 	if ( CKE.editor.data.get() === CKE.contentEditor ) { return; }
@@ -225,7 +219,7 @@ CKE.checkForChange = function ( event ) {
 };
 
 
-
+// not used
 CKE.onKeyUp = function ( event ) {
 
 	//console.log( "key", event.keyCode );
