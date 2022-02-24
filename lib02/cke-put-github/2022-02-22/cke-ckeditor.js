@@ -78,6 +78,7 @@ CKE.init = function ( url ) {
 
 
 CKE.onHashChange = function () {
+	console.log( "", 55 );
 
 	if ( CKE.contentEditor !== undefined ) {
 
