@@ -12,7 +12,9 @@
 			<link id=CORstyle rel="stylesheet" href="../../../lib02/style/r-2022-02-22/style.css">
 
 		<style>
-
+			textarea {
+				overflow: scroll !important;
+			}
 		</style>
 </head>
 
@@ -56,8 +58,6 @@
 		if ( window.self === window.top ) { init( base, file ); };
 
 		function init ( base, file ) {
-
-			//console.log( "file", location.hash );
 
 			aSource.href = source + file;
 
