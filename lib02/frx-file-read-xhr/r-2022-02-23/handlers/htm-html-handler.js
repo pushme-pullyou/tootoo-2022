@@ -45,7 +45,9 @@ HTM.onChange = function () {
 
 HTM.onLoad = function () {
 
-	ifr.contentWindow.location.hash = "test-cases/text-to-hack.htm"
+	console.log( "", 23 );
+	
+	location.hash = "test-cases/text-to-hack.htm"
 
 
 }
@@ -58,7 +60,7 @@ HTM.onChange = function () {
 	//file = "../../cke-put-github/2022-02-06/cke-put-github.html";
 
 	divMainContent.innerHTML =
-		`<iframe id=ifr  src="${ file }" height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
+		`<iframe id=ifr onload=HTM.onLoad() src="${ file }" height=${ window.innerHeight } style="border:1px solid green;width:100%;" ></iframe>`;
 
 };
 
