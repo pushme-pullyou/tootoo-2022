@@ -5,18 +5,13 @@
 
 const CKE = {};
 
-//CKE.base = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
-//CKE.file = "test-cases/text-to-hack.htm";
-//CKE.source = "https://github.com/pushme-pullyou/tootoo-2022/blob/main/";
-//CKE.defaultFile = "README.md";
 
-
-CKE.init = function ( url ) {
+CKE.init = function () {
 
 	CKE.base = `https://api.github.com/repos/${ COR.user }/${ COR.repo }/contents/`;
 	CKE.file = COR.defaultFile;
 	CKE.url = CKE.base + CKE.file;
-	CKE.url = url || CKE.url;
+	//CKE.url = url || CKE.url;
 	//console.log( "url", url);
 
 	CKE.source = `https://github.com/${ COR.user }/${ COR.repo }/blob/${ COR.branch }/`;
@@ -90,11 +85,13 @@ CKE.onHashChange = function () {
 
 	}
 
-	CKE.url = location.hash ? CKE.base + location.hash.slice( 1 ) : CKE.url;
+	CKE.file = location.hash ? location.hash.slice( 1 ) : CKE.file;
+
+	CKE.url = location.hash ? CKE.base + CKE.file : CKE.url;
 
 	CKE.fileName = CKE.url.split( "/" ).pop();
 
-	aSource.href = CKE.source + CKE.fileName;
+	aSource.href = CKE.source + CKE.file;
 
 	spnTitle.innerText = CKE.fileName.split( "/" ).pop().split( "." ).shift();
 
