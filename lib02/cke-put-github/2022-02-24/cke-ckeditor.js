@@ -12,11 +12,12 @@ CKE.init = function () {
 	CKE.file = COR.defaultFile;
 	CKE.url = CKE.base + CKE.file;
 	//CKE.url = url || CKE.url;
-	//console.log( "url", url);
+	//console.log( "url", CKE.url);
 
 	CKE.source = `https://github.com/${ COR.user }/${ COR.repo }/blob/${ COR.branch }/`;
 
 	ClassicEditor
+
 		.create( document.querySelector( '.editor' ), {
 
 			licenseKey: "",
@@ -75,7 +76,7 @@ CKE.onHashChange = function () {
 
 		//console.log( "equal", CKE.editor.data.get() === CKE.editorData );
 
-		if ( CKE.editor.data.get() !== CKE.editorData ) {
+		if ( CKE.editor.getData() !== CKE.editorData ) {
 
 			const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
 
@@ -89,9 +90,9 @@ CKE.onHashChange = function () {
 
 	CKE.url = location.hash ? CKE.base + CKE.file : CKE.url;
 
-	CKE.fileName = CKE.url.split( "/" ).pop();
-
 	aSource.href = CKE.source + CKE.file;
+
+	CKE.fileName = CKE.url.split( "/" ).pop();
 
 	spnTitle.innerText = CKE.fileName.split( "/" ).pop().split( "." ).shift();
 
