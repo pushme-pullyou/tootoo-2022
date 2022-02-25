@@ -8,9 +8,9 @@ The collection title is a play on the [Dr Dolittle](https://en.wikipedia.org/wik
 
 The useful files are in "lib" folders - libraries of files for other repositories to use
 
-*   ["lib"](https://pushme-pullyou.github.io/tootoo-2022/#lib/README.md) - contains files that may be used to build a basic and test simple content management system for GitHub pages
-*   ["lib3d"](https://pushme-pullyou.github.io/tootoo-2022/#lib3d/README.md) - contains files that may be used to build apps based on [Three.js](https://threejs.org)
-*   ["lib-geo"](https://pushme-pullyou.github.io/tootoo-2022/#lib-geo/README.md) - contains files that may used to build 3D maps and globes based on Three.js
+* ["lib"](https://pushme-pullyou.github.io/tootoo-2022/#lib/README.md) - contains files that may be used to build a basic and test simple content management system for GitHub pages
+* ["lib3d"](https://pushme-pullyou.github.io/tootoo-2022/#lib3d/README.md) - contains files that may be used to build apps based on [Three.js](https://threejs.org)
+* ["lib-geo"](https://pushme-pullyou.github.io/tootoo-2022/#lib-geo/README.md) - contains files that may used to build 3D maps and globes based on Three.js
 
 All JavaScript files are with 3 letter namespaces. The same three letter are used as the first letters of the file name. This makes easy to inspect the code in the console and then locate the file of interest - even if Windows Notepad is your development tool.
 
@@ -27,15 +27,15 @@ All JavaScript files are with 3 letter namespaces. The same three letter are use
 
 Web
 
-*   https://github.com/dohliam/dropin-minimal-css
-*   https://www.w3schools.com/w3css/
-    *   https://www.w3schools.com/w3css/w3css_colors.asp
-    *   https://www.w3schools.com/lib/w3-theme-red.css
-*   https://bootswatch.com/
+* https://github.com/dohliam/dropin-minimal-css
+* https://www.w3schools.com/w3css/
+* https://www.w3schools.com/w3css/w3css_colors.asp
+* https://www.w3schools.com/lib/w3-theme-red.css
+* https://bootswatch.com/
 
 Switching themes
 
-*   https://github.com/Mohammad-Farmaan/Dark-Mode-For-Web
+* https://github.com/Mohammad-Farmaan/Dark-Mode-For-Web
 
 ## Change Log
 
