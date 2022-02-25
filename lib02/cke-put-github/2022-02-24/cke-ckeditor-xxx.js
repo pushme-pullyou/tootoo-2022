@@ -8,7 +8,8 @@ const CKE = {};
 
 CKE.base = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/";
 CKE.file = "test-cases/text-to-hack.htm";
-//CKE.defaultFile = "test-cases/style-sample.htm";
+CKE.source = "https://github.com/pushme-pullyou/tootoo-2022/blob/main/";
+//CKE.defaultFile = "README.md";
 CKE.url = CKE.base + CKE.file;
 
 
@@ -18,7 +19,6 @@ CKE.init = function ( url ) {
 	//console.log( "url", url);
 
 	ClassicEditor
-
 		.create( document.querySelector( '.editor' ), {
 
 			licenseKey: "",
@@ -37,7 +37,6 @@ CKE.init = function ( url ) {
 		} )
 
 		.then( editor => {
-
 			CKE.editor = editor;
 
 			CKE.onHashChange();
@@ -47,14 +46,11 @@ CKE.init = function ( url ) {
 		} )
 
 		.catch( error => {
-
 			console.error( 'Oops, something went wrong!' );
 			console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
 			console.warn( 'Build id: dgdeuqd4cpet-wmmf9tcepw2' );
 			console.error( error );
-
 		} );
-
 
 
 	CKE.accessToken = localStorage.getItem( "githubAccessToken" ) || "";
@@ -67,9 +63,7 @@ CKE.init = function ( url ) {
 
 	}
 
-	//window.addEventListener( "hashchange", CKE.onHashChange, false );
-
-	parent.addEventListener( "hashchange", CKE.onHashChange, false );
+	window.addEventListener( "hashchange", CKE.onHashChange, false );
 
 	window.addEventListener( "beforeunload", CKE.checkForChange );
 
@@ -78,11 +72,12 @@ CKE.init = function ( url ) {
 
 
 CKE.onHashChange = function () {
-	console.log( "", 55 );
 
-	if ( CKE.contentEditor !== undefined ) {
+	if ( CKE.editorData !== undefined ) {
 
-		if ( CKE.editor.data.get() !== CKE.contentEditor ) {
+	  //console.log( "equal", CKE.editor.data.get() === CKE.editorData );
+
+		if ( CKE.editor.data.get() !== CKE.editorData ) {
 
 			const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
 
@@ -92,9 +87,14 @@ CKE.onHashChange = function () {
 
 	}
 
-	CKE.url = parent.location.hash ? CKE.base + parent.location.hash.slice( 1 ) : CKE.url;
+	CKE.url = location.hash ? CKE.base  + location.hash.slice( 1 ) : CKE.url;
 
 	CKE.fileName = CKE.url.split( "/" ).pop();
+
+	aSource.href = CKE.source + CKE.fileName;
+
+	spnTitle.innerText = CKE.fileName.split( "/" ).pop().split( "." ).shift();
+
 	console.log( "file", CKE.fileName );
 
 	CKE.requestFile();
@@ -104,7 +104,7 @@ CKE.onHashChange = function () {
 
 
 CKE.requestFile = function () {
-	console.log( "CKE.url ", CKE.url );
+	//console.log( "CKE.url ", CKE.url );
 
 	const xhr = new XMLHttpRequest();
 	xhr.open( "GET", CKE.url, true );
@@ -121,15 +121,36 @@ CKE.requestFile = function () {
 
 CKE.onLoad = function ( xhr ) {
 
-	CKE.content = atob( xhr.target.response.content );
+	CKE.responseContent = atob( xhr.target.response.content );
 
-	CKE.editor.data.set( CKE.content );
+	if ( CKE.url.endsWith( "htm" ) ) {
 
-	CKE.contentEditor = CKE.editor.data.get();
+		divMainContent.hidden = false;
 
-	CKE.contentEditor.contenteditable = false;
+		divOther.hidden = true;
 
-	spnMessage.innerText = `Get ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.contentEditor.length }`;
+		chkAutoSave.checked = true;
+
+		CKE.editor.data.set( CKE.responseContent );
+
+		CKE.editorData = CKE.editor.getData();
+
+		spnMessage.innerText = `Get ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.editorData.length }`;
+
+		return;
+
+	}
+
+	chkAutoSave.checked = false;
+
+	divMainContent.hidden = true;
+
+	divOther.hidden = false;
+
+	divOther.innerText = CKE.responseContent;
+
+
+	spnMessage.innerText = `Get ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.responseContent.length }`;
 
 };
 
@@ -157,9 +178,15 @@ CKE.getSha = function () {
 
 	if ( CKE.url === "" ) { alert( "No URL" ); return; }
 
-	if ( CKE.contentEditor.length === CKE.editor.data.get().length ) return;
+	if ( divOther.hidden ) {
 
-	CKE.contentEditor = CKE.editor.data.get();
+		if ( CKE.editorData.length === CKE.editor.data.get().length ) return;
+
+	} else {
+
+		if ( divOther.innerText.length === CKE.responseContent.length ) return;
+
+	}
 
 	console.log( "saving" );
 
@@ -182,10 +209,20 @@ CKE.getSha = function () {
 
 CKE.putFile = function () {
 
-	CKE.contentEditor = CKE.editor.getData();
-	//console.log( "CKE.contentEditor.length", CKE.contentEditor.length );
+	if ( divOther.hidden ) {
 
-	const codedData = window.btoa( CKE.contentEditor ); // encode the string
+		CKE.editorData = CKE.editor.data.get();
+
+	} else {
+
+		CKE.editorData = divOther.innerText;
+
+	}
+
+
+	//console.log( "CKE.editorData.length", CKE.editorData.length );
+
+	const codedData = window.btoa( CKE.editorData ); // encode the string
 
 	const body = JSON.stringify( {
 		"branch": CKE.branch,
@@ -203,15 +240,17 @@ CKE.putFile = function () {
 	//xhr.onprogress = ( xhr ) => console.log( "bytes loaded:", xhr.loaded );
 	xhr.send( body );
 
-	spnMessage.innerText = `Put ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.contentEditor.length }`;
+	spnMessage.innerText = `Put ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.editorData.length }`;
 
 };
 
 
-// beforeunload
+
 CKE.checkForChange = function ( event ) {
 
-	if ( CKE.editor.data.get() === CKE.contentEditor ) { return; }
+	if ( CKE.editor.data.get() === CKE.editorData ) { return; }
+
+	if ( CKE.editorData === divOther.innerText ) { return; }
 
 	console.log( "file", CKE.url.split( "/" ).pop() );
 
@@ -222,7 +261,7 @@ CKE.checkForChange = function ( event ) {
 };
 
 
-// not used
+
 CKE.onKeyUp = function ( event ) {
 
 	//console.log( "key", event.keyCode );

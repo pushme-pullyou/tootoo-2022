@@ -44,7 +44,7 @@ HTM.onChange = function () {
 };
 
 
-HTM.onChange = function () {
+HTM.xxxonChange = function () {
 
 	console.log( "", 23 );
 
@@ -56,12 +56,16 @@ HTM.onChange = function () {
 
 };
 
+
+
 HTM.onChange = function () {
 
 	divMainContent.innerHTML =
 		`<iframe src="${ FRX.url }" height=${ window.innerHeight } style="border:none;width:100%;" ></iframe>`;
 
 };
+
+
 
 HTM.checkLoader = function () {
 

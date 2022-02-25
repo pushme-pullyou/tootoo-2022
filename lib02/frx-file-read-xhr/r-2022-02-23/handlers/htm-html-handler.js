@@ -56,7 +56,7 @@ HTM.onChange = function () {
 
 	console.log( "FRX.url", FRX.url );
 
-	file = "../../../../lib02/cke-put-github/2022-02-22/cke-ckeditor.html";
+	file = "https://pushme-pullyou.github.io/tootoo-2022/lib02/cke-put-github/2022-02-22/cke-ckeditor.html";
 	//file = "../../cke-put-github/2022-02-06/cke-put-github.html";
 
 	divMainContent.innerHTML =

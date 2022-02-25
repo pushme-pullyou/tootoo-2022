@@ -65,8 +65,6 @@ UNK.displayIframe = function ( content = FRX.content ) {
 
 	console.log( "FRX.file.type ", FRX.file.type );
 
-
-
 	if ( FRX.file?.type?.includes( "application" ) || FRX.file?.type?.includes( "video" ) ) {
 
 		divMainContent.innerHTML =

@@ -6,26 +6,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description"content="">
 	<meta name="keywords" content="JavaScript,GitHub,FOSS">
+	<meta name="date" content="2021-07-29">
 	<title>cke editor</title>
 
 			<!-- Copyright 2022 Theo Armour. MIT license -->
 			<link id=CORstyle rel="stylesheet" href="../../../lib02/style/r-2022-02-22/style.css">
 
 		<style>
-			textarea {
-				overflow: scroll !important;
-			}
+	textarea {
+		overflow: scroll !important;
+	}
 		</style>
 </head>
 
 <body>
 
 	<nav>
-		<a id=aSource target="_blank"><img src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg"></a>
+
+		<a id=aSource target="_blank"><img
+			src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg"></a>
 		<a href=""><span id=spnTitle></span></a>
 		<button onclick=CKE.getSha()>putGH</button>
-		<label><input type=checkbox id=chkAutoSave onchange=CKE.autoSave(); checked > save </label>
-		<!-- <label><input type="checkbox" id=inpEditable onchange=divEditable.contentEditable=this.checked>editable</label> -->
+
+		<label><input type=checkbox id=chkAutoSave onchange=CKE.autoSave(); >save</label>
+		<label><input type="checkbox" id=inpEditable onchange=divEditable.contentEditable=this.checked>editable</label>
 
 		<span id=spnMessage></span>
 
