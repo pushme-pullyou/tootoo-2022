@@ -89,7 +89,7 @@ MDE.onLoad = function ( xhr ) {
 
 	MDE.responseContent = atob( xhr.target.response.content );
 
-	chkAutoSave.cheMDEd = true;
+	chkAutoSave.checked = true;
 
 	if ( MDE.url.endsWith( "htm" ) ) {
 
