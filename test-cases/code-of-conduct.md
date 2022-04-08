@@ -52,6 +52,6 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 ## Links of Interest
 
 * Wikipedia: [Code of Conduct]( https://en.wikipedia.org/wiki/Code_of_conduct )
-  * <https://en.wikipedia.org/wiki/Category:Codes_of_conduct>
+* <https://en.wikipedia.org/wiki/Category:Codes_of_conduct>
 * Open Source Guides: <https://opensource.guide/code-of-conduct/>
 * Remy Sharp: [Conducting Codes of Conduc]( https://remysharp.com/2017/07/05/codes )
