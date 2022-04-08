@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="JavaScript,GitHub,FOSS">
+	<meta name="date" content="2022-04-08">
+	<title>MD Editor</title>
+	<!-- Copyright 2022 Theo Armour. MIT license -->
+	<link id=CORstyle rel="stylesheet" href="../../../lib02/style/r-2022-02-22/style.css">
+	<style>
+		textarea {
+			overflow: scroll !important;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav>
+
+		<a id=aSource target="_blank"><img
+				src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg"></a>
+		<a href=""><span id=spnTitle></span></a>
+		<button onclick=MDE.getSha()>putGH</button>
+
+		<label><input type=checkbox id=chkAutoSave onchange=MDE.autoSave();>save</label>
+		<label><input type="checkbox" id=inpEditable onchange=divEditable.contentEditable=this.cheMDEd>editable</label>
+
+		<span id=spnMessage></span>
+
+		<a href="#test-cases/markdown.md">markdown.md</a>
+		<a href="#test-cases/concept.md">concept</a>
+		<a href="#test-cases/code-of-conduct.md">code-of-conduct</a>
+		<a href="#test-cases/text-to-hack.md" target="_blank">text-to-hack</a>
+
+	</nav>
+
+	<div id="divMainContent">
+
+		<div id=divHTM class="editor"></div>
+
+	</div>
+
+	<div id="divOther" contenteditable="true"></div>
+
+	<script
+	<script src="mde-md-editor.js"></script>
+
+	<script>
+
+		const COR = {
+
+			user: "pushme-pullyou",
+			repo: "tootoo-2022",
+			branch: "main",
+
+			defaultFile: "README.md",
+
+		};
+
+		init();
+
+		function init () {
+
+			MDE.init();
+
+			MDE.onHashChange();
+
+		}
+
+	</script>
+
+</body>
+
+</html>
