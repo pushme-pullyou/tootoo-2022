@@ -87,6 +87,8 @@ MDE.requestFile = function () {
 
 MDE.onLoad = function ( xhr ) {
 
+	https://developer.mozilla.org/en-US/docs/Web/API/btoa
+
 	MDE.responseContent = atob( xhr.target.response.content );
 
 	chkAutoSave.checked = true;
@@ -97,9 +99,7 @@ MDE.onLoad = function ( xhr ) {
 
 		divOther.hidden = true;
 
-		MDE.editor.data.set( MDE.responseContent );
-
-		MDE.editorData = MDE.editor.getData();
+		divMainContent.innerHTML = MDE.responseContent;
 
 
 	} else {
@@ -121,7 +121,7 @@ MDE.onLoad = function ( xhr ) {
 
 MDE.autoSave = function () {
 
-	if ( chkAutoSave.cheMDEd ) {
+	if ( chkAutoSave.checkedd ) {
 
 		MDE.saveInterval = setInterval( MDE.getSha, 5000 ); // in ms
 
@@ -185,9 +185,12 @@ MDE.putFile = function () {
 
 	//console.log( "MDE.editorData.length", MDE.editorData.length );
 
+	text = new TextEncoder( "utf-8" ).encode( MDE.editorData );
+
+	console.log( "text", text );
 	const codedData = window.btoa( MDE.editorData ); // encode the string
 
-	const body = JSON.stringify( {
+	const body =  JSON.stringify( {
 		"branch": MDE.branch,
 		"content": codedData,
 		"message": `add to file`,
