@@ -10,7 +10,7 @@ Right-click folder names to bring up the context menu to open and close multiple
 <br>
 File: grv-github-repo-tree-view.js<br>
 Name space: GRV<br>
-Release: 2022-01-13<br>
+Release: 2022-04-10<br>
 <button onclick=GRV.test()>Testing: view all files in this repository</button>
 <button onclick=GRV.getRepos() > get Repo new</button >`;
 
@@ -350,7 +350,9 @@ GRV.getFilesCurated = function ( subtree, files ) {
 		.map( item => `
 		<div style="margin: 5px 0;" >
 			<a href="#${ item }" title="" onclick="JavaScript:if(window.innerWidth<640||window.innerHeight<500){navMenuDet.open=false;}" >${ item.split( "/" ).pop().split( "." ).shift().replace( /-/g, " " ) }</a>
-		</div>`);
+			<a href="${ COR.pathContent }${ item }" title="Open file in new tab"  target="_blank" >
+			${ COR.iconExternalFile }</a>
+			</div>`);
 
 	return filtered;
 
