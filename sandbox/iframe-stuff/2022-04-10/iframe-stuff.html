@@ -11,11 +11,27 @@
 		body {
 			font: 100% monospace;
 		}
+
+		h1 {
+			margin: 0;
+		}
+
+		#divClock {
+			font-size: 8rem;
+			font-weight: bold;
+			line-height: 6rem;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
 	</style>
 </head>
 
 <body>
 
+	<div id="divClock"></div>
 	<h1>
 		<a href="https://github.com/pushme-pullyou/tootoo-2021/tree/master/xxxxxx/" target="_blank"
 			title="source code on GitHub"><img
@@ -26,11 +42,21 @@
 		</a>
 	</h1>
 
+
 	<div id="divContent">
 
-		<div style="height:10rem;width:50rem;">
+		<div style="height:9rem;width:50rem;">
 
-			<iframe allow="autoplay" src="https://theo-armour.github.io/qdata/apps/teodori/" frameborder="1" width=100% height="100%"></iframe>
+			<iframe allow="autoplay" src="https://theo-armour.github.io/qdata/apps/teodori/" frameborder="1" width=100%
+				height="100%"></iframe>
+
+		</div>
+
+		<div style="height:100vh;width:100%">
+
+			<iframe frameborder="1" allow="autoplay"
+				src="https://parksconservancy.siteproxy.net/Crissy%20Beach/ctl.html" width="100%"
+				height="100%"></iframe>
 
 		</div>
 
@@ -47,10 +73,12 @@
 
 			spnVersion.innerHTML = document.head.querySelector( "[ name=date ]" ).content;
 
-			//ifr.onload = () => ifr.click();
 
-			ifr.src = "http://ice1.somafm.com/groovesalad-128-mp3";
+			//ifr.src = "http://ice1.somafm.com/groovesalad-128-mp3";
 
+			divClock.innerHTML = new Date().toLocaleTimeString().slice( 0, -6 )
+
+			setInterval( () => divClock.innerHTML = new Date().toLocaleTimeString().slice( 0, -6 ), 60000 );
 
 			//requestFile();
 
