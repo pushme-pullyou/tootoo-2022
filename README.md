@@ -6,9 +6,7 @@ TooToo is a collection of very simple, plain-vanilla JavaScript scripts and test
 
 The collection title is a play on the [Dr Dolittle](https://en.wikipedia.org/wiki/Doctor_Dolittle) naming style. Too-Too is the name of the good doctor's talking pet owl. See also, heh-heh, [pushMe-pullYou](https://pushme-pullyou.github.io). Do you git it?
 
-The useful files are in "lib" folders - libraries of files for other repositories to use
-
-
+The useful files are in "lib" folders - libraries of files for other repositories to use.
 
 * ["lib"](https://pushme-pullyou.github.io/tootoo-2022/#lib/README.md) - contains files that may be used to build a basic and test simple content management system for GitHub pages
 * ["lib3d"](https://pushme-pullyou.github.io/tootoo-2022/#lib3d/README.md) - contains files that may be used to build apps based on [Three.js](https://threejs.org)
