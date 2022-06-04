@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
 	<meta name="description" content="">
-	<meta name="date" content="2022-04-18">
-	<title>CKE</title>
+	<meta name="date" content="2022-06-03">
+	<title>CKM</title>
 	<style>
 		body {
 			font: 100% monospace;
@@ -18,7 +18,8 @@
 
 	<!-- <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script> -->
 
-	<script src="https://pushme-pullyou.github.io/tootoo-2022/lib04/ckeditor5-34.1.0-ysf9zv6tt76x/build/ckeditor.js"></script>
+	<script
+		src="https://pushme-pullyou.github.io/tootoo-2022/lib04/ckeditor5-34.1.0-ysf9zv6tt76x/build/ckeditor.js"></script>
 	<h1>
 		<a href="https://github.com/pushme-pullyou/tootoo-2022/tree/main/lib04/cke-ckeditor" target="_blank"
 			title="source code on GitHub"><img
@@ -77,6 +78,19 @@ voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem e
 
 					licenseKey: '',
 
+					//plugins: [ HtmlComment ],
+
+					htmlSupport: {
+						allow: [
+							{
+								name: /.*/,
+								attributes: true,
+								classes: true,
+								styles: true
+							}
+						]
+					},
+
 					toolbar: {
 						items: [
 							"heading",
@@ -101,10 +115,13 @@ voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem e
 				} )
 
 				.then( editor => {
+
 					window.editor = editor;
 
 					editor.data.set( txt );
+
 				} )
+
 				.catch( error => {
 					console.error( 'Oops, something went wrong!' );
 					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
