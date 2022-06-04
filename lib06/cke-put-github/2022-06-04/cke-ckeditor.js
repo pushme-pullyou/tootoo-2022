@@ -36,6 +36,7 @@ CKE.init = function () {
 		} )
 
 		.then( editor => {
+			
 			CKE.editor = editor;
 
 			CKE.onHashChange();
