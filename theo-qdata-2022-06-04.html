@@ -29,27 +29,27 @@
 
 	<main id=main>
 
-	<nav>
+		<nav>
 
-		<a id=aSource target="_blank"><img
-			src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg"></a>
-		<a href=""><span id=spnTitle></span></a>
-		<button onclick=CKE.getSha()>putGH</button>
+			<a id=aSource target="_blank"><img
+					src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg"></a>
+			<a href=""><span id=spnTitle></span></a>
+			<button onclick=CKE.getSha()>putGH</button>
 
-		<label><input type=checkbox id=chkAutoSave onchange=CKE.autoSave(); >save</label>
-		<label><input type="checkbox" id=inpEditable onchange=divOther.contentEditable=this.checked >editable</label>
+			<label><input type=checkbox id=chkAutoSave onchange=CKE.autoSave();>save</label>
+			<!-- <label><input type="checkbox" id=inpEditable onchange=divOther.contentEditable=this.checked >editable</label> -->
 
-		<span id=spnMessage></span>
+			<span id=spnMessage></span>
 
-	</nav>
+		</nav>
 
-	<div id="divMainContent">
+		<div id="divMainContent">
 
-		<div id=divEdit class="editor"></div>
+			<div id=divEdit class="editor"></div>
 
-	</div>
+		</div>
 
-	<div id="divOther" contenteditable=true ></div>
+		<!-- <div id="divOther" contenteditable=true></div> -->
 
 	</main>
 
@@ -94,10 +94,10 @@
 
 		COR.scripts = [
 			"lib02/mnu-menu/r-2022-02-20/mnu-menu.js",
-			"lib02/frx-file-read-xhr/r-2022-02-22/frx-file-read-xhr.js",
+			//"lib02/frx-file-read-xhr/r-2022-02-22/frx-file-read-xhr.js",
 			"lib02/grv-github-repo-tree-view/r-2022-02-13/grv-github-repo-tree-view.js",
 			"lib06/ckeditor5-34.1.0-ysf9zv6tt76x/build/ckeditor.js",
-			"lib06/cke-put-github/2022-06-04/cke-ckeditor.js"
+			"lib06/ckm-put-github/2022-06-04/ckm-ckeditor-markdown.js"
 		];
 
 		COR.loaded = 0;
@@ -124,7 +124,7 @@
 		COR.loadLoaders();
 
 
-		function init() {
+		function init () {
 
 			// MNU => "Menu ~ mnu-menu.js"
 
@@ -136,8 +136,9 @@
 			//MNUspnVersion.hidden = true;
 
 			// FRX => "File Read XHR"
-			FRX.init();
-			FRX.getMenu();
+			//FRX.init();
+			//FRX.getMenu();
+			//FRX.reader.onload = function (){}
 			//FRX.onHashChange();
 
 			// GRA
