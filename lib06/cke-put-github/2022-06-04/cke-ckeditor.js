@@ -36,7 +36,7 @@ CKE.init = function () {
 		} )
 
 		.then( editor => {
-			
+
 			CKE.editor = editor;
 
 			CKE.onHashChange();
@@ -127,30 +127,14 @@ CKE.onLoad = function ( xhr ) {
 
 	chkAutoSave.checked = true;
 
-	if ( CKE.url.endsWith( "htm" ) ) {
+	CKE.editor.data.set( CKE.responseContent );
 
-		divMainContent.hidden = false;
-
-		divOther.hidden = true;
-
-		CKE.editor.data.set( CKE.responseContent );
-
-		CKE.editorData = CKE.editor.getData();
-
-
-	} else {
-
-		divMainContent.hidden = true;
-
-		divOther.hidden = false;
-
-		divOther.innerText = CKE.responseContent;
-
-	}
+	CKE.editorData = CKE.editor.getData();
 
 	spnMessage.innerText = `Get ${ new Date().toLocaleString().split( "," ).pop().slice( 1, -3 ) } ${ CKE.responseContent.length }`;
 
-	CKE.autoSave()
+	CKE.autoSave();
+
 };
 
 
@@ -177,15 +161,15 @@ CKE.getSha = function () {
 
 	if ( CKE.url === "" ) { alert( "No URL" ); return; }
 
-	if ( divOther.hidden ) {
+	// if ( divOther.hidden ) {
 
-		if ( CKE.editorData.length === CKE.editor.data.get().length ) return;
+	// 	if ( CKE.editorData.length === CKE.editor.data.get().length ) return;
 
-	} else {
+	// } else {
 
-		if ( divOther.innerText.length === CKE.responseContent.length ) return;
+	// 	if ( divOther.innerText.length === CKE.responseContent.length ) return;
 
-	}
+	// }
 
 	console.log( "saving" );
 
@@ -208,16 +192,7 @@ CKE.getSha = function () {
 
 CKE.putFile = function () {
 
-	if ( divOther.hidden ) {
-
 		CKE.editorData = CKE.editor.data.get();
-
-	} else {
-
-		CKE.editorData = divOther.innerText;
-
-	}
-
 
 	//console.log( "CKE.editorData.length", CKE.editorData.length );
 
