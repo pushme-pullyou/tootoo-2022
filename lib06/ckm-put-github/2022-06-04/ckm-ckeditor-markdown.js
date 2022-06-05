@@ -22,6 +22,25 @@ CKE.init = function () {
 
 			licenseKey: "",
 
+			highlight: {
+				options: [
+					{
+						model: 'greenMarker',
+						class: 'marker-green',
+						title: 'Green marker',
+						color: 'var(--ck-highlight-marker-green)',
+						type: 'marker'
+					},
+					{
+						model: 'redPen',
+						class: 'pen-red',
+						title: 'Red pen',
+						color: 'var(--ck-highlight-pen-red)',
+						type: 'pen'
+					}
+				]
+			},
+
 			htmlSupport: {
 				allow: [
 					{
@@ -177,6 +196,7 @@ CKE.getSha = function () {
 	xhr.open( "GET", CKE.url, true );
 	xhr.setRequestHeader( "Authorization", "token " + CKE.accessToken );
 	xhr.responseType = "json";
+	xhr.overrideMimeType( "text/xml; charset=UTF-8" );
 	xhr.onerror = ( xhr ) => console.log( "error:", xhr );
 	//xhr.onprogress = ( xhr ) => console.log( "bytes loaded:", xhr.loaded );
 	xhr.onload = ( xhr ) => {

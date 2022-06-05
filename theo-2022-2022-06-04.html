@@ -8,15 +8,16 @@
 		content="TooToo 2022 uses the GitHub API to provide access to all the current files in a repository hosted with GitHub Pages.">
 	<meta name="keywords" content="JavaScript,Markdown,GitHub,FOSS">
 	<meta name="date" content="2022-06-04">
-	<title>Theo qData</title>
+	<title>Theo</title>
 
 	<!-- Copyright 2022 Theo Armour. MIT license -->
 	<link id=CORstyle rel="stylesheet" href="./lib02/style/r-2022-02-22/style.css">
 
 	<style>
 		:root {
-			--mnu-width: 23rem;
-			--main-hue: 240;
+			/* --mnu-width: 20rem; commit*/
+			--main-hue: 120;
+			--saturation:100%
 			/* 0 to 360 0=red 120=green 240=blue */
 		}
 	</style>
@@ -65,22 +66,22 @@
 			iconInfo: `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/noun_Information_585560.svg">`,
 			iconRepo: "❦",
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
-			urlSource: "https://github.com/theo-armour/qdata/",
+			urlSource: "https://github.com/theo-armour/2022/", ////////// remember to update
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
 			// Used by FRX
 			defaultFile: "README.md",
 
-			pathContent: "https://theo-armour.github.io/qdata/",
+			pathContent: "https://theo-armour.github.io/2022/",
 			//pathContent: "./",
 
-			// pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
-			pathTooToo: "./",
+			pathTooToo: "https://pushme-pullyou.github.io/tootoo-2022/",
+			//pathTooToo: "./",
 
 			// Used by GRV & CKE
 			user: "theo-armour",
-			repo: "qdata",
-			branch: "master",
+			repo: "2022",
+			branch: "main",
 
 			//defaultIgnoreFolders: [],
 			defaultIgnoreFolders: [ "archive", "lib-templates" ], // curated
