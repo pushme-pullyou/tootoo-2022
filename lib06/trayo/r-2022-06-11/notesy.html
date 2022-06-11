@@ -141,7 +141,7 @@
 
 
 		XGP.onLoad = function ( xhr ) {
-			//console.log( "response", xhr );
+			console.log( "response", xhr );
 
 			// https://developer.mozilla.org/en-US/docs/Glossary/Base64#solution_1_%E2%80%93_escaping_the_string_before_encoding_it
 
@@ -153,6 +153,7 @@
 			XGP.content = content;
 
 			divMessage.innerText = `Get:${ new Date().toLocaleString() } bytes:${ content.length }`;
+
 
 			aSource.href = xhr.target.response.html_url;
 
