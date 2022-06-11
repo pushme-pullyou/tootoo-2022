@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
 	<meta name="description" content="">
-	<meta name="date" content="2022-06-08">
+	<meta name="date" content="2022-06-11">
 
 	<title>notes</title>
 
@@ -39,13 +39,13 @@
 				title="source code on GitHub"><img
 					src=https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg></a>
 			<a href="" title="Click this menu title to reload the file">
-				<span id=spnTitle></span>
-				<span id=spnVersion></span></a>
+				<span id=spnTitle></span><span id=spnVersion></span></a>
 
 			<input id=XGPinpAccessToken onclick=this.select(); onblur=XGP.setGitHubAccessToken();
-				title="Obtain GitHub API Access Token">
+				title="Obtain GitHub API Access Token" size=3>
 
 			<button onclick=XGP.putFileToGitHub() title="Press Alt-S">putToGitHub</button>
+			<!-- <input type=checkbox onchange=XGP.autoSave(); id=chkAutoSave style=vertical-align:text-top>save</label> -->
 		</h2>
 
 		<div id=divMessage style=display:inline;></div>
@@ -56,7 +56,7 @@
 
 	<script>
 
-		// XMLHTTPRequest GitHub Push (XGP)
+		// [X]MLHTTPRequest [G]itHub [P]ush (XGP)
 
 		const XGP = {
 			url: "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/test-cases/text-to-hack.md",
@@ -73,7 +73,7 @@
 
 			XGP.accessToken = localStorage.getItem( "githubAccessToken" ) || "";
 
-			if ( XGP.accessToken === "null" || XGP.accessToken === "" ) {
+			if ( !XGP.accessToken || XGP.accessToken === "" ) {
 
 				XGP.accessToken = prompt( "Enter GitHub Personal Access Token" );
 
@@ -84,17 +84,21 @@
 			window.addEventListener( "hashchange", XGP.onHashChange, false );
 
 			window.addEventListener( "beforeunload", XGP.checkForChange );
-			//window.addEventListener( 'keyup', XGP.onKeyUp, false ); // Save file Alt--S
 
-			XGP.requestFile();
+			XGP.autoSave();
 
-			// if ( location.protocol === "https:" ) {
+			XGP.onHashChange();
 
-			// 	window.history.pushState( "", "", "../" + location.hash );
+			//XGP.requestFile();
 
-			// }
+			if ( location.protocol === "https:" ) {
+
+				window.history.pushState( "", "", "../" + location.hash );
+
+			}
 
 		};
+
 
 
 		XGP.setGitHubAccessToken = function () {
@@ -104,21 +108,22 @@
 		};
 
 
+
 		XGP.onHashChange = function () {
 
-			if ( XGP.contentEditor !== undefined ) {
+			// if ( XGP.contentEditor !== undefined ) {
 
-				//console.log( "equal", XGP.editor.data.get() === XGP.contentEditor );
+			// 	//console.log( "equal", XGP.editor.data.get() === XGP.contentEditor );
 
-				if ( XGP.editor.data.get() !== XGP.contentEditor ) {
+			// 	if ( XGP.editor.data.get() !== XGP.contentEditor ) {
 
-					const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
+			// 		const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
 
-					if ( response !== true ) { return; }
+			// 		if ( response !== true ) { return; }
 
-				}
+			// 	}
 
-			}
+			// }
 
 			XGP.url = location.hash ? base + location.hash.slice( 1 ) : XGP.url;
 
@@ -128,6 +133,8 @@
 			XGP.requestFile();
 
 		};
+
+
 
 		XGP.requestFile = function ( event ) {
 
@@ -149,7 +156,7 @@
 		XGP.onLoad = function ( xhr ) {
 			//console.log( "response", xhr );
 
-			XGP.sha = xhr.target.response.sha;
+			//XGP.sha = xhr.target.response.sha;
 
 			const content = atob( xhr.target.response.content );
 
@@ -168,9 +175,33 @@
 
 
 
-		XGP.putFileToGitHub = function () {
+		XGP.autoSave = function () {
+
+			// if ( chkAutoSave.checked ) {
+			if ( !XGP.saveInterval ) {
+
+				XGP.saveInterval = setInterval( XGP.getSha, 5000 ); // in ms
+
+			} else {
+
+				clearInterval( XGP.saveInterval );
+				XGP.saveInterval = null;
+
+			}
+
+		};
+
+
+
+		XGP.getSha = function () {
 
 			if ( XGP.url === "" ) { alert( "No URL" ); return; }
+
+			if ( XGP.content.length === divContent.innerText.length ) return;
+
+			//XGP.contentEditor = XGP.editor.data.get();
+
+			console.log( "saving" );
 
 			const xhr = new XMLHttpRequest();
 			xhr.open( "GET", XGP.url, true );
@@ -181,17 +212,36 @@
 			xhr.onload = ( xhr ) => {
 				//console.log( "", xhr );
 				XGP.sha = xhr.target.response.sha;
-				XGP.putFile();
+				XGP.putFileToGitHub();
 			};
 			xhr.send( null );
 
 		};
 
+		// XGP.putFileToGitHub = function () {
+
+		// 	if ( XGP.url === "" ) { alert( "No URL" ); return; }
+
+		// 	const xhr = new XMLHttpRequest();
+		// 	xhr.open( "GET", XGP.url, true );
+		// 	xhr.setRequestHeader( "Authorization", "token " + XGP.accessToken );
+		// 	xhr.responseType = "json";
+		// 	xhr.onerror = ( xhr ) => console.log( "error:", xhr );
+		// 	//xhr.onprogress = ( xhr ) => console.log( "bytes loaded:", xhr.loaded );
+		// 	xhr.onload = ( xhr ) => {
+		// 		//console.log( "", xhr );
+		// 		XGP.sha = xhr.target.response.sha;
+		// 		XGP.putFile();
+		// 	};
+		// 	xhr.send( null );
+
+		// };
 
 
-		XGP.putFile = function () {
 
-			XGP.content = divContent.innerHTML;
+		XGP.putFileToGitHub = function () {
+
+			XGP.content = divContent.innerText;
 
 			const codedData = window.btoa( XGP.content ); // encode the string
 
@@ -220,7 +270,7 @@
 
 		XGP.checkForChange = function ( event ) {
 
-			if ( divContent.innerHTML === XGP.content ) { return; }
+			if ( divContent.innerText === XGP.content ) { return; }
 
 			console.log( "file", XGP.url.split( "/" ).pop() );
 
@@ -232,19 +282,19 @@
 
 
 
-		XGP.onKeyUp = function () {
+		// XGP.onKeyUp = function () {
 
-			//console.log( 'key', event.keyCode );
+		// 	//console.log( 'key', event.keyCode );
 
-			event.preventDefault();
+		// 	event.preventDefault();
 
-			if ( event.altKey && event.keyCode === 83 ) {
+		// 	if ( event.altKey && event.keyCode === 83 ) {
 
-				XGP.putFileToGitHub();
+		// 		XGP.putFileToGitHub();
 
-			}
+		// 	}
 
-		};
+		// };
 
 
 		init();
