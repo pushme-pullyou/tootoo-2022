@@ -71,22 +71,30 @@
 
 			//spnVersion.innerHTML = document.head.querySelector( "[ name=date ]" ).content;
 
-			XGP.accessToken = localStorage.getItem( "githubAccessToken" || "");
-			XGPinpAccessToken.value = XGP.accessToken;
+			XGP.accessToken = localStorage.getItem( "githubAccessToken" ) || "";
 
-			window.addEventListener( "beforeunload", XGP.checkForChange );
-			window.addEventListener( 'keyup', XGP.onKeyUp, false ); // Save file Alt--S
+			if ( XGP.accessToken === "null" || XGP.accessToken === "" ) {
 
-			XGP.requestFile();
+				XGP.accessToken = prompt( "Enter GitHub Personal Access Token" );
 
-			if ( location.protocol === "https:" ) {
-
-				window.history.pushState( "", "", "../" + location.hash );
+				localStorage.setItem( "githubAccessToken", XGP.accessToken );
 
 			}
 
-		};
+			window.addEventListener( "hashchange", XGP.onHashChange, false );
 
+			window.addEventListener( "beforeunload", XGP.checkForChange );
+			//window.addEventListener( 'keyup', XGP.onKeyUp, false ); // Save file Alt--S
+
+			XGP.requestFile();
+
+			// if ( location.protocol === "https:" ) {
+
+			// 	window.history.pushState( "", "", "../" + location.hash );
+
+			// }
+
+		};
 
 
 		XGP.setGitHubAccessToken = function () {
@@ -96,6 +104,30 @@
 		};
 
 
+		XGP.onHashChange = function () {
+
+			if ( XGP.contentEditor !== undefined ) {
+
+				//console.log( "equal", XGP.editor.data.get() === XGP.contentEditor );
+
+				if ( XGP.editor.data.get() !== XGP.contentEditor ) {
+
+					const response = confirm( "Changes you made may not be saved. Click OK to proceed without saving" );
+
+					if ( response !== true ) { return; }
+
+				}
+
+			}
+
+			XGP.url = location.hash ? base + location.hash.slice( 1 ) : XGP.url;
+
+			XGP.fileName = XGP.url.split( "/" ).pop();
+			console.log( "file", XGP.fileName );
+
+			XGP.requestFile();
+
+		};
 
 		XGP.requestFile = function ( event ) {
 
