@@ -10,7 +10,6 @@
 	<title>notes</title>
 
 	<style>
-
 		body {
 			box-sizing: border-box;
 			font: 100% monospace;
@@ -29,7 +28,6 @@
 		input {
 			vertical-align: middle;
 		}
-
 	</style>
 </head>
 
@@ -52,7 +50,6 @@
 
 		<div id=divMessage style=display:inline;></div>
 
-
 		<div id="divContent" contentEditable></div>
 
 	</main>
@@ -66,16 +63,15 @@
 		};
 
 
-
 		init = function ( url = XGP.url ) {
 
 			XGP.url = url;
 
-			spnTitle.innerHTML = XGP.url.split( "/").pop().split( ".").shift();
+			spnTitle.innerHTML = XGP.url.split( "/" ).pop().split( "." ).shift();
 
 			//spnVersion.innerHTML = document.head.querySelector( "[ name=date ]" ).content;
 
-			XGP.accessToken = localStorage.getItem( "githubAccessToken: ) || "";
+			XGP.accessToken = localStorage.getItem( "githubAccessToken: ) || "");
 			XGPinpAccessToken.value = XGP.accessToken;
 
 			window.addEventListener( "beforeunload", XGP.checkForChange );
