@@ -1,4 +1,4 @@
-## text to hack fff
+## text to hack
 
 * ggg nnnn bbb
 
