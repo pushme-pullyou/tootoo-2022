@@ -71,7 +71,7 @@
 
 			//spnVersion.innerHTML = document.head.querySelector( "[ name=date ]" ).content;
 
-			XGP.accessToken = localStorage.getItem( "githubAccessToken: ) || "");
+			XGP.accessToken = localStorage.getItem( "githubAccessToken" || "");
 			XGPinpAccessToken.value = XGP.accessToken;
 
 			window.addEventListener( "beforeunload", XGP.checkForChange );
