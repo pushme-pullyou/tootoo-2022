@@ -37,6 +37,19 @@
 			height: 93vh;
 		}
 
+
+		.child {
+			/* flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
+			/* //  If we don't want the items to stretch: */
+			flex: 1;
+			/* If we do want the items to stretch: */
+			/* flex: 1 1 300px; */
+
+			border: 1px solid red;
+			/* background: lightpink; */
+			font-size: 2rem;
+			text-align: center;
+		}
 		.hide {
 			display: none;
 			position: absolute;
@@ -163,20 +176,20 @@
 
 	<main>
 
-		<div id=divNotes1 class=resize>
+		<div id=divNotes1 class="child resize" >
 			<iframe id=ifrNotes1></iframe>
 		</div>
 
-		<div id=divNotes2 class=resize>
+		<div id=divNotes2 class="child resize" >
 			<!-- <button onclick="ifrNotes2.contentWindow.init(obj2a.url);">yesterday</button> -->
 			<iframe id=ifrNotes2></iframe>
 		</div>
 
-		<div id=divNotes3 class=resize>
+		<div id=divNotes3 class="child resize" >
 			<iframe id=ifrNotes3></iframe>
 		</div>
 
-		<div id=divNotes4 class=resize>
+		<div id=divNotes4 class="child resize" >
 			<iframe id=ifrNotes4 onload=ifrNotes4></iframe>
 		</div>
 
@@ -185,7 +198,7 @@
 	<script>
 
 		const base = "https://api.github.com/repos/theo-armour/qdata/contents/";
-		
+
 		const content = "divMainContent";
 		//const file = "snippets/notes.md";
 		const file = "0-to-do/0-to-do.md";
@@ -231,7 +244,7 @@
 			source: "https://github.com/theo-armour/qdata/blob/master/snippets/shortcuts.md"
 		};
 		ifrNotes3.onload = () => ifrNotes3.contentWindow.init( base + obj3.file );
-		//ifrNotes3.src = "notesy.html";
+		ifrNotes3.src = "notesy.html";
 
 		const obj4 = {
 			file: "snippets/tips.md",
@@ -239,13 +252,16 @@
 		};
 
 		ifrNotes4.onload = () => ifrNotes4.contentWindow.init( base + obj4.file );
-		//ifrNotes4.src = "notesy.html";
+		ifrNotes4.src = "notesy.html";
 
 		window.addEventListener( 'hashchange', onHashChange, false );
 
 		function onHashChange () {
 
-			ifrNotes3.contentWindow.location.hash = location.hash;
+			//ifrNotes3.contentWindow.location.hash = location.hash;
+
+			ifrNotes3.onload = () => ifrNotes3.contentWindow.init( base + location.hash.slice( 1 )  );
+			ifrNotes3.src = "notesy.html";
 
 		}
 

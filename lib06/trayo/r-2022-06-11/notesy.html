@@ -58,7 +58,7 @@
 
 		// [X]MLHTTPRequest [G]itHub [P]ush (XGP)
 
-		const XGP = {
+		var XGP = {
 			base: "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/test-cases/",
 			file: "text-to-hack.md"
 
@@ -91,16 +91,18 @@
 
 			XGP.onHashChange();
 
-			if ( location.protocol === "https:" ) {
+			// if ( location.protocol === "https:" ) {
 
-				window.history.pushState( "", "", "../" + location.hash );
+			// 	window.history.pushState( "", "", "../" + location.hash );
 
-			}
+			// }
 
 		};
 
 
-		XGP.test1 = () => location.hash = "sample.md"
+		XGP.test1 = () => location.hash = "sample.md";
+
+
 
 		XGP.setGitHubAccessToken = function () {
 
@@ -112,7 +114,7 @@
 
 		XGP.onHashChange = function () {
 
-			XGP.url = location.hash ? XGP.base + location.hash.slice( 1 ) : XGP.url;
+			XGP.url = location.hash ? location.hash.slice( 1 ) : XGP.url;
 
 			XGP.fileName = XGP.url.split( "/" ).pop();
 			console.log( "file", XGP.fileName );
@@ -141,7 +143,7 @@
 
 
 		XGP.onLoad = function ( xhr ) {
-			console.log( "response", xhr );
+			//console.log( "response", xhr );
 
 			// https://developer.mozilla.org/en-US/docs/Glossary/Base64#solution_1_%E2%80%93_escaping_the_string_before_encoding_it
 
@@ -153,7 +155,6 @@
 			XGP.content = content;
 
 			divMessage.innerText = `Get:${ new Date().toLocaleString() } bytes:${ content.length }`;
-
 
 			aSource.href = xhr.target.response.html_url;
 
@@ -180,6 +181,8 @@
 
 
 		XGP.getSha = function () {
+
+			//console.log( "XGP.content.length", XGP.content.length,  );
 
 			if ( XGP.url === "" ) { alert( "No URL" ); return; }
 
@@ -208,7 +211,7 @@
 
 			XGP.content = divContent.innerText;
 
-			const codedData =  window.btoa( unescape( encodeURIComponent( XGP.content ) ) ); // encode the string
+			const codedData = window.btoa( unescape( encodeURIComponent( XGP.content ) ) ); // encode the string
 
 			// !!! https://developer.mozilla.org/en-US/docs/Web/API/btoa
 
@@ -247,8 +250,13 @@
 
 		};
 
-		init();
 
+
+		if ( window.self === window.top ) {
+
+			init();
+
+		}
 
 	</script>
 
