@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Open Index or Markdown</title>
+	<title>Open and Save</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=contain">
 	<meta name="description"
@@ -91,6 +91,11 @@
 			resize: both;
 			width: 100%;
 		}
+
+		#buttons {
+			position: fixed;
+			right: 1rem
+		}
 	</style>
 
 </head>
@@ -100,7 +105,12 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 
-	<button onclick=saveFile() style=position:absolute;right:0;>save</button>
+	<div id="buttons">
+		<button onclick=saveFileHtm()>save htm</button>
+		<button onclick=saveFileMd()>save md</button>
+
+	</div>
+
 
 	<div id=divContent></div>
 
@@ -109,12 +119,12 @@
 
 		defaultFile = "README.md";
 
-		//location.hash = "../assets/markdown-help.md"; // test
+		location.hash = "../../../assets/markdown-help.md"; // test
 		//location.hash = "../style/style-sample-tags.html"
 
 		init();
 
-		function init() {
+		function init () {
 
 			showdown.setFlavor( "github" );
 
@@ -127,7 +137,7 @@
 		}
 
 
-		function onHashChange() {
+		function onHashChange () {
 
 			const url = location.hash.slice( 1 );
 			document.title = url.split( "/" ).pop();
@@ -140,18 +150,33 @@
 				txt = txt.replace( /\<!--@@@/, "" ).replace( /\@@@-->/, "" );
 				divContent.innerHTML = new showdown.Converter( options ).makeHtml( txt );
 				window.scrollTo( 0, 0 );
-			}
+			};
 			xhr.send( null );
 
 		}
 
 
-		function saveFile() {
+		function saveFileHtm () {
 
 			const blob = new Blob( [ divContent.innerHTML ] );
 			let a = document.createElement( 'a' );
 			a.href = window.URL.createObjectURL( blob );
 			a.download = `${ document.title.split( "." ).shift() }.htm`;
+			a.click();
+			a = null;
+
+		}
+
+		function saveFileMd () {
+
+			const md = new showdown.Converter().makeMarkdown( divContent.innerHTML )
+
+			console.log( "md", md );
+
+			const blob = new Blob( [ md ] );
+			let a = document.createElement( 'a' );
+			a.href = window.URL.createObjectURL( blob );
+			a.download = `${ document.title.split( "." ).shift() }.md`;
 			a.click();
 			a = null;
 
