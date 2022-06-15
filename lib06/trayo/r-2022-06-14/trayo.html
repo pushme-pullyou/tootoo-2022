@@ -218,7 +218,7 @@
 		const date = aDate.getDate().toString().padStart( 2, "0" );
 		//console.log( "date", date );
 
-		const path = `${ month }/${ month }${ date }.htm`;
+		const path = `${ month }/${ month }${ date }.md`;
 
 
 		aDate.setDate( aDate.getDate() - 1 );
@@ -226,7 +226,7 @@
 		month = ( 1 + aDate.getMonth() ).toString().padStart( 2, "0" );
 		//console.log( "ydy", date );
 		ydy = aDate.getDate().toString().padStart( 2, "0" );
-		const path2 = `${ month }/${ month }${ ydy }.htm`;
+		const path2 = `${ month }/${ month }${ ydy }.md`;
 		//console.log( "path", path );
 
 

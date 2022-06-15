@@ -106,6 +106,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 
 	<div id="buttons">
+
+		<input id="inpDate" onchange=location.hash=base+this.value+".htm" ><br>
 		<button onclick=saveFileHtm()>save htm</button>
 		<button onclick=saveFileMd()>save md</button>
 
@@ -116,11 +118,14 @@
 
 	<script>
 
+		defaultFile = "../../../../README.md";
 
-		defaultFile = "README.md";
+		//location.hash = "../../../assets/markdown-help.md"; // test
+		location.hash = "..//style-sample-tags.html"
+		location.hash = "../../../../theo-armour-qdata/journal/days-of-year-htm/06/0615.htm"
 
-		location.hash = "../../../assets/markdown-help.md"; // test
-		//location.hash = "../style/style-sample-tags.html"
+		base = "../../../../theo-armour-qdata/journal/days-of-year-htm/06/";
+
 
 		init();
 
@@ -130,9 +135,11 @@
 
 			if ( !location.hash ) { location.hash = defaultFile; }
 
-			location.hash.endsWith( ".md" ) ? onHashChange() : window.location.href = location.hash.slice( 1 );
+			location.hash.endsWith( ".htm" ) ? onHashChange() : window.location.href = location.hash.slice( 1 );
 
 			window.addEventListener( "hashchange", onHashChange, false );
+
+			//onHashChange()
 
 		}
 

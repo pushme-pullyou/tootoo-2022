@@ -120,8 +120,9 @@
 
 		//location.hash = "../../../assets/markdown-help.md"; // test
 		//location.hash = "../../../test-cases/concept.md"
+		location.hash = "../../../../theo-armour-qdata/journal/days-of-year-htm/06/0615.htm"
 
-		//init();
+		init();
 
 		function init ( url ) {
 
@@ -138,9 +139,9 @@
 		}
 
 
-		function onHashChange  ( url ) {
+		function onHashChange  () {
 
-			//const url = location.hash.slice( 1 );
+			const url = location.hash.slice( 1 );
 
 			console.log( "url", url );
 			document.title = url.split( "/" ).pop();
