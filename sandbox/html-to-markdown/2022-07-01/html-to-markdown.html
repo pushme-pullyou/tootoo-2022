@@ -9,7 +9,7 @@
 	<meta name="description"
 		content="File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash.">
 	<meta name="keywords" content="ShowDown,Markdown,AJAX,JavaScript,HTML,CSS,GitHub,FOSS">
-	<meta name="version" content="2022-06-14">
+	<meta name="version" content="2022-07-01">
 
 	<style>
 		/* Copyright 2022 Theo Armour. MIT License */
@@ -107,9 +107,12 @@
 
 	<div id="buttons">
 
-		<input id="inpDate" onchange=location.hash=base+this.value+".htm" ><br>
+		<p>
+			<button onclick="plusOne()">+1</button>
+			<input id="inpDate" onchange=location.hash=base+this.value+".htm" ><br>
+		</p>
 		<button onclick=saveFileHtm()>save htm</button>
-		<button onclick=saveFileMd()>save md</button>
+		<button  onclick=saveFileMd()>save md</button>
 
 	</div>
 
@@ -118,13 +121,15 @@
 
 	<script>
 
+		digit = 0;
+
 		defaultFile = "../../../../README.md";
 
 		//location.hash = "../../../assets/markdown-help.md"; // test
 		//location.hash = "../style-sample-tags.html"
 		location.hash = "../../../../theo-armour-qdata/journal/days-of-year-htm/07/0701.htm"
 
-		base = "../../../../theo-armour-qdata/journal/days-of-year-htm/06/";
+		base = "../../../../theo-armour-qdata/journal/days-of-year-htm/07/07";
 
 
 		init();
@@ -143,6 +148,17 @@
 
 		}
 
+		function plusOne () {
+
+			date = `0${ ++ digit }`;
+
+			inpDate.value = date.substr( - 2 );
+
+			location.hash = base + inpDate.value + ".htm"
+
+			if ( digit > 30 ) { digit = 0; }
+
+		}
 
 		function onHashChange () {
 
@@ -176,14 +192,16 @@
 
 		function saveFileMd () {
 
-			const md = new showdown.Converter().makeMarkdown( divContent.innerHTML )
+			const md = new showdown.Converter().makeMarkdown( divContent.innerHTML );
 
-			console.log( "md", md );
+			cleaned = md.replace( /\<!-- -->/g, "").replace( / \\~/g, " ~" );
 
-			const blob = new Blob( [ md ] );
+			console.log( "md", cleaned );
+
+			const blob = new Blob( [ cleaned ] );
 			let a = document.createElement( 'a' );
 			a.href = window.URL.createObjectURL( blob );
-			a.download = `${ document.title.split( "." ).shift() }.md`;
+			a.download = `07${ inpDate.value }.md`;
 			a.click();
 			a = null;
 

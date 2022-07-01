@@ -3,13 +3,13 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Open and Save</title>
+	<title>Open Index or Markdown</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=contain">
 	<meta name="description"
 		content="File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash.">
 	<meta name="keywords" content="ShowDown,Markdown,AJAX,JavaScript,HTML,CSS,GitHub,FOSS">
-	<meta name="version" content="2022-06-14">
+	<meta name="version" content="2022-05-20">
 
 	<style>
 		/* Copyright 2022 Theo Armour. MIT License */
@@ -91,11 +91,6 @@
 			resize: both;
 			width: 100%;
 		}
-
-		#buttons {
-			position: fixed;
-			right: 1rem
-		}
 	</style>
 
 </head>
@@ -105,46 +100,32 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 
-	<div id="buttons">
-
-		<input id="inpDate" onchange=location.hash=base+this.value+".htm" ><br>
-		<button onclick=saveFileHtm()>save htm</button>
-		<button onclick=saveFileMd()>save md</button>
-
-	</div>
-
-
 	<div id=divContent></div>
 
 	<script>
 
-		defaultFile = "../../../../README.md";
 
-		//location.hash = "../../../assets/markdown-help.md"; // test
-		//location.hash = "../style-sample-tags.html"
-		location.hash = "../../../../theo-armour-qdata/journal/days-of-year-htm/07/0701.htm"
+		defaultFile = "README.md";
 
-		base = "../../../../theo-armour-qdata/journal/days-of-year-htm/06/";
-
+		//location.hash = "../assets/markdown-help.md"; // test
+		//location.hash = "../style/style-sample-tags.html"
 
 		init();
 
-		function init () {
+		function init() {
 
 			showdown.setFlavor( "github" );
 
 			if ( !location.hash ) { location.hash = defaultFile; }
 
-			location.hash.endsWith( ".htm" ) ? onHashChange() : window.location.href = location.hash.slice( 1 );
+			location.hash.endsWith( ".md" ) ? onHashChange() : window.location.href = location.hash.slice( 1 );
 
 			window.addEventListener( "hashchange", onHashChange, false );
-
-			//onHashChange()
 
 		}
 
 
-		function onHashChange () {
+		function onHashChange() {
 
 			const url = location.hash.slice( 1 );
 			document.title = url.split( "/" ).pop();
@@ -157,35 +138,8 @@
 				txt = txt.replace( /\<!--@@@/, "" ).replace( /\@@@-->/, "" );
 				divContent.innerHTML = new showdown.Converter( options ).makeHtml( txt );
 				window.scrollTo( 0, 0 );
-			};
+			}
 			xhr.send( null );
-
-		}
-
-
-		function saveFileHtm () {
-
-			const blob = new Blob( [ divContent.innerHTML ] );
-			let a = document.createElement( 'a' );
-			a.href = window.URL.createObjectURL( blob );
-			a.download = `${ document.title.split( "." ).shift() }.htm`;
-			a.click();
-			a = null;
-
-		}
-
-		function saveFileMd () {
-
-			const md = new showdown.Converter().makeMarkdown( divContent.innerHTML )
-
-			console.log( "md", md );
-
-			const blob = new Blob( [ md ] );
-			let a = document.createElement( 'a' );
-			a.href = window.URL.createObjectURL( blob );
-			a.download = `${ document.title.split( "." ).shift() }.md`;
-			a.click();
-			a = null;
 
 		}
 
