@@ -14,6 +14,8 @@ _"makemarkdown" in a resizable window. One finger to rotate. Two to zoom._
 
 ## To Do / Wish List
 
+* Save directly to GitHub
+
 
 ## Issues
 
@@ -28,9 +30,9 @@ Showdownjs makeMarkdown configuration
 ## Change Log
 
 
-### 123
+### 2022-07-05
 
-* First commit
+* Update
 
 
 ***
