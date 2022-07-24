@@ -1,0 +1,127 @@
+<html>
+
+<head>
+	<title>I colori del buio ~ Home</title>
+
+	<script>
+
+		function stopError () { return true; }
+
+		window.onerror = stopError;
+
+		document.bgColor = "#000";
+
+		//var total = 7 * 255;
+		var total = 6 * 255 + 127;
+
+		var arrR = new Array( total );
+		var arrG = new Array( total );
+		var arrB = new Array( total );
+
+		var NN = ( window.Event ) ? 1 : 0;
+		var IE = ( document.all ) ? 1 : 0;
+		var theX = 0;
+		var adjX = 0;
+		var theY = 0;
+		var theWidth = 0;
+		var theHeight = 0;
+		var Ydiff = 0;
+		var R = 0;
+		var G = 0;
+		var B = 0;
+		var websafe = 0;
+		var onImg = 0;
+
+		for ( var i = 0; i < 256; i++ ) {
+			arrR[ i ] = 255;
+			arrR[ 2 * 255 - i ] = i;
+			arrR[ i + 2 * 255 ] = 0;
+			arrR[ i + 3 * 255 ] = 0;
+			arrR[ i + 4 * 255 ] = i;
+			arrR[ 6 * 255 - i ] = 255;
+			//if (i<255) arrR[i+6*255] = 255;
+			if ( i < 255 ) arrR[ i / 2 + 6 * 255 ] = 127;
+
+			arrG[ i ] = i;
+			arrG[ i + 255 ] = 255;
+			arrG[ i + 2 * 255 ] = 255;
+			arrG[ 4 * 255 - i ] = i;
+			arrG[ i + 4 * 255 ] = 0;
+			arrG[ i + 5 * 255 ] = 0;
+			//if (i<255) arrG[i+6*255] = 255;
+			if ( i < 255 ) arrG[ i / 2 + 6 * 255 ] = 127;
+
+			arrB[ i ] = 0;
+			arrB[ i + 255 ] = 0;
+			arrB[ i + 2 * 255 ] = i;
+			arrB[ i + 3 * 255 ] = 255;
+			arrB[ i + 4 * 255 ] = 255;
+			arrB[ 6 * 255 - i ] = i;
+			//if (i<255) arrB[i+6*255] = 255;
+			if ( i < 255 ) arrB[ i / 2 + 6 * 255 ] = 127;
+		}
+
+		var hexChars = "0123456789ABCDEF";
+
+		function Dec2Hex ( Dec ) {
+			var a = Dec % 16;
+			var b = ( Dec - a ) / 16;
+			hex = "" + hexChars.charAt( b ) + hexChars.charAt( a );
+			return hex;
+		}
+
+		function squeak ( e ) {
+			if ( NN ) {
+				theX = e.pageX;
+				theY = e.pageY;
+				theWidth = window.innerWidth;
+				theHeight = window.innerHeight;
+			} else {
+				if ( IE ) {
+					theX = event.clientX + document.body.scrollLeft;
+					theY = event.clientY + document.body.scrollTop;
+					theWidth = document.body.clientWidth;
+					theHeight = document.body.clientHeight;
+				}
+			}
+
+			Ydiff = Math.round( theY * ( 2 * 255 / ( theHeight + 1 ) ) - 255 );
+
+			adjX = Math.round( theX * ( total / theWidth ) );
+
+			R = arrR[ adjX ] - Ydiff; if ( R < 0 ) R = 0; if ( R > 255 || isNaN( R ) ) R = 255;
+			G = arrG[ adjX ] - Ydiff; if ( G < 0 ) G = 0; if ( G > 255 || isNaN( G ) ) G = 255;
+			B = arrB[ adjX ] - Ydiff; if ( B < 0 ) B = 0; if ( B > 255 || isNaN( B ) ) B = 255;
+
+			//maybe this is the trick:
+			if ( websafe ) {
+				R = Math.round( R / 51 ) * 51;
+				G = Math.round( G / 51 ) * 51;
+				B = Math.round( B / 51 ) * 51;
+			}
+
+			hexCode = Dec2Hex( R ) + Dec2Hex( G ) + Dec2Hex( B );
+			document.bgColor = '#' + hexCode;
+			// document.fgColor = '#' + hexCode;
+			// document.vlinkColor = '#' + hexCode;
+			// window.status = 'DEC: (' + R + ',' + G + ',' + B + ')   HEX: #' + hexCode.toUpperCase();
+		}
+
+		if ( NN ) {
+			document.captureEvents( Event.MOUSEMOVE );
+		}
+		document.onmousemove = squeak;
+
+	</script>
+</head>
+
+<body>
+
+	lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut
+	labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam
+	corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui
+	in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla
+	pariatur?
+</body>
+
+</html>
