@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>floating boxes</title>
+	<style>
+		.parent {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.box {
+			border: 1px solid red;
+			flex: 1 1 150px;
+			/*  Stretching: */
+
+			/*flex: 0 1 150px;  No stretching: */
+			margin: 5px;
+			resize: both;
+			overflow: auto;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="parent white">
+		<div class="box green">333333333333333333555555555555555555 lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius
+			modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis
+			nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis
+			autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel
+			illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?</div>
+		<div class="box green">lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius
+			modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis
+			nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis
+			autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel
+			illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?</div>
+		<div class="box green">lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius
+			modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis
+			nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis
+			autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel
+			illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?</div>
+
+		<div class="box green">uuu uuuu uuuu </div>
+		<div class="box green">23
+			23<br> 23<br>23<br>23<br>23<br>23<br>23<br>23<br>23<br>23<br>23<br>23<br>23<br>
+			23
+			23
+
+		</div>
+	</div>
+</body>
+
+</html>
