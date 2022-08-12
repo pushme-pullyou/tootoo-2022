@@ -24,7 +24,7 @@ FRX.init = function () {
 	FRX.pathUtilities = FRX.pathTooToo + `lib02/frx-file-read-xhr/${ FRX.release }/`;
 	//FRX.pathUtilities = `./`;
 
-	FRX.defaultUrl = COR.pathContent + COR.defaultFile;
+	COR.defaultUrl = COR.pathContent + COR.defaultFile;
 
 	//${ MNU.addInfoBox( info ); }
 

@@ -3,8 +3,10 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
-	<meta name="description" content="23">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=contain">
+	<meta name="description"
+		content="File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash.">
+	<meta name="keywords" content="ShowDown,Markdown,AJAX,JavaScript,HTML,CSS,GitHub,FOSS">
 	<meta name="date" content="2022-08-12">
 	<title></title>
 	<link id=CORstyle rel="stylesheet" href="../../../lib01/style/style-2022-01-01.css">
@@ -31,8 +33,10 @@
 
 <body>
 
-	<div id=MNUdivShowHide>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 
+
+	<div id=MNUdivShowHide>
 
 		<details id=detNavMenu class="gmd-4">
 
@@ -48,6 +52,7 @@
 
 						<h1>
 							<a id=MNUaSource href="" target="_top" title="Click to go to the source code on GitHub">
+								<img src="https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg">
 							</a>
 
 							<a href="" title="Click this title to reload this page">
@@ -85,16 +90,6 @@
 						<div class=divNavResize>
 
 							<h3>test 1</h3>
-							<div>
-								lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam
-								eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut
-								enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-								nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in
-								ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum
-								fugiat, quo voluptas nulla pariatur?
-							</div>
-
-							<h3>test 2 </h3>
 							<div>
 								lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam
 								eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut
@@ -146,58 +141,6 @@
 				vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum,
 				qui dolorem eum fugiat, quo voluptas nulla pariatur?
 			</p>
-
-			<h1>test</h1>
-			<p>
-				lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-				incidunt, ut
-				labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum
-				exercitationem ullam
-				corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure
-				reprehenderit, qui
-				in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo
-				voluptas nulla
-				pariatur?
-			</p>
-
-			<h1>test</h1>
-			<p>
-				lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-				incidunt, ut
-				labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum
-				exercitationem ullam
-				corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure
-				reprehenderit, qui
-				in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo
-				voluptas nulla
-				pariatur?
-			</p>
-
-			<h1>test</h1>
-			<p>
-				lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-				incidunt, ut
-				labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum
-				exercitationem ullam
-				corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure
-				reprehenderit, qui
-				in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo
-				voluptas nulla
-				pariatur?
-			</p>
-
-			<h1>test</h1>
-			<p>
-				lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-				incidunt, ut
-				labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum
-				exercitationem ullam
-				corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure
-				reprehenderit, qui
-				in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo
-				voluptas nulla
-				pariatur?
-			</p>
 		</div>
 
 	</main>
@@ -213,6 +156,9 @@
 			iconRepo: "❦",
 			title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
 			version: document.head.querySelector( "[ name=date ]" ).content,
+
+			pathContent: "../../",
+			defaultFile: "README.md",
 
 			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/tree/main/lib01/mnu-menu/", ////////// remember to update
 		};
@@ -232,7 +178,7 @@
 		};
 
 
-
+	defaultFile = "../README.md";
 
 		init();
 
@@ -263,8 +209,33 @@
 				sumNavMenu.hidden = true;
 			}
 
+			showdown.setFlavor( "github" );
+
+			if ( !location.hash ) { location.hash = defaultFile; }
+
+			location.hash.endsWith( ".md" ) ? onHashChange() : window.location.href = location.hash.slice( 1 );
+
+			window.addEventListener( "hashchange", onHashChange, false );
+
 		}
 
+		function onHashChange () {
+
+				const url = location.hash.slice( 1 );
+				document.title = url.split( "/" ).pop();
+				const options = { openLinksInNewWindow: false, excludeTrailingPunctuationFromURLs: true, ghMention: true, simplifiedAutoLink: true, simpleLineBreaks: true, emoji: true };
+
+				const xhr = new XMLHttpRequest();
+				xhr.open( "get", url, true );
+				xhr.onload = () => {
+					let txt = xhr.responseText;
+					txt = txt.replace( /\<!--@@@/, "" ).replace( /\@@@-->/, "" );
+					divMainContent.innerHTML = new showdown.Converter( options ).makeHtml( txt );
+					window.scrollTo( 0, 0 );
+				};
+				xhr.send( null );
+
+			}
 
 
 	</script>
