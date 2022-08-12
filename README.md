@@ -25,6 +25,8 @@ All JavaScript files are with 3 letter namespaces. The same three letter are use
 
 ## Links of Interest
 
+https://casualwriter.github.io/casual-markdown/
+
 Web
 
 * https://github.com/dohliam/dropin-minimal-css
