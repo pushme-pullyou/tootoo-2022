@@ -15,7 +15,8 @@ Menu system<br>
 File: mnu-menu.js<br>
 Name space: MNU<br>
 Release: 2022-02-20<br>
-<button onclick=MNU.getSample()>Testing: add sample menu</button>`;
+<button onclick=MNU.getSample()>Testing: add sample menu</button>
+`;
 
 	MNU.infoBoxHtm = COR.description ? COR.description : MNU.info;
 
