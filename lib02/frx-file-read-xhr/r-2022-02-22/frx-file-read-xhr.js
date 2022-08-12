@@ -1,6 +1,6 @@
 // copyright 2021 Theo Armour. MIT license.
 /* global MNU, FRX, FRXdivMenuFileRead, FRXdivLog  */
-// jshint esversion: 6
+// jshint esversion:11
 // jshint loopfunc: true
 
 
