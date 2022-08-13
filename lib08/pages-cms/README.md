@@ -1,4 +1,4 @@
-# [![](https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg )](https://github.com/pushme-pullyou/tootoo-2022/ "Source code on GitHub" ) [TT 2022]( https://pushme-pullyou.github.io/tootoo-2022/ "Home page" ) / [ghPages CMS Read Me]( https://pushme-pullyou.github.io/tootoo-2022/#lib08/pages-cms/README.md "2022-08-04" )
+# [![](https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg )](https://github.com/pushme-pullyou/tootoo-2022/ "Source code on GitHub" ) [TT 2022]( https://pushme-pullyou.github.io/tootoo-2022/ "Home page" ) / [ghPages CMS Read Me]( https://pushme-pullyou.github.io/tootoo-2022/#lib08/pages-cms/README.md "2022-08-12" )
 
 
 <!--@@@
@@ -10,6 +10,8 @@ _"ghPages CMS" in a resizable window. One finger to rotate. Two to zoom._
 
 
 ## Concept
+
+A very simple Content Management System ( CMS ) for use with GitHub Pages
 
 
 ## To Do / Wish List

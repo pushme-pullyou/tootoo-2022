@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
+	<meta name="description" content="">
+	<meta name="date" content="2022-08-12">
+	<title></title>
+	<style>
+		body {
+			font: 100% monospace;
+			margin: 0;
+			overflow: hidden;
+
+		}
+
+		#divContent {
+			border: 1px solid red;
+			height: 100vh;
+			position: absolute;
+			top: 0;
+			width: 100vw;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>
+		<a href="https://github.com/pushme-pullyou/tootoo-2022/tree/master/xxxxxx/" target="_blank"
+			title="source code on GitHub"><img
+				src=https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg></a>
+		<a href="" title="Click this menu title to reset the model">
+			<span id=spnTitle></span>
+			<span id=spnVersion></span>
+		</a>
+	</h1>
+
+	<div id="divContent"> </div>
+
+
+	<script>
+
+		//https://codepen.io/martadzielak/pen/VJVPxd
+
+		init();
+
+		function init () {
+
+			spnTitle.innerHTML = document.title ? document.title : location.href.split( '/' ).pop().slice( 0, - 5 ).replace( /-/g, ' ' );
+
+			spnVersion.innerHTML = document.head.querySelector( "[ name=date ]" ).content;
+
+			document.body.addEventListener( "mousemove", onMouseMove, false );
+
+		}
+
+
+		function onMouseMove ( e ) {
+
+			const width = window.innerWidth;
+			const height = window.innerHeight;
+
+			const red = e.x / width * 100;
+			const green = e.y / height * 100;
+			const blue = ( e.x / width ) - ( e.y / height ) * 100;
+
+			document.body.style.backgroundColor = `rgb(${ red }%, ${ green }%, ${ blue }%)`;
+			//console.log( "x&y", e.x, e.y );
+
+		}
+
+
+	</script>
+
+
+</body>
+
+</html>

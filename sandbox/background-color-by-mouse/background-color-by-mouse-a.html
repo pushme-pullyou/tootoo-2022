@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,
+				initial-scale=1.0" />
+	<title>
+		How to change background color
+		according to mouse location
+		using JavaScript ?
+	</title>
+
+	<style>
+		.geeks {
+			width: 100%;
+			height: 600px;
+			background-size: cover;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="geeks"></div>
+
+	<script>
+
+		// https://www.geeksforgeeks.org/how-to-change-background-color-according-to-the-mouse-location-using-javascript/
+		
+		var div =
+			document.querySelector( ".geeks" );
+
+		div.addEventListener(
+			"mousemove", function ( e ) {
+				x = e.offsetX;
+				y = e.offsetY;
+				div.style.backgroundColor
+					= `rgb(${ x }, ${ y }, ${ x - y })`;
+			} );
+	</script>
+</body>
+
+</html>
