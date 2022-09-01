@@ -1,12 +1,12 @@
-# [![](https://pushme-pullyou.github.io/tootoo-2022/lib01/assets/icons/mark-github.svg )](https://github.com/pushme-pullyou/tootoo-2022/ "Source code on GitHub" ) [TT 2022]( https://pushme-pullyou.github.io/tootoo-2022/ "Home page" ) / [makemarkdown Read Me]( https://pushme-pullyou.github.io/tootoo-2022/#sandbox/html-to-markdown/README.md)
+# [![](https://pushme-pullyou.github.io/tootoo-2022/lib01/assets/icons/mark-github.svg )](https://github.com/pushme-pullyou/tootoo-2022/ "Source code on GitHub" ) [TT 2022]( https://pushme-pullyou.github.io/tootoo-2022/ "Home page" ) / [html-to-markdown Read Me]( https://pushme-pullyou.github.io/tootoo-2022/#sandbox/html-to-markdown/README.md)
 
 
 <!--@@@
 <div class=iframe-resize ><iframe src=https://pushme-pullyou.github.io/tootoo-2022/ sandbox/html-to-markdown/ height=100% width=100% ></iframe></div>
-_"makemarkdown" in a resizable window. One finger to rotate. Two to zoom._
+_"html-to-markdown" in a resizable window. One finger to rotate. Two to zoom._
 @@@-->
 
-## Full Screen: [makemarkdown]( https://pushme-pullyou.github.io/tootoo-2022/sandbox/html-to-markdown/ )
+## Full Screen: [html-to-markdown]( https://pushme-pullyou.github.io/tootoo-2022/sandbox/html-to-markdown/ )
 
 
 ## Concept
@@ -14,6 +14,7 @@ _"makemarkdown" in a resizable window. One finger to rotate. Two to zoom._
 
 ## To Do / Wish List
 
+* 2022-09-01 ~ run through a folder of files
 * Save directly to GitHub
 
 
