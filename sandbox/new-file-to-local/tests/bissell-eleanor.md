@@ -1,0 +1,11 @@
+# Bissell, Eleanor
+
+* 309 P
+* 628 223-3558
+* eabissellsf@gmail.com
+* B 1942, South Groton MA, one of 11,
+* No relation to sweepers
+* w: Deaconess Hospital Boston, UCSF, photography teacher
+* Short, curly, salt&pepper hair; walking stick, tremors
+* Summers in Marthas Vinyard
+* Owned house in Corvallis OR

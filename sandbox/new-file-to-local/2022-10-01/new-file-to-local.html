@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
+	<meta name="description" content="">
+	<meta name="date" content="2022-10-01">
+	<title></title>
+	<style>
+		body {
+			font: 100% monospace;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>
+		<a href="https://github.com/pushme-pullyou/tootoo-2022/tree/master/xxxxxx/" target="_blank"
+			title="source code on GitHub"><img
+				src=https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg></a>
+		<a href="" title="Click this menu title to reset the model">
+			<span id=spnTitle></span>
+			<span id=spnVersion></span>
+		</a>
+	</h1>
+
+	<div id="divContent">
+
+		<p>
+			File name <input id="inpFileName" value="test test">
+		</p>
+
+		<p>
+			<button onclick=saveFile();>save file</button>
+		</p>
+
+		<textarea id=txtArea cols="80" rows="5" placeholder="Stuff">
+
+		</textarea>
+
+	</div>
+
+
+	<script>
+
+		let fileNameString =
+`
+Alexander, Patrick
+Anderson, Barbara
+Arburua, Carmelita
+Armour, Theo
+Beatty, Martha Nell
+Benedict, Yvonne
+Bissell, Eleanor
+Brymner, Jane
+Burke, Bernie
+Conley, Katherine
+Conn, Susan
+Copeland, Harry
+Cornyn, Paula
+Coughlan, Erika
+Dugliss, Lucia
+Dugliss, Rod
+Dy, Betty
+Ertola, Shirley
+Fischer, Pamela
+Fletcher, Isabel
+Forman, Marcia
+Fraps, June
+Goff, Judith
+Graham, Gene
+Hanley, Linda
+Hanley, Tony
+Harris, Mary Liz
+Hoff, Aggie
+Howard, Dr Doris
+Hulting, Patsy
+Jacobs, Margaret
+Johnson, Margaret
+Jordan, Elizabeth
+Kaufman, Monique
+Kirkpatrick, Kathy
+Learned, Gloria
+Lee, Ivy
+Leichum, Karl
+Leichum, Lillemor
+Lindlow, Gail
+Lloyd, Gisela
+Loo, Katie
+Ludwig, Jay
+Luopajarvi, Sisko “Sisi”
+Mansouri, Midge
+McEvoy, Rita
+Moore, Sheila
+Morris, Anne
+Mossi, Atilio "Til"
+Moughan, Terry
+Narron, Kay
+Nolan, Liz
+Nolan, Marty
+Petersen, Marianne
+Pieck, Marianna
+Plusa, Geneviev
+Roper, Mary Charlotte
+Rush, Patrick
+Sabini, Ernie
+Segrin, Robert
+Sharp, Linda
+Skootsky, Gary
+Skootsky, Kristine
+Standing, Jane
+Stent, Nancy C
+Tim, Kay
+Torres, Martha
+Van Den Berg, Mercedes
+Voyles, Stela
+Wake, Marion
+Wentker, Fred
+Wentker, Jo Ann
+Wesson, Dr Richard
+Zagorites, Flora
+`
+
+let fileNames = fileNameString.split( "\n" ).slice( 1, -1);
+
+let fileIndex = 1;
+
+console.log( "fileNames", fileNames );
+		init();
+
+		function init () {
+
+			spnTitle.innerHTML = document.title ? document.title : location.href.split( '/' ).pop().slice( 0, - 5 ).replace( /-/g, ' ' );
+
+			spnVersion.innerHTML = document.head.querySelector( "[ name=date ]" ).content;
+
+			inpFileName.value = fileNames[ fileIndex  ];
+
+			txtArea.value = `# ${ inpFileName.value }\n\n`;
+
+			window.addEventListener( 'keydown', onKeyUp, false );
+
+
+		}
+
+
+		function onKeyUp ( event ) {
+
+			console.log( 'key', event.keyCode );
+
+			//event.preventDefault();
+
+
+			if ( event.altKey && event.keyCode === 83 ) {  // Alt-S
+
+				console.log( "fileIndex", fileIndex );
+
+				inpFileName.value = fileNames[ fileIndex  ];
+
+				txtArea.value = `# ${ inpFileName.value }\n\n`;
+
+				fileIndex++;
+
+				saveFile();
+
+			}
+		}
+
+		function saveFile () {
+
+
+			const name = inpFileName.value.toLowerCase().replace( /,/g, "").replace( / /g, "-" );
+
+			const blob = new Blob( [ txtArea.value ] );
+			let a = document.createElement( "a" );
+			a.href = window.URL.createObjectURL( blob );
+			a.download = `${ name }.md`;
+			a.click();
+			a = null;
+
+		}
+
+	</script>
+
+
+</body>
+
+</html>
