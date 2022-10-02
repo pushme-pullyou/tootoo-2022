@@ -1,3 +1,0 @@
-# Fischer, Pamela
-
-* Garden Cottage

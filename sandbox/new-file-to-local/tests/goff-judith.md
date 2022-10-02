@@ -1,3 +1,0 @@
-# Goff, Judith
-
-* Syracuse
