@@ -37,7 +37,6 @@
 		#divContent {
 			padding: 0 0.5rem;
 		}
-
 	</style>
 </head>
 
@@ -45,8 +44,7 @@
 
 	<main>
 		<h2>
-			<a id=aSource target="_blank"
-				title="source code on GitHub"><img
+			<a id=aSource target="_blank" title="source code on GitHub"><img
 					src=https://pushme-pullyou.github.io/tootoo-2022/assets/icons/mark-github.svg></a>
 			<a href="" title="Click this menu title to reload the file">
 				<span id=spnTitle></span><span id=spnVersion></span></a>
@@ -73,8 +71,11 @@
 			// base: "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/test-cases/",
 			// file: "text-to-hack.md"
 
-			base: "https://api.github.com/repos/theo-armour/qdata/contents/0-to-do/",
-			file: "1-notes.md"
+			//base: "https://api.github.com/repos/theo-armour/qdata/contents/0-to-do/",
+			//file: "1-notes.md"
+
+			base: "https://api.github.com/repos/theo-armour/pages/contents/",
+			file: "README.md"
 
 		};
 
@@ -120,6 +121,9 @@
 
 		test1 = () => location.hash = XGP.base + "sample.md";
 		test2 = () => location.hash = XGP.base + "text-to-hack.htm";
+
+		test1 = () => location.hash = XGP.base + "0-categories.md";
+		test2 = () => location.hash = XGP.base + "media-diet.md";
 
 		XGP.setGitHubAccessToken = function () {
 
