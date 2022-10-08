@@ -181,7 +181,8 @@ GRV.onLoadTree = function ( json ) {
 			<a href="${ GRV.urlSource }${ item }" title="Source code on GitHub. Edit me!" target="_blank" >
 			${ COR.iconGitHub }</a>
 			<a href="#${ item }" >${ item.split( "/" ).pop() }</a>
-			<a href="notesy.html#${ COR.pathContent }${ item }" title="Link to just this file. Open file in new tab." target="_blank" >${ COR.iconExternalFile }</a>
+			<a href="readme.html#${ COR.pathContent }${ item }" title="Link to just this file. Open file in new tab." target="_blank" >
+			${ COR.iconExternalFile }</a>
 		</div>`);
 
 	}
@@ -326,7 +327,7 @@ GRV.getFilesAll = function ( subtree, files ) {
 			<a href="${ GRV.urlSource }${ item }" title="Source code on GitHub" target="_blank" >
 			${ COR.iconGitHub }</a>
 			<a href="#${ item }" title="">${ item.split( "/" ).pop() }</a>
-			<a href="${ COR.pathContent }${ item }" title="Open file in new tab"  target="_blank" >
+			<a href="readme.html#${ COR.pathContent }${ item }" title="Open file in new tab"  target="_blank" >
 			${ COR.iconExternalFile }</a>
 		</div>`);
 
