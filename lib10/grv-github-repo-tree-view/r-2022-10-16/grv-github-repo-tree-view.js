@@ -271,7 +271,10 @@ GRV.subtreesToDetails = function ( subtrees, files ) {
 		// const subtreeSlice = arr;
 		//const subtreeSliceJson = JSON.stringify( subtreeSlice );
 
-		const subtreeTitle = subtree.slice( -1 );
+		const subtreeTitle = subtree.slice( -1 )[0].split( "-" )
+			.filter( x => x.length > 0 )
+			.map( x => ( x.charAt( 0 ).toUpperCase() + x.slice( 1 ) ) )
+			.join( " " );
 		const subtreeSlice = subtree.slice( 0, -1 );
 		//const subtreeSliceJson = JSON.stringify( subtreeSlice );
 
@@ -283,7 +286,7 @@ GRV.subtreesToDetails = function ( subtrees, files ) {
 		if ( subtreeSlice.length < lengthSlicePrevious ) {
 			const diff = lengthSlicePrevious - subtreeSlice.length + 1;
 			closer = Array( diff ).fill( "</details>" ).join( "" );
-			//console.log( "len shorter", subtreeTitle, diff, subtreeSlice, subtreeSlice.length, lengthSlicePrevious );
+			console.log( "len shorter", subtreeTitle, diff, subtreeSlice, subtreeSlice.length, lengthSlicePrevious );
 		}
 
 		lengthSlicePrevious = subtreeSlice.length;
