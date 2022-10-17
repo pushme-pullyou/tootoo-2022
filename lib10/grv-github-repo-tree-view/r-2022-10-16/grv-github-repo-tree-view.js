@@ -275,6 +275,7 @@ GRV.subtreesToDetails = function ( subtrees, files ) {
 			.filter( x => x.length > 0 )
 			.map( x => ( x.charAt( 0 ).toUpperCase() + x.slice( 1 ) ) )
 			.join( " " );
+		
 		const subtreeSlice = subtree.slice( 0, -1 );
 		//const subtreeSliceJson = JSON.stringify( subtreeSlice );
 
