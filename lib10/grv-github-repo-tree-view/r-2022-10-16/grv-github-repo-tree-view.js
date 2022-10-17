@@ -35,6 +35,8 @@ GRV.init = function () {
 
 	GRV.accessToken = localStorage.getItem( 'githubAccessToken' ) || "";
 
+	GRV.base = "https://api.github.com/repos/pushme-pullyou/tootoo-2022/contents/",
+
 	GRV.links = undefined;
 
 
@@ -198,6 +200,8 @@ GRV.onLoadTree = function ( json ) {
 
 	}
 
+	//<a href="notesy.html#${ GRV.base }${ item }" title="Link to just this file. Open file in new tab." target="_blank" >
+
 	GRVdivGitHubRepoTreeView.innerHTML = filesRoot.join( "" ) + htm;
 
 	window.addEventListener( "hashchange", GRV.onHashChange, false );
@@ -275,7 +279,7 @@ GRV.subtreesToDetails = function ( subtrees, files ) {
 			.filter( x => x.length > 0 )
 			.map( x => ( x.charAt( 0 ).toUpperCase() + x.slice( 1 ) ) )
 			.join( " " );
-		
+
 		const subtreeSlice = subtree.slice( 0, -1 );
 		//const subtreeSliceJson = JSON.stringify( subtreeSlice );
 
@@ -287,7 +291,7 @@ GRV.subtreesToDetails = function ( subtrees, files ) {
 		if ( subtreeSlice.length < lengthSlicePrevious ) {
 			const diff = lengthSlicePrevious - subtreeSlice.length + 1;
 			closer = Array( diff ).fill( "</details>" ).join( "" );
-			console.log( "len shorter", subtreeTitle, diff, subtreeSlice, subtreeSlice.length, lengthSlicePrevious );
+			//console.log( "len shorter", subtreeTitle, diff, subtreeSlice, subtreeSlice.length, lengthSlicePrevious );
 		}
 
 		lengthSlicePrevious = subtreeSlice.length;
@@ -344,12 +348,12 @@ GRV.getFilesAll = function ( subtree, files ) {
 			<a href="#${ item }" title="">${ item.split( "/" ).pop() }</a>
 			<a href="readme.html#${ COR.pathContent }${ item }" title="Open file in new tab"  target="_blank" >
 			${ COR.iconExternalFile }</a>
-		</div>`);
+			</div>`);
 
 	return filtered;
 };
 
-
+//			<a href="notesy.html#${ GRV.base }${ item }" title="Open file in new tab"  target="_blank" >
 
 GRV.getFilesCurated = function ( subtree, files ) {
 	// console.log( "subtree", subtree );
