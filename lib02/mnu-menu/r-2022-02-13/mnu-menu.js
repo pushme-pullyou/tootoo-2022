@@ -1,4 +1,4 @@
-// copyright 2021 Theo Armour. MIT license.
+// copyright 2022 Theo Armour. MIT license.
 /* global COR, MNUdivShowHide, MNUdivPopUp, detNavMenu */
 // jshint esversion: 6
 // jshint loopfunc: true
