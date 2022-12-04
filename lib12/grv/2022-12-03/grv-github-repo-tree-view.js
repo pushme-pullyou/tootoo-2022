@@ -246,11 +246,11 @@ GRV.onHashChange = function () {
 
 		}
 
-		if ( !fileName.includes( "README" ) && fileName !== COR.defaultFile ) {
+		// if ( !fileName.includes( "README" ) && fileName !== COR.defaultFile ) {
 
-			item.scrollIntoView();
+		// 	item.scrollIntoView();
 
-		}
+		// }
 
 	}
 
