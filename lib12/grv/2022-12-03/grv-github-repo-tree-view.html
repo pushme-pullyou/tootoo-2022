@@ -58,14 +58,14 @@
 			urlSource: "https://github.com/pushme-pullyou/tootoo-2022/", ////////// remember to update
 			version: document.head.querySelector( "[ name=date ]" ).content,
 
-			// Used by GRV
-			// user: "pushme-pullyou",
-			// repo: "tootoo-2022",
-			// branch: "main",
-
-			user: "theo-armour",
-			repo: "pages",
+			//Used by GRV
+			user: "pushme-pullyou",
+			repo: "tootoo-2022",
 			branch: "main",
+
+			// user: "theo-armour",
+			// repo: "pages",
+			// branch: "main",
 
 			// Used by FRX
 			//pathContent: "https://pushme-pullyou.github.io/tootoo-2022/",
@@ -96,7 +96,7 @@
 			//GRV.getRepos();
 
 			ifrNotes1.onload = () => { ifrNotes1.contentWindow.init( ); };
-			ifrNotes1.src = "https://theo-armour.github.io/pages/notesy-2022-12-03.html";
+			ifrNotes1.src = "notesy-2022-12-03.html";
 
 			window.addEventListener( "hashchange", onHashChange, false );
 
@@ -104,7 +104,7 @@
 
 		function onHashChange() {
 
-			ifrNotes1.contentWindow.location.hash = "https://theo-armour.github.io/pages/" + location.hash.substr( 1 )
+			ifrNotes1.contentWindow.location.hash = "../../../" + location.hash.substr( 1 )
 
 		}
 	</script>
