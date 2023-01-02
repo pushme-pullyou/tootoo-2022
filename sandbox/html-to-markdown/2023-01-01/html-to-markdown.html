@@ -1,0 +1,220 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Open and Save</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=contain">
+	<meta name="description"
+		content="File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash.">
+	<meta name="keywords" content="ShowDown,Markdown,AJAX,JavaScript,HTML,CSS,GitHub,FOSS">
+	<meta name="version" content="2023-01-01">
+
+	<style>
+		/* Copyright 2022 Theo Armour. MIT License */
+
+		:root {
+			font: 100% monospace;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0 auto;
+			max-width: 50rem;
+		}
+
+		a {
+			color: crimson;
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus,
+		a:active {
+			text-decoration: underline;
+		}
+
+		aside {
+			border: 1px solid lightgray;
+			margin-top: 15px;
+			padding: 2px;
+		}
+
+		button,
+		input[type=button] {
+			background-color: #eee;
+			border: 2px #eee solid;
+			color: #888;
+		}
+
+		blockquote {
+			background-color: #ddd;
+			padding: 1rem;
+		}
+
+		code {
+			background-color: #eee;
+		}
+
+		pre {
+			background-color: #eee;
+			padding: 0.5rem;
+		}
+
+		summary {
+			cursor: pointer;
+			font-size: 2.5rem;
+			font-weight: bold;
+			outline: none;
+		}
+
+		::-webkit-scrollbar {
+			background: #333;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: crimson;
+		}
+
+		.aDingbat {
+			text-decoration: none;
+			font-size: 2rem;
+		}
+
+		.iframe-resize {
+			height: 400px;
+			overflow: hidden;
+			resize: both;
+			width: 100%;
+		}
+
+		#buttons {
+			position: fixed;
+			right: 1rem
+		}
+	</style>
+
+</head>
+
+<body>
+	<!-- https://github.com/showdownjs/showdown -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+
+	<div id="buttons">
+
+		<p>
+			<input id="inpHash" onchange=location.hash=this.value value="../style-sample-tag.html"><br>
+			<button id="butPlusOne" onclick="plusOne()">+1</button>
+			<input id="inpDate" onchange=location.hash=base+this.value+".htm" value="01" ><br>
+		</p>
+		<button onclick=saveFileHtm()>save htm</button>
+		<button  onclick=saveFileMd()>save md</button>
+
+	</div>
+
+
+	<div id=divContent></div>
+
+	<script>
+
+		digit = 0;
+
+		let month = "01";
+
+		defaultFile = "../../../../README.md";
+
+		//location.hash = "../../../assets/markdown-help.md"; // test
+		//location.hash = "../../../test-cases/style-sample.htm"
+		location.hash = `../../../../theo-armour-qdata/journal/days-of-year-htm/${ month}/${ month }01.htm`;
+
+		let base = "../../../../theo-armour-qdata/journal/days-of-year-htm/" + month + "/" + month;
+
+
+		init();
+
+		function init () {
+
+			showdown.setFlavor( "github" );
+
+			if ( !location.hash ) { location.hash = defaultFile; }
+
+			location.hash.endsWith( ".htm" ) ? onHashChange() : window.location.href = location.hash.slice( 1 );
+
+			window.addEventListener( "hashchange", onHashChange, false );
+
+			//onHashChange()
+
+		}
+
+		function plusOne () {
+
+			date = `0${ ++ digit }`;
+
+			date = date.substr( - 2 );
+
+			inpDate.value = date
+
+			location.hash = base + inpDate.value + ".htm"
+
+			if ( digit > 30 ) { digit = 0; }
+
+		}
+
+		function onHashChange () {
+
+			const url = location.hash.slice( 1 );
+			document.title = url.split( "/" ).pop();
+			const options = { openLinksInNewWindow: false, excludeTrailingPunctuationFromURLs: true, ghMention: true, simplifiedAutoLink: true, simpleLineBreaks: true, emoji: true };
+
+			const xhr = new XMLHttpRequest();
+			xhr.open( "get", url, true );
+			xhr.onload = () => {
+				let txt = xhr.responseText;
+				txt = txt.replace( /\<!--@@@/, "" ).replace( /\@@@-->/, "" );
+				divContent.innerHTML = new showdown.Converter( options ).makeHtml( txt );
+				window.scrollTo( 0, 0 );
+			};
+			xhr.send( null );
+
+		}
+
+
+		function saveFileHtm () {
+
+			const blob = new Blob( [ divContent.innerHTML ] );
+			let a = document.createElement( 'a' );
+			a.href = window.URL.createObjectURL( blob );
+			a.download = `${ document.title.split( "." ).shift() }.htm`;
+			a.click();
+			a = null;
+
+		}
+
+		function saveFileMd () {
+
+			const md = new showdown.Converter().makeMarkdown( divContent.innerHTML );
+
+			cleaned = md.replace( /\<!-- -->/g, "").replace( / \\~/g, " ~" );
+
+			console.log( "md", cleaned );
+
+			const blob = new Blob( [ cleaned ] );
+			let a = document.createElement( 'a' );
+			a.href = window.URL.createObjectURL( blob );
+			a.download = `${ month }${ inpDate.value }.md`;
+			a.click();
+			a = null;
+
+			butPlusOne.click();
+
+		}
+
+	</script>
+</body>
+
+</html>
