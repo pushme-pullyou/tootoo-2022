@@ -68,6 +68,7 @@ GRV.init = function () {
 	GRVdivDetails.innerHTML = htm;
 
 	GRV.getRepo();
+	
 };
 
 
