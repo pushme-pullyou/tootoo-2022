@@ -432,6 +432,7 @@ ul li:before {
 	}
 }
 
+/*
 @media (prefers-color-scheme: dark) {
 	:root {
 		background-color: #1e1f23;
@@ -441,3 +442,4 @@ ul li:before {
 		background-color: #555;
 	}
 }
+*/
